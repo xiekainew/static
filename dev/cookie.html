@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cookie</title>
+</head>
+<body>
+<script>
+    document.cookie = 'name=谢凯'
+    document.cookie = 'age=23'
+    document.cookie = 'school=北京大学'
+    console.log(document.cookie)
+    function getCookie (name) {
+        var cookie = document.cookie
+        if (cookie) {
+            var s = cookie.indexOf(name + '=')
+            var e = cookie.indexOf(';', s)
+            if (e === -1) {
+                e = cookie.length
+            }
+            s = s + name.length + 1
+            return cookie.substring(s, e)
+        } else {
+            return ''
+        }
+    }
+    console.log(getCookie('name'))
+    console.log(getCookie('school'))
+    /**
+     * js、css资源压缩
+     * 缓存ajax
+     * 减小请求次数
+     * 懒加载
+     * 延迟加载
+     * 减小dom元素数量
+     * 样式表放在header里、js放在body最后
+     *
+     * 服务器
+     * 进行cdn缓存
+     * gzip压缩传输文件
+     * 使用get ajax请求
+     *
+     * cookie
+     * 减小cookie大小
+     */
+</script>
+</body>
+</html>

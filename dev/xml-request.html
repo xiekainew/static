@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height:500px;
+        }
+        #aside{
+            width:300px;
+            background-color:yellow;
+            float:left;
+            margin-right:-100%;
+        }
+        #main{
+            width:100%;
+            float:left;
+        }
+        #content{
+            margin-left:300px;
+            background-color:aqua;
+        }
+    </style>
+</head>
+<body>
+<div id = "aside">
+</div>
+<div id = "main">
+    <div id = "content"></div>
+</div>
+<script>
+    function GetXmlHttpObject () {
+        var xmlHttp = null
+        try {
+            xmlHttp = new XMLHttpRequest()
+        } catch (e) {
+            xmlHttp = new ActiveXObject('Msxml2.XMLHTTP')
+        }
+        return xmlHttp
+    }
+    function sendHttp () {
+        var xml = GetXmlHttpObject()
+        xml.open('get', 'http://localhost:2000/getinfo?name=xiekai', true)
+//        xml.open('post', 'http://localhost:2000/server/login', true)
+        xml.setRequestHeader('If-Modified-Since', '0')
+        xml.setRequestHeader('Content-Type', 'application/x-www-urlencoded')
+        xml.onreadystatechange = function () {
+            console.log(xml.readyState)
+            if (xml.readyState === 4) {
+                if (xml.readyState === 200) {
+                    console.log(xml.responseText)
+                }
+            }
+        }
+        xml.send()
+    }
+    sendHttp()
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dialog</title>
+    <link rel="stylesheet" href="./style/dialog.css"/>
+</head>
+<body>
+asdf
+<!--<div class="dialog-wrapper">-->
+    <!--<div class="dialog">-->
+        <!--<div class="title">消息提示</div>-->
+        <!--<div class="content">你好像忘记传值了</div>-->
+        <!--<div class="button">-->
+            <!--<div class="btn cancel-btn">取消</div>-->
+            <!--<div class="btn confirm-btn">确认</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<script src="./js/dialog.js"></script>
+<script src="./js/dialog2.js"></script>
+<script>
+//    dialog.show({
+//        title: '消息提示'
+//    })
+    var confirm = new Dialog({
+        btns: ['确定', '取消']
+    })
+    var confirm2 = new Dialog({
+        btns: ['立即更新', '暂不更新']
+    })
+    confirm.show()
+    confirm2.show()
+</script>
+</body>
+</html>
