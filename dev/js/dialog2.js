@@ -39,10 +39,10 @@ function Dialog (options) {
         this.dialogWrapper.appendChild(dialog)
         document.body.appendChild(this.dialogWrapper)
     }
-    this.show = function () {
+    this.show = function (confirm, cancel) {
         this.createEle()
         this.getElement()
-        this.bindEvent()
+        this.bindEvent(confirm, cancel)
         return this.dialogWrapper
     }
     this.getElement = function () {
@@ -50,17 +50,17 @@ function Dialog (options) {
         this.confirmBtn = document.querySelector('.confirm-btn')
         this.cancelBtn = document.querySelector('.cancel-btn')
     }
-    this.bindEvent = function () {
+    this.bindEvent = function (confirm, cancel) {
         console.log('event')
         var that = this
         this.confirmBtn && this.confirmBtn.addEventListener('click', function (e) {
             console.log('hide')
             that.hide()
-            that.confirm && this.confirm()
+            confirm && confirm()
         })
         this.cancelBtn && this.cancelBtn.addEventListener('click', function (e) {
             that.hide()
-            that.confirm && this.confirm()
+            cancel && cancel()
         })
         if (this.shadeClose) {
             this.dialogWrapper.addEventListener('click', function (e) {

@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./style/dialog.css"/>
 </head>
 <body>
-asdf
 <!--<div class="dialog-wrapper">-->
     <!--<div class="dialog">-->
         <!--<div class="title">消息提示</div>-->
@@ -17,6 +16,7 @@ asdf
         <!--</div>-->
     <!--</div>-->
 <!--</div>-->
+<button class="open">打开</button>
 <script src="./js/dialog.js"></script>
 <script src="./js/dialog2.js"></script>
 <script>
@@ -29,8 +29,15 @@ asdf
     var confirm2 = new Dialog({
         btns: ['立即更新', '暂不更新']
     })
-    confirm.show()
-    confirm2.show()
+    var open = document.querySelector('.open')
+    open.onclick = function () {
+        confirm2.show(function () {
+            console.log('马上更新')
+        })
+    }
+    open.onclick = function () {
+        confirm2.show()
+    }
 </script>
 </body>
 </html>
