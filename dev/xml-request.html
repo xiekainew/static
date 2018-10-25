@@ -30,6 +30,7 @@
     <div id = "content"></div>
 </div>
 <script>
+    document.cookie = 'name=谢凯'
     function GetXmlHttpObject () {
         var xmlHttp = null
         try {
@@ -43,12 +44,15 @@
         var xml = GetXmlHttpObject()
         xml.open('get', 'http://localhost:2000/getinfo?name=xiekai', true)
 //        xml.open('post', 'http://localhost:2000/server/login', true)
-        xml.setRequestHeader('If-Modified-Since', '0')
-        xml.setRequestHeader('Content-Type', 'application/x-www-urlencoded')
+//        xml.setRequestHeader('If-Modified-Since', '0')
+//        xml.setRequestHeader('X-Custom-Header', true)
+//        xml.setRequestHeader('Content-Type', 'application/json')
         xml.onreadystatechange = function () {
             console.log(xml.readyState)
             if (xml.readyState === 4) {
+                console.log(xml.readyState)
                 if (xml.readyState === 200) {
+                    console.log(xml.readyState)
                     console.log(xml.responseText)
                 }
             }
