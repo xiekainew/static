@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         div{
             height:500px;
         }
@@ -20,6 +24,13 @@
         #content{
             margin-left:300px;
             background-color:aqua;
+            margin-right: 300px;
+        }
+        #right{
+            float: right;
+            width: 300px;
+            background: red;
+            margin-left: -100%;
         }
     </style>
 </head>
@@ -29,6 +40,7 @@
 <div id = "main">
     <div id = "content"></div>
 </div>
+<div id="right"></div>
 <script>
     document.cookie = 'name=谢凯'
     function GetXmlHttpObject () {
@@ -59,7 +71,30 @@
         }
         xml.send()
     }
-    sendHttp()
+    // sendHttp()
+
+    function a (x) {
+        return function (y) {
+            return x + y
+        }
+    }
+    var aa = a(10)
+    console.log(aa(20))
+    var b = {
+        a: 12
+    }
+    console.log(b + 12)
+
+    var x = 2
+    function test () {
+        console.log(x)
+        x = 3
+        console.log(x)
+        return;
+        function x () {}
+    }
+    test()
+    console.log(x)
 </script>
 </body>
 </html>
