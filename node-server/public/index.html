@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>node-server</title>
+    <style>
+        .title{
+            margin: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+        .bean {
+            /*position: absolute;*/
+            transition: all 1s linear;
+        }
+        .child{
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background: red;
+            transition: all 1s cubic-bezier(.49, -0.29, .75, .41);
+            /*transform: translate3d(100px, 0, 0);*/
+        }
+        .code{
+            transition: all 1s linear;
+        }
+        .code.move{
+            transform: translateX(10px);
+        }
+    </style>
+</head>
+<body>
+ 欢迎光临
+<div class="title">
+    北京大学
+    <div class="title">
+        北京大学
+    </div>
+</div>
+ <div class="code">code</div>
+<button class="btn">开始</button>
+ <script src="./javascripts/utils.js"></script>
+<script>
+
+    var btn = document.getElementsByClassName('btn')[0]
+    var code = document.getElementsByClassName('code')[0]
+    btn.onclick = function (e) {
+        bean.create(e).move(e).remove()
+        code.className = 'code move'
+    }
+
+    function Bean () {
+        this.target = null
+        this.time = 1000
+        this.timer = null
+    }
+    Bean.prototype.create = function (e) {
+        var that = this
+        this.target = document.createElement('div')
+        this.target.className = 'bean'
+        var child = document.createElement('div')
+        child.className = 'child'
+        this.target.style.left = e.pageX + 'px'
+        child.style.top = e.pageY + 'px'
+        this.target.appendChild(child)
+        document.body.appendChild(this.target)
+        var timer = setTimeout(function() {
+            that.target.style.transform = 'translate3d('+ (e.pageX + 100) +'px, 0, 0)'
+            child.style.transform = 'translate3d( 0,'+ (e.pageY + 100) +'px, 0)'
+            clearTimeout(timer)
+        },0)
+        return this
+    }
+    Bean.prototype.move = function (e) {
+        console.log(e)
+//        this.target.style.left = (e.pageX + 100) + 'px'
+//        this.target.children[0].style.top = (e.pageY + 100) + 'px'
+        console.log(this.target.style)
+        return this
+    }
+    Bean.prototype.remove = function () {
+        var that = this
+        this.timer = setTimeout(function () {
+            that.target.parentNode.removeChild(that.target)
+            clearTimeout(that.timer)
+        }, 1000)
+        return this
+    }
+    var bean = new Bean()
+
+
+</script>
+</body>
+</html>
