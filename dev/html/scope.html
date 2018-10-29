@@ -6,27 +6,78 @@
 </head>
 <body>
 <script>
-    {
-        var a = 2
-    }
-    for (var i = 0; i < 3; i++) {
-        var b = i
-        console.log(i)
-    }
+    // {
+    //     var a = 2
+    // }
+    // for (var i = 0; i < 3; i++) {
+    //     var b = i
+    //     console.log(i)
+    // }
 
-    console.log('a', a)
-    console.log('i', i)
-    console.log('b', b)
-    function d () {
-        var c = 'name'
-        return c
+    // console.log('a', a)
+    // console.log('i', i)
+    // console.log('b', b)
+    // function d () {
+    //     var c = 'name'
+    //     return c
+    // }
+    // var d = 3
+    // d = function () {
+    //     return 4
+    // }
+    // console.log(a)
+    // console.log(d())
+    //
+    // var reg = /(^|&)name=([^&]*)(&|$)/
+    // var name = window.location.search.substr(1).match(reg)
+    // console.log(name)
+    // console.log(name[1])
+    // console.log(unescape(name[2]))
+    // console.log(window.location.search.substr(1).match(reg)[2])
+
+
+    function aa(a,b,c) {
+        console.log(a);
+        console.log(aa);
+        console.log(arguments);
+        var a = function(){
+            console.log(12);
+        };
+        var aa = '444';
+        arguments = 6;
+        console.log(a);
+        console.log(aa);
+        console.log(arguments);
+        function a(){};
     }
-    var d = 3
-    d = function () {
-        return 4
+    // aa(1,2,3);
+
+    var num1 = 1;
+    function   fn(num3){
+        var num4;
+        console.log(num1);    //output    undefined
+        console.log(num3);    //output  4
+        console.log(num4);    //throw error  “num4 is not defined”
+        console.log(num2);    //throw error  “num2 is not defined”
+        var num1 = num4 = 2;
+        num2 = 3;
+        var num3= 5;
     }
-    console.log(a)
-    console.log(d())
+    // fn(4);
+    window.val = 1;
+    var obj = {
+        val: 2,
+        dbl: function () {
+            this.val *= 2;
+            val *= 2;
+            console.log(val);
+            console.log(this.val);
+        }
+    };
+    // 说出下面的输出结果
+    obj.dbl();
+    var func = obj.dbl;
+    func();
 </script>
 </body>
 </html>
