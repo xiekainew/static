@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+<script>
+    //    ﻿var p = new Promise( (resolve, reject) => {
+    //        setTimeout(() => resolve('p1'), 10);
+    //    });
+    //
+    //    p.then( ret => {
+    //        console.log(ret);
+    //    throw new Error('then1');
+    //    return 'then1';
+    //    }).then( ret => {
+    //        console.log(ret);
+    //    throw new Error('then2');
+    //    return 'then2';
+    //    }).catch( err => {
+    //        // 可以捕抓到前面的出现的错误。
+    //        console.log(err.toString());
+    //    });
+    //    setTimeout(function () {
+    //        console.log(1)
+    //    }, 100)
+    //    var p = new Promise(function (resolve, reject) {
+    //        setTimeout(function () {
+    //            resolve('2')
+    //        }, 100)
+    //    })
+    //    p.then(function (ret) {
+    //        console.log(ret)
+    //        throw new Error('33')
+    //        return '44'
+    //    }).then(function (ret) {
+    //        console.log(ret)
+    //    }).catch(function (err) {
+    //        console.log(err)
+    //    })
+
+//    console.log('1, time = ' + new Date().getTime())
+//    setTimeout(macroCallback, 0);
+//    new Promise(function (resolve, reject) {
+//        console.log('2, time = ' + new Date().getTime())
+//        resolve();
+//        console.log('3, time = ' + new Date().getTime())
+//    }).then(microCallback);
+//
+//    new Promise(function (resolve, reject) {
+//        resolve()
+//        console.log(6)
+//    }).then(function () {
+//        console.log(7)
+//    })
+//
+//    function macroCallback() {
+//        console.log('4, time = ' + new Date().getTime())
+//    }
+//    function microCallback() {
+//        console.log('5, time = ' + new Date().getTime())
+//    }
+
+    function MyPromise (func) {
+        var self = this
+        var count = 0
+        this.cbklist = []
+        this.then = function (callback) {
+            this.cbklist.push(callback)
+            return this
+        }
+        this.success = function () {
+            if (count === self.cbklist.length) return
+            self.cbklist[count++](self.success)
+        }
+        setTimeout(function () {
+            func(self.success)
+        }, 0)
+    }
+
+    function a (success) {
+        setTimeout(function () {
+            console.log('aaa')
+            success()
+        }, 1000)
+    }
+    function b (success) {
+        setTimeout(function () {
+            console.log('bb')
+            success()
+        }, 500)
+    }
+    var p = new MyPromise(a).then(b)
+
+</script>
+</body>
+</html>
