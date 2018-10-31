@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+</head>
+<body>
+<script>
+    // var arr = [0,2,4,6,8];
+    // var str = arr.map(function(item,index,arr){
+    //     console.log(arr)
+    //     if (item > 2) {
+    //         return
+    //     }
+    //     console.log(12)
+    // },this);
+    // arr.forEach(function (item, index, arr) {
+    //     console.log(arr)
+    //     if (item > 2) {
+    //         return
+    //     }
+    //     console.log(12)
+    // })
+    // for(var i=1;i<=10;i++) {
+    //     if(i==8) {
+    //         break;
+    //     }
+    //     document.write(i);
+    // }
+    // console.log(str);
+    // console.log(arr);
+    // var a = [{
+    //     name: '1'
+    // }, {
+    //     name: '2'
+    // }]
+    // a.map(function (item) {
+    //     item.name += 1
+    // })
+    // console.log(a)
+
+
+    // function binarySearch(data,item,start,end){
+    //     var end = end || data.length-1;  // 1 1
+    //     var start = start || 0; // 0 1
+    //     var m = Math.floor((start + end) / 2); // 0 1
+    //     if(item === data[m]){
+    //         return data[m];
+    //     }else if(item < data[m]){
+    //         return binarySearch(data, item, start + 1, m) // 0 0
+    //     }else if (item > data[m]){
+    //         return binarySearch(data, item, m+1, end); // (1 1)
+    //     }
+    //     return false;
+    // }
+
+    var arr=[34,12,4,23,124,34];
+    // console.log(binarySearch(arr,12))
+    function insert (arr) {
+        for (var i = 1, l = arr.length; i < l; i++) {
+            var temp = arr[i]
+            var j = i -1
+            while (j >= 0 && arr[j] > temp) {
+                arr[j + 1] = arr[j]
+                j--
+            }
+            arr[j + 1] = temp
+        }
+        return arr
+    }
+    function select (arr) {
+        for (var i = 0, l = arr.length; i < l; i++) {
+            var minIndex = i
+            for (var j = i; j < l; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j
+                }
+            }
+            var temp = arr[i]
+            arr[i] = arr[minIndex]
+            arr[minIndex] = temp
+        }
+        return arr
+    }
+    console.log(select(arr))
+
+
+
+    //
+    // function select (arr) {
+    //     for (var i = 1, l = arr.length; i < l; i++) {
+    //         var temp = arr[i]
+    //         var j = i - 1
+    //         while (j >= 0 && arr[j] > temp) {
+    //             arr[j + 1] = arr[j]
+    //             j--
+    //         }
+    //         arr[j + 1] = temp
+    //     }
+    // }
+    //
+    // function sel (arr) {
+    //     for (var i = 0, l = arr.length; i < l; i++) {
+    //         var miIndnx = i
+    //         for (var j = i; j < l; j++) {
+    //             if (arr[j] < arr[miIndnx]) {
+    //                 miIndnx = j
+    //             }
+    //         }
+    //         var temp = arr[i]
+    //         arr[i] = arr[miIndnx]
+    //         arr[miIndnx] = temp
+    //     }
+    // }
+    //
+
+    var a = [1,2,3,1,'a',1,'a'].filter(function(ele,index,array){
+        return index===array.indexOf(ele)
+    })
+
+    console.log(a)
+
+
+
+</script>
+</body>
+</html>
