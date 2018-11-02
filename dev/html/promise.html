@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>promise</title>
+    <style>
+        #SomeElementYouWantToAnimate{
+            width: 10px;
+            height: 10px;
+            background: blue;
+        }
+    </style>
 </head>
 <body>
+<div id="SomeElementYouWantToAnimate"></div>
 <script>
     //    ﻿var p = new Promise( (resolve, reject) => {
     //        setTimeout(() => resolve('p1'), 10);
@@ -40,27 +48,64 @@
     //        console.log(err)
     //    })
 
-//    console.log('1, time = ' + new Date().getTime())
-//    setTimeout(macroCallback, 0);
-//    new Promise(function (resolve, reject) {
-//        console.log('2, time = ' + new Date().getTime())
-//        resolve();
-//        console.log('3, time = ' + new Date().getTime())
-//    }).then(microCallback);
-//
-//    new Promise(function (resolve, reject) {
-//        resolve()
-//        console.log(6)
-//    }).then(function () {
-//        console.log(7)
-//    })
-//
-//    function macroCallback() {
-//        console.log('4, time = ' + new Date().getTime())
-//    }
-//    function microCallback() {
-//        console.log('5, time = ' + new Date().getTime())
-//    }
+    requestAnimationFrame(function () {
+        console.log('request')
+    })
+    console.log('1, time = ' + new Date().getTime())
+    setTimeout(macroCallback, 0);
+    new Promise(function (resolve, reject) {
+        console.log('2, time = ' + new Date().getTime())
+        resolve();
+        console.log('3, time = ' + new Date().getTime())
+    }).then(microCallback);
+
+    new Promise(function (resolve, reject) {
+        resolve()
+        console.log(6)
+    }).then(function () {
+        console.log(7)
+    })
+
+
+    var start = null;
+    var element = document.getElementById('SomeElementYouWantToAnimate');
+    element.style.position = 'absolute';
+
+    function step(timestamp) {
+        console.log('timestamp', timestamp)
+        if (!start) start = timestamp;
+        var progress = timestamp - start;
+        element.style.left = Math.min(progress / 10, 200) + 'px';
+        if (progress < 200) {
+            window.requestAnimationFrame(step);
+        }
+    }
+
+//    window.requestAnimationFrame(step);
+    var counter = 1;
+    function macroCallback() {
+        console.log('4, time = ' + new Date().getTime())
+        timerFunc()
+    }
+    function microCallback() {
+        console.log('5, time = ' + new Date().getTime())
+    }
+
+    function nextTickHandler() {
+        console.log('next')
+    }
+
+    var observer = new MutationObserver(nextTickHandler);
+    //创建一个textnode dom节点,并让MutationObserver 监视这个节点;而 timeFunc正是改变这个dom节点的触发函数
+    var textNode = document.createTextNode(String(counter));
+    observer.observe(textNode, {
+        characterData: true
+    });
+    var timerFunc = function () {
+        counter = (counter + 1) % 2;
+        textNode.data = String(counter);
+    };
+    timerFunc()
 
     function MyPromise (func) {
         var self = this
@@ -93,7 +138,7 @@
     }
     // var p = new MyPromise(a)
     // p.then(b)
-    new MyPromise(a).then(b)
+//    new MyPromise(a).then(b)
 </script>
 </body>
 </html>
