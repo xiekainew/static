@@ -12,7 +12,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 let proxy = common.eventProxy()
-common.logger.info('[app]', 'app start...')
+common.logger.info('[app]', 'app start... at port: http://localhost:' + config.port)
 function listen () {
   common.logger.info('[app]', 'server listening on port', app.get('port'))
 }
@@ -31,7 +31,7 @@ proxy.fail(function(err) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, 'public2')));
   proxy.emit('init')
 })();
 
