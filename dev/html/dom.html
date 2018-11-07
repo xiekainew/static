@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom</title>
+    <style>
+        #content div{
+            width: 200px;
+            text-align: center;
+            padding: 2px 0;
+            color: red;
+            margin-bottom: 5px;
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<div id='out'>out</div>
+<div id="parent">
+    <div id="child">child</div>
+    <div id="child2">child2</div>
+    <div id="child3">child3</div>
+</div>
+<div id="content"></div>
+<script>
+    function getById (id) {
+        return document.getElementById(id)
+    }
+    var parent = getById('parent')
+    parent.appendChild(getById('out'))
+    console.log(parent)
+    var content = document.createDocumentFragment()
+    var i = 0
+    var s = new Date().getTime()
+    while (i < 10) {
+        var c = document.createElement('div')
+        c.innerHTML = i
+        content.appendChild(c)
+        i++
+    }
+    var con = getById('content')
+    con.appendChild(content)
+    var e = new Date().getTime()
+    console.log('时间', e - s)
+    console.log(con.childNodes)
+    var j = con.childNodes.length - 1
+    while (j >= 0) {
+        con.appendChild(con.childNodes[j])
+        j--
+    }
+//    for (var i = 0, l = con.childNodes.length; i < l; i++) {
+//        con.appendChild(con.childNodes[i])
+//    }
+
+//    var childList = Array.prototype.slice.call(con.childNodes, 0).reverse()
+//    console.log(childList)
+//    con.innerHTML = ''
+//    for (var i = 0, l = childList.length; i < l; i++) {
+//        con.appendChild(childList[i])
+//    }
+</script>
+</body>
+</html>
