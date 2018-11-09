@@ -16,19 +16,59 @@
 </head>
 <body>
 <div id='out'>out</div>
-<div id="parent">
+<div id="parent" onclick="alert(2)" onclick="alert(0)" >
     <div id="child">child</div>
     <div id="child2">child2</div>
     <div id="child3">child3</div>
 </div>
 <div id="content"></div>
+<button id="btn">按钮</button>
+<button id="show">添加按钮</button>
+
+<div id="scriptP">
+    <!--<script src="../js/create-div.js"></script>-->
+</div>
+<script id="script" src="../js/utils.js"></script>
+
 <script>
+    var btn = getById('btn')
+    var show = getById('show')
+
+
+//    btn.addEventListener('click', function() {
+//        console.log(1)
+//    }, false)
+//
+//    btn.addEventListener('click', function() {
+//        console.log(2)
+//    }, false)
+//    btn.onclick = function () {
+//        console.log(3)
+//    }
+    function log1 () {
+        var script = getById('scriptP')
+        var bei = getById('beijing')
+        utils.EventUtil.remove(script)
+        utils.EventUtil.remove(bei)
+        console.log(script)
+    }
+    function showBtn () {
+        var script = document.createElement('script')
+        script.setAttribute('src', '../js/create-div.js')
+        getById('scriptP').appendChild(script)
+    }
+    utils.EventUtil.addHandler(btn, 'click', log1)
+    utils.EventUtil.addHandler(show, 'click', showBtn)
+//    utils.EventUtil.addHandler(btn, 'click', log1)
+//    utils.EventUtil.removeHandler(btn, 'click', log1)
+
+
     function getById (id) {
         return document.getElementById(id)
     }
     var parent = getById('parent')
     parent.appendChild(getById('out'))
-    console.log(parent)
+//    console.log(parent)
     var content = document.createDocumentFragment()
     var i = 0
     var s = new Date().getTime()
@@ -41,8 +81,8 @@
     var con = getById('content')
     con.appendChild(content)
     var e = new Date().getTime()
-    console.log('时间', e - s)
-    console.log(con.childNodes)
+//    console.log('时间', e - s)
+//    console.log(con.childNodes)
     var j = con.childNodes.length - 1
     while (j >= 0) {
         con.appendChild(con.childNodes[j])
