@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>canvas</title>
+    <style>
+        body{
+            /*background: #222;*/
+        }
+    </style>
 </head>
 <body>
 <canvas id="canvas" width="400" height="400">A drawing of something</canvas>
 <canvas id="canvas2" width="400" height="400">A drawing of something</canvas>
+
+<canvas id="water"></canvas>
+
+<script src="../js/waterfull.js"></script>
 <script>
     var can2 = document.getElementById('canvas2')
     var cxt = can2.getContext('2d')
@@ -22,11 +31,22 @@
     cxt.moveTo(194, 100)
     cxt.arc(100, 100, 94, 0, 2 * Math.PI, false)
 
-    cxt.moveTo(100, 100)
-    cxt.lineTo(100, 20)
+    // 变换原点
+    cxt.translate(100, 100)
 
-    cxt.moveTo(100, 100)
-    cxt.lineTo(35, 100)
+    // cxt.rotate(1)
+
+    cxt.moveTo(0, 0)
+    cxt.lineTo(0, -85)
+    cxt.moveTo(0, 0)
+    cxt.lineTo(-65, 0)
+
+
+    // cxt.moveTo(100, 100)
+    // cxt.lineTo(100, 20)
+    //
+    // cxt.moveTo(100, 100)
+    // cxt.lineTo(35, 100)
 //    cxt.fill()
     cxt.stroke()
 
@@ -58,6 +78,12 @@
     context.fillStyle = 'black'
     context.fillRect(30, 30, 50, 50)
     context.clearRect(35, 35, 10, 10)
+</script>
+<script>
+    let rand = function (rMi, rMa) {
+        return ~~((Math.random() * (rMa - rMi + 1)) + rMi)
+    }
+    console.log(rand(5, 20))
 </script>
 
 </body>
