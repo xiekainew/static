@@ -7,6 +7,9 @@
         body{
             /*background: #222;*/
         }
+        #star{
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -14,8 +17,9 @@
 <canvas id="canvas2" width="400" height="400">A drawing of something</canvas>
 
 <canvas id="water"></canvas>
-
+<canvas id="star" width="400" height="400"></canvas>
 <script src="../js/waterfull.js"></script>
+
 <script>
     var can2 = document.getElementById('canvas2')
     var cxt = can2.getContext('2d')
@@ -37,10 +41,12 @@
     // cxt.rotate(1)
 
     cxt.moveTo(0, 0)
-    cxt.lineTo(0, -85)
+    cxt.lineTo(0, -65)
     cxt.moveTo(0, 0)
-    cxt.lineTo(-65, 0)
+    cxt.lineTo(-45, 0)
 
+    function getXY (r, angle, type) {
+    }
 
     // cxt.moveTo(100, 100)
     // cxt.lineTo(100, 20)
@@ -52,8 +58,8 @@
 
     cxt.font = 'bold 14px Arial'
     cxt.textAlign = 'center'
-//    cxt.textBaseline = 'middle'
-    cxt.fillText('12', 100, 20)
+    cxt.textBaseline = 'middle'
+    cxt.fillText('12', 0, -80)
 
 
 
@@ -83,7 +89,16 @@
     let rand = function (rMi, rMa) {
         return ~~((Math.random() * (rMa - rMi + 1)) + rMi)
     }
-    console.log(rand(5, 20))
+//    console.log(rand(5, 20))
+    let scriptStar = document.createElement('script')
+    scriptStar.setAttribute('src', '../js/star.js?' + Math.random())
+    document.body.appendChild(scriptStar)
+
+    let arr = [1, 2, 3, 4, 5]
+    arr.forEach(function (item) {
+        if (item === 2) return
+        console.log(item)
+    })
 </script>
 
 </body>

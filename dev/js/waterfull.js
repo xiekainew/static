@@ -40,7 +40,7 @@ let waterFullCanvas = function (c, cw, ch) {
         this.vy += that.gravity
         this.x += this.vx
         this.y += this.vy
-        console.log(this.y)
+        // console.log(this.y)
     }
     this.Particle.prototype.render = function () {
         // that.ctx.strokeStyle = 'red'
@@ -109,6 +109,7 @@ let waterFullCanvas = function (c, cw, ch) {
             if (that.number < 43) {
                 requestAnimationFrame(loopIt);
             }
+            // requestAnimationFrame(loopIt);
             that.clearCanvas();
             that.createParticles();
             that.updateParticles();

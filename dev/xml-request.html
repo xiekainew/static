@@ -54,14 +54,14 @@
     }
     function sendHttp () {
         var xml = GetXmlHttpObject()
-//        xml.open('get', 'http://localhost:2000/getinfo?name=xiekai', true)
-        xml.open('post', 'http://localhost:2001/server/login', true)
+        xml.open('get', 'http://localhost:2001/getinfo?sdf=23', true)
+//        xml.open('post', 'http://localhost:2001/server/login', true)
 //        xml.setRequestHeader('If-Modified-Since', '0')
 //        xml.setRequestHeader('Content-Type', 'application/json')
         xml.onreadystatechange = function () {
             console.log(xml.readyState)
             if (xml.readyState === 4) {
-                console.log(xml.getResponseHeader('X-Custom-Header'))
+//                console.log(xml.getResponseHeader('X-Custom-Header'))
                 console.log(xml)
                 if (xml.status === 200) {
                     console.log(xml.readyState)
@@ -70,6 +70,7 @@
             }
         }
         xml.send()
+//        xml.send(JSON.stringify({name: 'xiaki', passport: '123'}))
     }
     sendHttp()
 
