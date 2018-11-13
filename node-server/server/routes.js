@@ -16,7 +16,7 @@ router.use(function timeLog(req, res, next) {
             let usetime = time.toFixed(3) + 'ms'
             this.setHeader('X-Response-Time', usetime)
             this.setHeader('Access-Control-Allow-Origin', '*')
-            this.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, X-Custom-Header');
+            // this.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, X-Custom-Header');
             this.setHeader("Access-Control-Allow-Credentials", "true");
             // this.setHeader("Access-Control-Expose-Headers", "Content-Length, X-Custom-Header");
         }
@@ -27,13 +27,14 @@ router.use(function timeLog(req, res, next) {
 function errorHandler(req, res, next) {
     common.send(req, res, common.errcode.SERVER_ERROR.PARAMS_ERROR);
 }
-router.get('*', function (req, res) {
-    console.log(__dirname)
-    // res.send(fs.readFileSync('./public2/saas/index.html'), 'utf-8')
-    res.sendFile(__dirname + '/' + '/public2/saas', 'utf-8')
-})
+// router.get('*', function (req, res) {
+//     console.log(__dirname)
+//     // res.send(fs.readFileSync('./public2/saas/index.html'), 'utf-8')
+//     res.sendFile(__dirname + '/' + '/public2/saas', 'utf-8')
+// })
 router.post('/server/login', Login.handleLogin, errorHandler)
-router.get('/getinfo', function (req, res) {
+router.get('/get/user', function (req, res) {
+    console.log(req.query.name)
     common.send(req, res, '我的信息')
 })
 

@@ -6,6 +6,8 @@ let Wx_user = require('../../model/wx_user')
 
 
 login.handleLogin = (req, res, next) => {
+    // console.log(req)
+    // console.log(req.body)
     let nick = req.body.nick || ''
     let pwd = req.body.password || ''
     if (!nick || !pwd) {

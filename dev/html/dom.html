@@ -25,6 +25,7 @@
 <button id="btn">按钮</button>
 <button id="show">添加按钮</button>
 
+<div id="size"></div>
 <div id="scriptP">
     <!--<script src="../js/create-div.js"></script>-->
 </div>
@@ -98,6 +99,33 @@
 //    for (var i = 0, l = childList.length; i < l; i++) {
 //        con.appendChild(childList[i])
 //    }
+    var size = getById('size')
+    function getSize () {
+        size.innerHTML = document.body.clientWidth
+    }
+    getSize()
+    window.addEventListener('resize', delayFunc(getSize), false)
+    function delayFunc (fn, interval) {
+        var first = true
+        var timer = null
+        var that = fn
+        return function () {
+            var args = arguments
+            var me = this
+            if (first) {
+//                that.apply(me, args)
+                fn()
+                first = false
+            }
+            if (timer) return
+            timer = setTimeout(function () {
+                clearTimeout(timer)
+                timer = null
+//                that.apply(me, args)
+                fn()
+            }, interval || 500)
+        }
+    }
 </script>
 </body>
 </html>

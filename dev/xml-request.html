@@ -52,13 +52,29 @@
         }
         return xmlHttp
     }
+    var img = new Image()
+    img.onload = img.onerror = function () {
+        console.log('done')
+    }
+    img.src = 'http://localhost:2001/get/user?name=123'
     function sendHttp () {
         var xml = GetXmlHttpObject()
-        xml.open('get', 'http://localhost:2001/getinfo?sdf=23', true)
-//        xml.open('post', 'http://localhost:2001/server/login', true)
+//        xml.open('get', 'http://localhost:2001/get/user', true)
+        xml.open('post', 'http://localhost:2001/server/login', true)
 //        xml.setRequestHeader('If-Modified-Since', '0')
 //        xml.setRequestHeader('Content-Type', 'application/json')
-        xml.onreadystatechange = function () {
+//        xml.onreadystatechange = function () {
+//            console.log(xml.readyState)
+//            if (xml.readyState === 4) {
+////                console.log(xml.getResponseHeader('X-Custom-Header'))
+//                console.log(xml)
+//                if (xml.status === 200) {
+//                    console.log(xml.readyState)
+//                    console.log(xml.responseText)
+//                }
+//            }
+//        }
+        xml.onload = function () {
             console.log(xml.readyState)
             if (xml.readyState === 4) {
 //                console.log(xml.getResponseHeader('X-Custom-Header'))
@@ -69,8 +85,18 @@
                 }
             }
         }
-        xml.send()
-//        xml.send(JSON.stringify({name: 'xiaki', passport: '123'}))
+        xml.onprogress = function (event) {
+            if (event.lengthComputable) {
+                console.log(event.lengthComputable)
+                console.log(event.position)
+                console.log(event.totalSize)
+            }
+        }
+        var data = new FormData()
+        data.append('nick', 'xiekai')
+        data.append('password', 'xiekai')
+//        xml.send(data)
+        xml.send(JSON.stringify({nick: 'xiaki', password: '123'}))
     }
     sendHttp()
 
@@ -86,16 +112,22 @@
     }
     console.log(b + 12)
 
-    var x = 2
-    function test () {
-        console.log(x)
-        x = 3
-        console.log(x)
-        return;
-        function x () {}
+//    var x = 2
+//    function test () {
+//        console.log(x)
+//        x = 3
+//        console.log(x)
+//        return;
+//        function x () {}
+//    }
+//    test()
+//    console.log(x)
+    function handleResponse (response) {
+        console.log('you ip address' + response.ip + response.city + response.region_name)
     }
-    test()
-    console.log(x)
+    var script = document.createElement('script')
+    script.src = 'http://localhost:2001/get/user?name=456?callback=handleResponse'
+    document.body.insertBefore(script, document.body.firstChild)
 </script>
 </body>
 </html>
