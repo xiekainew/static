@@ -24,6 +24,7 @@
 <div id="content"></div>
 <button id="btn">按钮</button>
 <button id="show">添加按钮</button>
+<div id="btnBox"></div>
 
 <div id="size"></div>
 <div id="scriptP">
@@ -125,6 +126,18 @@
                 fn()
             }, interval || 500)
         }
+    }
+
+    let btnBox = getById('btnBox')
+    for (var i = 0; i < 5; i++) {
+        var div = document.createElement('div')
+        div.innerHTML = '点击' + i
+        div.onclick = (function (a) {
+            return function () {
+                console.log(a)
+            }
+        })(i)
+        btnBox.appendChild(div)
     }
 </script>
 </body>
