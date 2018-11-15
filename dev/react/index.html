@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react</title>
+</head>
+<body>
+<div id="app"></div>
+<div id="arr"></div>
+<script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+<script>
+    let hi = React.createElement('hi', null, 'holl word')
+    console.log(hi)
+    function render (el) {
+        ReactDOM.render(el, document.getElementById('app'))
+    }
+    render(hi)
+    let ul = React.createElement(
+        'ul',
+        null,
+        hi,
+        React.createElement('li', null, '1 bolk'),
+        React.createElement('li', null, '2 bolk'),
+        React.createElement('li', null, '3 bolk'),
+        React.createElement('li', null, '4 bolk'),
+        React.createElement('li', null, '5 bolk')
+    )
+    render(ul)
+
+    let items = [1, 2, 3, 4, 5]
+    let ulNum = React.createElement(
+        'ul',
+        {className: 'arr'},
+        items.map((item, i) => React.createElement('li', {key: i}, item))
+    )
+    console.log(ulNum)
+    ReactDOM.render(ulNum, document.getElementById('arr'))
+
+</script>
+</body>
+</html>
