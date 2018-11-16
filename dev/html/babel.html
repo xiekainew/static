@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>babel</title>
+</head>
+<body>
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+//    import {add} from '../js/export'
+//    const {add} = require('../js/export')
+    var fun = (a, b) => (
+        a + b
+    )
+    console.log(fun(1, 3))
+
+    let name = 'xiekai'
+    let age = 12
+    let funHike = {name, age, a: 'df'}
+    console.log(funHike)
+</script>
+</body>
+</html>
