@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+</head>
+<body>
+sdf
+<div id="app"></div>
+
+<script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+<script type='text/babel'>
+    let data = [{
+        name: '宫保鸡丁',
+        ingredients: [{
+            name: '鸡丁',
+            amount: 1
+        }, {
+            name: '大葱',
+            amount: 2
+        }],
+        steps: ['切墩', '爆炒']
+    }, {
+        name: '火烧鱿鱼',
+        ingredients: [{
+            name: '鱿鱼',
+            amount: 2
+        }, {
+            name: '火',
+            amount: 1
+        }],
+        steps: ['打火', '开始爆炒']
+    }]
+
+    const Menu = (props) => (
+            <article>
+                <header>
+                    <h1>{props.title}</h1>
+                </header>
+                <div className="recipes">
+                    {props.recipes.map((item, i) =>
+                            <Recipe key={i} name={item.name}
+                                    ingredients={item.ingredients}
+                                    steps={item.steps}/>
+                    )}
+                </div>
+            </article>
+    )
+    let getName = (name, item) => {
+        console.log(name)
+        console.log(item)
+        data[0].name = '北京'
+        initPage()
+    }
+    const Recipe = ({name, ingredients, steps}) => (
+            <section id={name.toLowerCase().replace(/ /g, '-')}>
+                <h1>{name}</h1>
+                <ul className='ingredients'>
+                    {ingredients.map((item, i) =>
+                            <li key={i} onClick={getName.bind(this, item.name, item)}>{item.name}</li>
+                    )}
+                </ul>
+                <section className="instructions">
+                    <h2>步骤</h2>
+                    {steps.map((item, i) =>
+                            <p key={i}>{item}</p>
+                    )}
+                </section>
+            </section>
+    )
+
+
+    const initPage = () => {
+        ReactDOM.render(
+                <Menu recipes={data} title={'菜谱'}/>,
+            document.getElementById('app')
+        )
+    }
+    initPage()
+
+</script>
+</body>
+</html>

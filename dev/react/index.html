@@ -9,6 +9,7 @@
 <div id="arr"></div>
 <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
 <script>
     let hi = React.createElement('hi', null, 'holl word')
     console.log(hi)
@@ -36,6 +37,41 @@
     )
     console.log(ulNum)
     ReactDOM.render(ulNum, document.getElementById('arr'))
+
+    const list = React.createClass({
+        displayName: 'list',
+        renderList (item, i) {
+            return React.createElement('li', {key: i}, item)
+        },
+        render () {
+            return React.createElement('ul', {'className': 'list'},
+//                React.createElement('li', null, '北京'),
+//                React.createElement('li', null, '上海'),
+//                React.createElement('li', null, '南京')
+//                this.props.items.map((item, i) =>
+//                    React.createElement('li', {key: i}, item)
+//                )
+                this.props.items.map(this.renderList)
+            )
+        }
+    })
+    let city = ['北京', '上海', '南京']
+    const listDom = React.createElement(list, {items: city}, null)
+    render(listDom)
+
+    class _list extends React.Component {
+        renderList (item, i) {
+            return React.createElement('li', {key: i}, item)
+        }
+        render () {
+            return React.createElement('ul', {className: 'listName'},
+                this.props.items.map(this.renderList)
+            )
+        }
+    }
+    const book = ['四书', '物镜']
+    const _listDom = React.createElement(_list, {items: book}, null)
+    render(_listDom)
 
 </script>
 </body>
