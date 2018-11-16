@@ -78,13 +78,41 @@
 //    obj.dbl();
 //    var func = obj.dbl;
 //    func();
-    if (rr) {
-        console.log(33)
-    } else {
-        console.log(12)
+//    if (rr) {
+//        console.log(33)
+//    } else {
+//        console.log(12)
+//    }
+//    var rr = 2
+//    console.log(rr)
+
+    for (var i = 0; i < 3; i++) {
+        setTimeout(function () {
+            console.log(i)
+        }, (function () {
+            var b = i * 1000
+            console.log(b)
+            return b
+        })())
     }
-    rr = 2
-    console.log(rr)
+    // 0 1000 2000 3 3 3
+//    console.log(!!(0 == false))
+//    console.log(!!(0 == undefined))
+//    var test = ['1', '2', '3'].map(parseInt)
+//    console.log(test)
+
+    var arr1= [1,1,1,2,3,3,4,5,6],
+        arr2=[4,4,4,5,5,6,7,8,8,9]
+//    var arr = [...new Set(arr1), ...new Set(arr2)]
+    var arr = arr1.concat(arr2)
+    arr = arr.filter(function (item, index, target) {
+        return target.indexOf(item) === index
+    })
+    console.log(arr)
+
+    var mei = 'com.meitu.mtxx/6.8.0(ios10.2)/lang:zh'
+    var result = mei.match(/\/(\S*)\(/)[1]
+    console.log(result)
 </script>
 </body>
 </html>

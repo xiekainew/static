@@ -26,6 +26,14 @@
 <button id="show">添加按钮</button>
 <div id="btnBox"></div>
 
+<ul id="ul">
+    <li>北京</li>
+    <li>上海</li>
+    <li>扬州</li>
+    <li>南京</li>
+    <li>济南</li>
+</ul>
+
 <div id="size"></div>
 <div id="scriptP">
     <!--<script src="../js/create-div.js"></script>-->
@@ -36,6 +44,14 @@
     var btn = getById('btn')
     var show = getById('show')
 
+    var ul = getById('ul')
+    ul.onclick = function (e) {
+        e = e || window.event
+        var target = e.target || e.srcElement
+        if (target.nodeName.toLowerCase() === 'li') {
+            console.log(target.innerHTML)
+        }
+    }
 
 //    btn.addEventListener('click', function() {
 //        console.log(1)
