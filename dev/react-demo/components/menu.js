@@ -1,6 +1,6 @@
 import Recipe from './recipe'
 
-const Menu = ({recipes}) =>
+const Menu = ({recipes}) => (
     <article>
         <header>
             <h1>菜谱</h1>
@@ -11,4 +11,6 @@ const Menu = ({recipes}) =>
             )}
         </div>
     </article>
+)
+
 export default Menu
