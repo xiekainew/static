@@ -4,20 +4,20 @@
     var mousePos = [0, 0]
     var easingFactor = 5.0
     var backgroundColor = '#f1f1f1'
-    let nodeColor = '#20a0ff'
-    let edgeColor = '#20a0ff'
+    var nodeColor = '#20a0ff'
+    var edgeColor = '#20a0ff'
 
-    let nodes = []
-    let edges = []
+    var nodes = []
+    var edges = []
     canvas.width = canvas.clientWidth
     canvas.height = canvas.clientHeight
     console.log(canvas.clientHeight)
-    let rand = function (rMi, rMa) {
+    var rand = function (rMi, rMa) {
         return ~~((Math.random() * (rMa - rMi + 1)) + rMi)
     }
     function createNodes () {
-        for (let i = 0; i < 30; i++) {
-            let node = {
+        for (var i = 0; i < 30; i++) {
+            var node = {
                 drivenByMouse: i === 0,
                 x: rand(0, canvas.width),
                 y: rand(0, canvas.height),
@@ -31,7 +31,7 @@
         nodes.forEach(function (e) {
             nodes.forEach(function (e2) {
                 if (e === e2) return
-                let edge = {
+                var edge = {
                     from: e,
                     to: e2
                 }
@@ -46,7 +46,7 @@
 
     }
     function addEdge (edge) {
-        let flag = false
+        var flag = false
         edges.forEach(function (e) {
             if (e.from === edge.from && e.to === edge.to) {
                 flag = true
@@ -64,8 +64,8 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
         edges.forEach(function (e) {
-            let l = lengthOfEdge(e) / 1.4
-            let threshold = canvas.width / 4
+            var l = lengthOfEdge(e) / 1.4
+            var threshold = canvas.width / 4
             if (l > threshold) return
             ctx.strokeStyle = edgeColor
             ctx.strokeWidth = (1 - l / threshold) * 2

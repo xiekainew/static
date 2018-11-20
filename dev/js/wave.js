@@ -1,12 +1,12 @@
 (function () {
-    let FastRandom = function () {
+    var FastRandom = function () {
         this.getNextFloat = function () {
             return Math.random()
         }
     }
-    let ParticleWave = function () {
-        let me = this
-        let config = {
+    var ParticleWave = function () {
+        var me = this
+        var config = {
             colors: {
                 background: 0x000000,
                 particle: 0x477cc2
@@ -16,9 +16,9 @@
             },
             particleCount: 30000
         }
-        let TAU = Math.PI * 2
-        let random = new FastRandom()
-        let particle,
+        var TAU = Math.PI * 2
+        var random = new FastRandom()
+        var particle,
             particleFillStyle,
             particleColorRGB = new Float32Array(3),
             smoothGradient,
@@ -30,24 +30,24 @@
             particleWaveWalker = 0,
             randomWalker = 0
 
-        let requestTick = function () {
+        var requestTick = function () {
             window.requestAnimationFrame(tick)
         }
 
-        let initParticle = function () {
+        var initParticle = function () {
             particle = new Float32Array(config.particleCount * 2)
             eachParticle(function(x, z) {
                 particle[x] = random.getNextFloat()
                 particle[z] = random.getNextFloat()
             })
         }
-        let eachParticle = function (cb) {
-            for (let i = 0, l = particle.length; i < l; i += 2) {
+        var eachParticle = function (cb) {
+            for (var i = 0, l = particle.length; i < l; i += 2) {
                 cb(i, i + 1)
             }
         }
 
-        let initCanvas = function () {
+        var initCanvas = function () {
             canvas = document.getElementById('canvas')
             engine = canvas.getContext('2d')
             width = window.innerWidth
@@ -56,14 +56,14 @@
             canvas.setAttribute('height', height)
         }
 
-        let initParticleColor = function () {
+        var initParticleColor = function () {
             particleColorRGB[0] = config.colors.particle >> 16 & 0xff
             particleColorRGB[1] = config.colors.particle >> 8 & 0xff
             particleColorRGB[2] = config.colors.particle & 0xff
             particleFillStyle = 'rgb(' + particleColorRGB[0] + ',' + particleColorRGB[1] + ',' + particleColorRGB[2] + ')'
         }
 
-        let initSmoothGradient = function () {
+        var initSmoothGradient = function () {
             smoothGradient = engine.createLinearGradient(width / 2, 0, width / 2, height)
             smoothGradient.addColorStop(0.25, 'rgba(0, 0, 0, 0)')
             smoothGradient.addColorStop(0.45, 'rgba(0, 0, 0, 0.9)')
@@ -72,13 +72,13 @@
             smoothGradient.addColorStop(0.75, 'rgba(0, 0, 0, 0)')
         }
 
-        let initWaterGradient = function () {
+        var initWaterGradient = function () {
             waterGradient = engine.createLinearGradient(width / 2, height / 2, width / 2, height)
             waterGradient.addColorStop(0, 'rgba(0, 0, 30, 0)')
             waterGradient.addColorStop(1, 'rgba(30, 0, 60, 0.5)')
         }
 
-        let init = function () {
+        var init = function () {
             initCanvas()
             initParticle()
             initParticleColor()
@@ -86,28 +86,28 @@
             initWaterGradient()
         }
 
-        let renderParticle = function () {
+        var renderParticle = function () {
             randomWalker += (Math.random() - 0.5) * 0.1
             particleWaveWalker += 0.03
-            let radius = {
+            var radius = {
                 min: 1,
                 add: 5
             }
-            let midY = height / 2
-            let midX = width / 2
-            let spreadX = 5
-            let spreadZ = 0.0
-            let modZ = 0.0
-            let addX = 0,
+            var midY = height / 2
+            var midX = width / 2
+            var spreadX = 5
+            var spreadZ = 0.0
+            var modZ = 0.0
+            var addX = 0,
                 addY = 0
-            let p = {
+            var p = {
                 x: 0.0,
                 y: 0.0,
                 r: 0.0
             }
             engine.fillStyle = particleFillStyle
-            let waveControl = 10
-            for (let i = 0, xIndex, zIndex, l = particle.length; i < l; i += 2) {
+            var waveControl = 10
+            for (var i = 0, xIndex, zIndex, l = particle.length; i < l; i += 2) {
                 xIndex = i
                 zIndex = i + 1
                 particle[zIndex] += 0.003
@@ -154,23 +154,23 @@
             // engine.closePath();
             // engine.fill();
         }
-        let colorIntToHexString = function (color) {
-            let s = color.toString(16)
+        var colorIntToHexString = function (color) {
+            var s = color.toString(16)
             return '0'.repeat(6 - s.length) + s
         }
-        let clear = function () {
+        var clear = function () {
             engine.fillStyle = '#' + colorIntToHexString(config.colors.background)
             engine.fillRect(0, 0, width, height)
         }
-        let drawSmooth = function () {
+        var drawSmooth = function () {
             engine.fillStyle = smoothGradient
             engine.fillRect(0, 0, width, height)
         }
-        let drawWater = function () {
+        var drawWater = function () {
             engine.fillStyle = waterGradient
             engine.fillRect(0, height / 2, width, height / 2)
         }
-        let tick = function () {
+        var tick = function () {
             clear()
             drawWater()
             renderParticle()
@@ -182,6 +182,6 @@
             tick()
         }
     }
-    let pw = new ParticleWave()
+    var pw = new ParticleWave()
     pw.run()
 })()

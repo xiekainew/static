@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>position</title><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>position</title>
+    <style>
         *{
             margin: 0;
             padding: 0;
@@ -55,7 +60,38 @@
             border: 1px dashed navajowhite;
             float: left;
         }
-    </style></head><body><div id=div1>div1<div id=div2>div2<div id=div3>div3<div id=div4>div4<div id=div5>div5</div></div></div><div id=div31>div31</div></div></div><div id=box><div class=box-item></div><div class=box-item></div><div class=box-item></div><div class=box-item></div><div class=box-item></div><div class=box-item></div><div class=box-item></div><div class=box-item></div></div><script>
+    </style>
+</head>
+<body>
+<div id="div1">
+    div1
+    <div id="div2">
+        div2
+        <div id="div3">
+            div3
+            <div id="div4">
+                div4
+                <div id="div5">
+                    div5
+                </div>
+            </div>
+        </div>
+        <div id="div31">
+            div31
+        </div>
+    </div>
+</div>
+<div id="box">
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+    <div class="box-item"></div>
+</div>
+<script>
     function farmat(mun) {
         if (mun === null) return;
         var m = parseInt(mun).toString();
@@ -128,4 +164,6 @@
     console.log(max)
     console.log(maxArr.toString())
 
-</script></body></html>
+</script>
+</body>
+</html>

@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>canvas</title>
-    <style>
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>canvas</title><style>
         body{
             /*background: #222;*/
         }
         #star{
             border: 1px solid black;
         }
-    </style>
-</head>
-<body>
-<canvas id="canvas" width="400" height="400">A drawing of something</canvas>
-<canvas id="canvas2" width="400" height="400">A drawing of something</canvas>
-
-<canvas id="water"></canvas>
-<canvas id="star" width="400" height="400"></canvas>
-<script src="../js/waterfull.js"></script>
-
-
-<script>
+    </style></head><body><canvas id=canvas width=400 height=400>A drawing of something</canvas><canvas id=canvas2 width=400 height=400>A drawing of something</canvas><canvas id=water></canvas><canvas id=star width=400 height=400></canvas><script src=../js/waterfull.js></script><script>
     var can2 = document.getElementById('canvas2')
     var cxt = can2.getContext('2d')
     cxt.beginPath()
@@ -85,8 +69,7 @@
     context.fillStyle = 'black'
     context.fillRect(30, 30, 50, 50)
     context.clearRect(35, 35, 10, 10)
-</script>
-<script>
+</script><script>
     let rand = function (rMi, rMa) {
         return ~~((Math.random() * (rMa - rMi + 1)) + rMi)
     }
@@ -100,7 +83,4 @@
         if (item === 2) return
         console.log(item)
     })
-</script>
-
-</body>
-</html>
+</script></body></html>

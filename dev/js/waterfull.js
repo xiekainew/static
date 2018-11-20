@@ -1,5 +1,5 @@
-let waterFullCanvas = function (c, cw, ch) {
-    let that = this
+var waterFullCanvas = function (c, cw, ch) {
+    var that = this
     this.c = c
     this.ctx = c.getContext('2d')
     this.cw = cw
@@ -23,8 +23,8 @@ let waterFullCanvas = function (c, cw, ch) {
     }
 
     this.Particle = function () {
-        let newWidth = that.rand(1, 20)
-        let newHeight = that.rand(1, 45)
+        var newWidth = that.rand(1, 20)
+        var newHeight = that.rand(1, 45)
         this.x = that.rand(10 + (newWidth / 2), that.cw - 10 - (newWidth / 2))
         this.y = -newHeight
         this.vx = 0
@@ -62,16 +62,16 @@ let waterFullCanvas = function (c, cw, ch) {
         that.ctx.fill()
     }
     this.createParticles = function(){
-        let i = this.particleRate;
+        var i = this.particleRate;
         while(i--){
             this.particles.push(new this.Particle());
         }
     };
 
     this.removeParticles = function(){
-        let i = this.particleRate;
+        var i = this.particleRate;
         while(i--){
-            let p = this.particles[i];
+            var p = this.particles[i];
             if(p.y > that.ch-20-p.height){
                 p.renderBubble();
                 that.particles.splice(i, 1);
@@ -80,18 +80,18 @@ let waterFullCanvas = function (c, cw, ch) {
     };
 
     this.updateParticles = function(){
-        let i = this.particles.length;
+        var i = this.particles.length;
         while(i--){
-            let p = this.particles[i];
+            var p = this.particles[i];
             p.update(i);
             // console.log(p)
         };
     };
 
     this.renderParticles = function(){
-        let i = this.particles.length;
+        var i = this.particles.length;
         while(i--){
-            let p = this.particles[i];
+            var p = this.particles[i];
             p.render();
         };
     };
@@ -104,7 +104,7 @@ let waterFullCanvas = function (c, cw, ch) {
     };
     this.number = 0
     this.loop = function(){
-        let loopIt = function(){
+        var loopIt = function(){
             that.number++
             if (that.number < 43) {
                 requestAnimationFrame(loopIt);
@@ -120,22 +120,22 @@ let waterFullCanvas = function (c, cw, ch) {
     };
 }
 
-let isSupportCanvas = function () {
-    let elem = document.createElement('canvas')
+var isSupportCanvas = function () {
+    var elem = document.createElement('canvas')
     return !!(elem.getContext && elem.getContext('2d'))
 }
 
-let setupRAF = function () {
-    let lastTime = 0
-    let vendors = ['ms', 'moz', 'webkit', 'o']
-    for (let i = 0; i < vendors.length && !window.requestAnimationFrame; i++) {
+var setupRAF = function () {
+    var lastTime = 0
+    var vendors = ['ms', 'moz', 'webkit', 'o']
+    for (var i = 0; i < vendors.length && !window.requestAnimationFrame; i++) {
         window.requestAnimationFrame = window[vendors[i] + 'RequestAnimationFrame']
         window.cancelAnimationFrame = window[vendors[i] + 'CancelAnimationFrame'] || window[vendors[i] + 'CancelRequestAnimationFrame']
     }
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = function (callback, element) {
-            let currtime = new Date().getTime()
-            let timeToCall = Math.max(0, 16 - (currtime - lastTime))
+            var currtime = new Date().getTime()
+            var timeToCall = Math.max(0, 16 - (currtime - lastTime))
             window.requestAnimationFrame = window.setTimeout(function () {
                 callback(currtime + timeToCall)
             }, timeToCall)
@@ -150,10 +150,10 @@ let setupRAF = function () {
     }
 }
 if(isSupportCanvas()){
-    let c = document.getElementById('water');
-    let cw = c.width = 100;
-    let ch = c.height = 140;
-    let waterfall = new waterFullCanvas(c, cw, ch);
+    var c = document.getElementById('water');
+    var cw = c.width = 100;
+    var ch = c.height = 140;
+    var waterfall = new waterFullCanvas(c, cw, ch);
     // setupRAF();
     waterfall.init();
 }

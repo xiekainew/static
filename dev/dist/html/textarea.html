@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>textares</title><style>
+        textarea{
+            width: 300px;
+            height: 200px;
+        }
+    </style></head><body><textarea id=text>输入</textarea> <button id=print>打印</button><script>
+    var print = document.getElementById('print')
+    var text = document.getElementById('text')
+    print.onclick = function () {
+        var value = text.value
+        value = value.replace(/\n/g, '\\n')
+        console.log(value)
+    }
+    var a = '2323'
+    console.log(Object.prototype.toString.call(a))
+</script></body></html>
