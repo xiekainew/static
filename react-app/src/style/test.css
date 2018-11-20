@@ -21,3 +21,13 @@
 .star.selected{
     background-color: red;
 }
+.color-list{
+    display: flex;
+    padding: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.color-list .color{
+
+}

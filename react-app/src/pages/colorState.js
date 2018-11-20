@@ -53,10 +53,23 @@ class ColorState extends Component {
         )
         this.setState({colors})
     }
+    addColor (title = '新添加颜色', color) {
+        if (!color) return
+        const colors = [
+            ...this.state.colors,
+            {
+                id: Math.random(),
+                title: title,
+                color: color,
+                rating: 0
+            }
+        ]
+        this.setState({colors})
+    }
     render () {
         return (
             <div className='app'>
-                <AddColor/>
+                <AddColor addColor={this.addColor.bind(this)}/>
                 <ColorList onRate={this.rateColor.bind(this)} colors={this.state.colors}/>
             </div>
         )
