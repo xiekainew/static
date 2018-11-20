@@ -5,9 +5,11 @@ class Star extends Component {
         super(props)
     }
     render () {
-        const {selected, onClick} = this.props
+        const {selected, onClick, color} = this.props
         return (
-            <div className={selected ? 'star selected' : 'star'}
+            <div
+                className='star'
+                style={{backgroundColor: selected ? color : 'grey'}}
                 onClick={onClick}
             ></div>
         )

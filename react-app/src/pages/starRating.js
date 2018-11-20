@@ -10,19 +10,22 @@ class StarRating extends Component{
         }
     }
     change (num) {
-        this.setState({starsSelected: num})
+        this.props.onRate(num)
     }
     render () {
-        const {totalStars} = this.props
-        const {starsSelected} = this.state
+        const {starsSelected} = this.props
         return (
             <div className='star-rating'>
-                {[...Array(totalStars)].map((n, i) =>
-                    <Star key={i}
-                          selected={i < starsSelected}
-                          onClick={() => this.change(i + 1)}
-                    />
-                )}
+                <div style={{overflow: 'hidden'}}>
+                    {[...Array(this.state.totalStars)].map((n, i) =>
+                        <Star key={i}
+                              color={this.props.color}
+                              selected={i < starsSelected}
+                              onClick={() => this.change(i + 1)}
+                        />
+                    )}
+                </div>
+                <p>{starsSelected} of {this.state.totalStars} stars</p>
             </div>
         )
     }

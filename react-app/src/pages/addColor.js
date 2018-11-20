@@ -8,6 +8,7 @@ class AddColor extends Component {
         const {_title, _color} = this.refs
         e.preventDefault()
         console.log(_title.value)
+        console.log(_color.value)
         console.log(`new Color${_title.value} ${_color.value}`)
         _color.value = _title.value
         _title.value = ''
@@ -18,8 +19,7 @@ class AddColor extends Component {
             <form onSubmit={this.submit.bind(this)}>
                 <input type='text'
                        placeholder='color title...'
-                       ref='_title'
-                       required/>
+                       ref='_title'/>
                 <input type='color'
                        ref='_color'
                        required/>

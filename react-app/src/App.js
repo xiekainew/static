@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import Props from './pages/props'
 import AddColor from './pages/addColor'
 import StarRating from './pages/starRating'
-
+import ColorState from './pages/colorState'
 // class App extends Component {
 //   render() {
 //     return (
@@ -41,8 +41,9 @@ let data = {
 const App = () =>
     <div className='app'>
         {/*<Props {...data}/>*/}
-        <AddColor/>
-        <StarRating totalStars={5}/>
+        {/*<AddColor/>*/}
+        {/*<StarRating totalStars={5}/>*/}
+        <ColorState/>
         <header className="App-header">
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
           {/*<Img/>*/}
