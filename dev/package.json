@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp",
+    "server": "gulp server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.26.3",
     "child_process": "^1.0.2",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.1.0",
@@ -21,6 +24,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.1",
     "gulp-util": "^3.0.8",
-    "jshint": "^2.9.6"
+    "jshint": "^2.9.6",
+    "vinyl-paths": "^2.1.0"
   }
 }

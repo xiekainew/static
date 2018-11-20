@@ -9,6 +9,10 @@ var jshint = require('gulp-jshint')
 var concat = require('gulp-concat')
 var livereload = require('gulp-livereload')
 var exec = require('child_process').exec
+var del = require('del')
+var vinylPaths = require('vinyl-paths')
+var browserSync = require('browser-sync')
+var reload = browserSync.reload
 
 // gulp.src('./html/position.html').
 //     pipe(gulp.dest('dist/html'))
@@ -98,13 +102,23 @@ gulp.task('watch', function () {
     })
 })
 
-gulp.task('remove', function () {
+gulp.task('clean', function () {
+    return gulp.src('dist')
+        .pipe(vinylPaths(del))
+})
 
+gulp.task('server', function () {
+    browserSync({
+        server: {
+            baseDir: 'dev'
+        }
+    })
+    gulp.watch(['*.html'], {cwd: 'dev'}, reload)
 })
 
 gulp.task('default',
-    ['name'],
-    // ['name', 'mini-css', 'mini-html', 'concat-js', 'watch'],
+    // ['clean'],
+    // ['clean', 'name', 'mini-css', 'mini-html', 'concat-js', 'watch'],
     function () {
     console.log('gulp over ....')
 })
