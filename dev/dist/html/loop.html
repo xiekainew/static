@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>loop</title></head><body><script>
+    console.log(1)
+    new Promise(function (resolve) {
+        console.log(2)
+        resolve()
+    }).then(function () {
+        console.log(3)
+    })
+    setTimeout(function () {
+        console.log(4)
+        new Promise(function (resolve) {
+            console.log(5)
+            resolve()
+        }).then(function () {
+            console.log(6)
+        })
+    }, 0)
+    new Promise(function (resolve) {
+        console.log(7)
+        resolve()
+    }).then(function () {
+        console.log(8)
+    })
+    // 1 2 7 3 8 4 5 6
+    console.log(a)
+    a = 1
+    function a () {
+
+    }
+</script></body></html>

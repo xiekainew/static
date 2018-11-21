@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>match 正则</title></head><body><script>
+    var url = "asdf<iframe src='http://fwww'></iframe> sdf <iframe height=498 width=510 src='http://player.youku.com/embed/XMzYzNjM1ODc0MA==' frameborder=0 'allowfullscreen'></iframe>asdfasf"
+    console.log(url)
+    var reg = /<iframe(.*?)<\/iframe>/g
+    var match = url.match(reg)
+    console.log(match)
+    if (match && match.length) {
+        for (var i = 0, t; t = match[i++];) {
+            var copy = t
+            url = url.replace(copy, t.replace('http:', 'https:'))
+        }
+    }
+    console.log(url)
+</script></body></html>

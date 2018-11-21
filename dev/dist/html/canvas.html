@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>canvas</title><style>
+        body{
+            /*background: #222;*/
+        }
+        #star{
+            border: 1px solid black;
+        }
+    </style></head><body><canvas id=canvas width=400 height=400>A drawing of something</canvas><canvas id=canvas2 width=400 height=400>A drawing of something</canvas><canvas id=water></canvas><canvas id=star width=400 height=400></canvas><script src=../js/waterfull.js></script><script>
+    var can2 = document.getElementById('canvas2')
+    var cxt = can2.getContext('2d')
+    cxt.beginPath()
+//    cxt.arc(0, 10, 50, 30, false)
+////    cxt.arcTo(20, 20, 50, 50, 50)
+    cxt.fillStyle = 'blue'
+    cxt.strokeStyle = 'red'
+    cxt.arc(100, 100, 99, 0, 2 * Math.PI, false)
+//    cxt.moveTo(140, 100)
+//    cxt.arc(100, 100, 40, 0, 2 * Math.PI, false)
+
+    cxt.moveTo(194, 100)
+    cxt.arc(100, 100, 94, 0, 2 * Math.PI, false)
+
+    // 变换原点
+    cxt.translate(100, 100)
+
+    // cxt.rotate(1)
+
+    cxt.moveTo(0, 0)
+    cxt.lineTo(0, -65)
+    cxt.moveTo(0, 0)
+    cxt.lineTo(-45, 0)
+
+    function getXY (r, angle, type) {
+    }
+
+    // cxt.moveTo(100, 100)
+    // cxt.lineTo(100, 20)
+    //
+    // cxt.moveTo(100, 100)
+    // cxt.lineTo(35, 100)
+//    cxt.fill()
+    cxt.stroke()
+
+    cxt.font = 'bold 14px Arial'
+    cxt.textAlign = 'center'
+    cxt.textBaseline = 'middle'
+    cxt.fillText('12', 0, -80)
+
+
+
+    var can = document.getElementById('canvas')
+    var context = can.getContext('2d')
+//    context.strokeStyle = 'red'
+    context.fillStyle = '#0000ff'
+    context.fillStyle = 'red'
+    context.fillRect(0, 0, 50, 50)
+
+    context.fillStyle = 'rgba(0, 255, 0, .5)'
+    context.fillRect(10, 10, 50, 50)
+    context.strokeStyle = '#ff0055'
+    context.strokeRect(10, 10, 50, 50)
+
+    context.strokeStyle = 'rgba(0, 0, 255, 1)'
+    context.lineWidth = 10
+    context.lineCap = 'butt'
+    context.lineJoin = 'miter'
+    context.strokeRect(30, 30, 50, 50)
+
+    context.fillStyle = 'black'
+    context.fillRect(30, 30, 50, 50)
+    context.clearRect(35, 35, 10, 10)
+</script><script>
+    let rand = function (rMi, rMa) {
+        return ~~((Math.random() * (rMa - rMi + 1)) + rMi)
+    }
+//    console.log(rand(5, 20))
+    let scriptStar = document.createElement('script')
+    scriptStar.setAttribute('src', '../js/star.js?' + Math.random())
+    document.body.appendChild(scriptStar)
+
+    let arr = [1, 2, 3, 4, 5]
+    arr.forEach(function (item) {
+        if (item === 2) return
+        console.log(item)
+    })
+</script></body></html>

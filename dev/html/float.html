@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>float</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #parent{
+            background: saddlebrown;
+            /*height: 14px;*/
+            /*zoom: 1;*/
+            /*overflow: auto;*/
+            /*display: table;*/
+        }
+        #parent:after{
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            float: left;
+            background: yellowgreen;
+        }
+        /*#clear{*/
+            /*clear: both;*/
+        /*}*/
+        .box{
+            width: 20px;
+            height: 20px;
+            background: yellowgreen;
+            border: 5px solid peru;
+            padding: 5px;
+            margin: 10px;
+            /*box-sizing: border-box;*/
+            box-sizing: content-box;
+        }
+        .content{
+            height: 100px;
+            background: aquamarine;
+            display: flex;
+
+        }
+        .content button{
+            border: 0;
+            flex: 1;
+            display: inline;
+        }
+        .content .btn2{
+            width: 500px;
+            flex: 2;
+        }
+    </style>
+</head>
+<body>
+<div id='parent'>
+    <div id='div1'></div>
+    <div id='clear'></div>
+</div>
+<div class='box'></div>
+<div class='content'>
+    <button style='background-color: red'>点击</button>
+    <button class='btn2' style='background-color: yellow'>北京天安门</button>
+    <button style='background-color: blue'>北京天</button>
+</div>
+</body>
+</html>

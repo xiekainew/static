@@ -97,7 +97,7 @@ gulp.task('concat-js', function () {
 
 gulp.task('watch', function () {
     livereload.listen()
-    gulp.watch('html/*.*', function (file) {
+    gulp.watch(['html/*.*', '*.html', '*.js'], function (file) {
         livereload.changed(file.path)
     })
 })
@@ -107,18 +107,18 @@ gulp.task('clean', function () {
         .pipe(vinylPaths(del))
 })
 
-gulp.task('server', function () {
-    browserSync({
-        server: {
-            baseDir: 'dev'
-        }
-    })
-    gulp.watch(['*.html'], {cwd: 'dev'}, reload)
-})
+// gulp.task('server', function () {
+//     browserSync({
+//         server: {
+//             baseDir: 'dev'
+//         }
+//     })
+//     gulp.watch(['*.html'], {cwd: 'dev'}, reload)
+// })
 
 gulp.task('default',
     // ['clean'],
-    // ['clean', 'name', 'mini-css', 'mini-html', 'concat-js', 'watch'],
+    ['name', 'mini-css', 'mini-html', 'concat-js', 'watch'],
     function () {
     console.log('gulp over ....')
 })
