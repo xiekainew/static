@@ -97,7 +97,7 @@ gulp.task('concat-js', function () {
 
 gulp.task('watch', function () {
     livereload.listen()
-    gulp.watch(['html/*.*', '*.html', '*.js'], function (file) {
+    gulp.watch(['html/*.*', '*.html', '*.js', 'js/*.js'], function (file) {
         livereload.changed(file.path)
     })
 })

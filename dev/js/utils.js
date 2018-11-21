@@ -44,7 +44,13 @@ var utils = (function () {
             return true
         }
     }
+    var trim = function (str) {
+        if (str && typeof str === 'string') {
+            return str.replace(/(^s*)|(s*$)/g, '')
+        }
+    }
     return {
-        EventUtil: eventUtil
+        EventUtil: eventUtil,
+        Trim: trim
     }
 })()
