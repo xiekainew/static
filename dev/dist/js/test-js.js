@@ -1,1 +1,1 @@
-console.log("12");
+!function(){console.log("123fds2");var o="   sdffds    23 s dfsdf   ";console.log(o),console.log(function(o){if(o&&"string"==typeof o)return o.replace(/(^\s*)|(\s*$)/g,"")}(o))}();
