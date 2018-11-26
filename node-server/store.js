@@ -11,17 +11,17 @@ let self = store
 
 store.error = (err, callback) => {
     if (callback) {
-        logger.error('[store] error', err.message)
+        logger.error('[lib] error', err.message)
         callback(err)
     }
 }
 
 store.mongo = (callback => {
-    logger.info('[store] mongo start %s', config.mongo.url)
+    logger.info('[lib] mongo start %s', config.mongo.url)
     let mongoClient = mongo.MongoClient
     mongoClient.connect(config.mongo.url, (err, db) => {
         if (err) {
-            logger.error('[store] mongo connect error')
+            logger.error('[lib] mongo connect error')
             if (callback) callback(err)
             return
         }
@@ -31,12 +31,12 @@ store.mongo = (callback => {
             } else {
                 store.mongodb = mongodb = db
             }
-            logger.info('[store] mongo connect success')
+            logger.info('[lib] mongo connect success')
             if (callback) callback(null, db)
         } else {
             db.authenticate(config.mongo.user, config.mongo.password, (err, result) => {
                 if (err) {
-                    logger.error('[store] mongo auth error')
+                    logger.error('[lib] mongo auth error')
                     if (callback) callback(err)
                     return
                 }
@@ -45,7 +45,7 @@ store.mongo = (callback => {
                 } else {
                     store.mongodb = mongodb = db
                 }
-                logger.info('[store] mongo connect $s', result)
+                logger.info('[lib] mongo connect $s', result)
                 if (callback) callback(null, result)
             })
         }
@@ -53,14 +53,14 @@ store.mongo = (callback => {
 })
 
 store.init = (callback) => {
-    logger.info('[store] store init start...')
+    logger.info('[lib] lib init start...')
     let proxy = common.eventProxy()
     proxy.all(['mongo'], (mongo) => {
-        logger.info('[store] store init success !')
+        logger.info('[lib] lib init success !')
         callback(null, mongo)
     })
     proxy.fail((err) => {
-        logger.info('[store] store init failed')
+        logger.info('[lib] lib init failed')
         if (callback) {
             callback(err)
         }

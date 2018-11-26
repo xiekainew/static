@@ -43,8 +43,8 @@ proxy.fail(function(err) {
 })();
 
 (function() {
-  // let store = require('./store')
-  // store.init((proxy.done('store')))
+  // let lib = require('./lib')
+  // lib.init((proxy.done('lib')))
 })();
 
 

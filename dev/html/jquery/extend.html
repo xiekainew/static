@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>extend</title>
+</head>
+<body>
+extend test
+<script src='../../js/lib/jquery-3.3.1.js'></script>
+<script src='../../js/lib/lodash-4.17.5.js'></script>
+<script>
+    var obj1 = {
+        a: 1,
+        b: {
+            name: '小明',
+            age: 20,
+            school: '清华大学'
+        },
+        c: function () {
+            console.log('obj1')
+        },
+        d: 'obj1 私有'
+    }
+    var obj2 = {
+        a: 2,
+        b: {
+            name: '红梅',
+            age: 12,
+            score: 100
+        },
+        c: function () {
+            console.log('obj2')
+        }
+    }
+    var obj3 = {
+        b: {
+            sex: '男'
+        }
+    }
+//    $.extend(obj1, obj2)  // 合并到obj1上 完全覆盖，修改obj1的对象属性，obj2也会修改
+//    $.extend(true, obj1, obj2, obj3) // 合并到obj1上，进行merge操作，深度clone
+//    var obj4  = $.extend(true, {}, obj1, obj2) // 合并到obj1上，进行merge操作，深度clone
+//    $.extend(obj3) // 给jquery本身添加静态方法
+//    obj1.b.age = 4
+//    console.log($.b)
+//    var obj4 = _.merge(obj1, obj2)
+//    var obj4 = _.extend({}, obj1, obj2)
+    var obj4 = _.assign({}, obj1, obj2)
+//    var obj4 = _.merge({}, obj1, obj2)
+//    obj4.b.age = 'jjj'
+    obj4.b.name = 'jj'
+    console.log(JSON.stringify(obj1))
+    console.log(JSON.stringify(obj2))
+    console.log(JSON.stringify(obj4))
+
+</script>
+</body>
+</html>
