@@ -2,7 +2,7 @@ require.config({
     baseUrl: 'js',
     paths: {
         pb: '../lib',
-        // com: '../common',
+        com: '../common',
         jquery: '../../js/lib/jquery-3.3.1'
     },
     shim: {
