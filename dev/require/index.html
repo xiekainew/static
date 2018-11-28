@@ -8,11 +8,10 @@
 require test
 <script type='text/javascript' src="../js/lib/require.js" data-main="app"></script>
 <script type='text/javascript'>
-//    require(['common/say'], function (say) {
-////    require(['common/say'], function (say) {
-////        say('sdjfi')
-//    })
-        console.log(12)
+    require(['js/cat', 'jquery'], function (cat, animal) {
+        console.log(cat)
+        console.log(animal)
+    })
 </script>
 <!--<script src="index.js"></script>-->
 </body>

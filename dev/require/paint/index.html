@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>paint 绘图程序</title>
+    <style>
+        canvas{
+            background-color: #ececec;
+            cursor: default;
+        }
+        .tool-bar{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class='tool-bar'>
+    <button id="btn-line">画直线</button>
+    <button id="btn-rect">画矩形</button>
+    <button id="btn-oval">画圆形</button>
+    <button id="btn-clear">清空画布</button>
+    <span id="hint" style="color: red;">当前操作：画直线</span>
+</div>
+<canvas id="canvas" width="800" height="600"></canvas>
+<script type="text/javascript" src="../../js/lib/require.js" data-main="js/main"></script>
+<script type="text/javascript">
+    require(['app/point', 'app/line', 'app/rect', 'app/arc', 'app/utils'],
+        function (Point, Line, Rect, Arc, Utils) {
+            var canvas = document.getElementById('canvas')
+            var context = canvas.getContext('2d')
+            var canvasRect = canvas.getBoundingClientRect()
+
+            canvas.addEventListener('mousedown', handleMouseDown, false)
+            canvas.addEventListener('mousemove', handleMouseMove, false)
+            canvas.addEventListener('mouseup', handleMouseUp, false)
+
+            bindClick(['btn-clear', 'btn-line', 'btn-rect', 'btn-oval'], menuBtnClicked)
+
+            var mouseDown = false
+            var selection = 1 // 0, 1, 2 直线 矩形 圆
+
+            var downPoint = new Point(0, 0),
+                movePoint = new Point(0, 0),
+                upPoint = new Point(0, 0)
+            var line,
+                rect,
+                arc
+
+            function handleMouseDown (e) {
+                downPoint.x = e.clientX - canvasRect.left
+                downPoint.y = e.clientY - canvasRect.top
+                if (selection === 0) {
+                    line = new Line(downPoint, downPoint)
+                    line.startPoint = downPoint
+                } else if (selection === 1) {
+                    rect = new Rect(new Point(downPoint.x, downPoint.y), 0, 0)
+                } else if (selection === 2) {
+                    arc = new Arc(new Point(downPoint.x, downPoint.y), 0)
+                }
+                mouseDown = true
+            }
+            function handleMouseMove (e) {
+                movePoint.x = e.clientX - canvasRect.left
+                movePoint.y = e.clientY - canvasRect.top
+                if (movePoint.x === downPoint.x && movePoint.y === downPoint.y) return
+                if (movePoint.x === upPoint.x && movePoint.y === upPoint.y) return
+
+                if (mouseDown) {
+                    clearCanvas()
+                    if (selection === 0) {
+                        line.endPoint = movePoint
+                        Utils.drawLine(context, line)
+                    } else if (selection === 1) {
+                        rect.width = movePoint.x - downPoint.x
+                        rect.height = movePoint.y - downPoint.y
+                        Utils.drawRect(context, rect)
+                    } else if (selection === 2) {
+                        var x = movePoint.x - downPoint.x
+                        var y = movePoint.y - downPoint.y
+                        arc.radius = x > y ? y / 2 : x / 2
+                        if (arc.radius < 0) {
+                            arc.radius = -arc.radius
+                        }
+                        arc.startPoint.x = downPoint.x + arc.radius
+                        arc.startPoint.y = downPoint.y + arc.radius
+                        Utils.drawArc(context, arc)
+                    }
+                    Utils.drawHistory(context)
+                }
+
+            }
+            function handleMouseUp (e) {
+                upPoint.x = e.clientX - canvasRect.left
+                upPoint.y = e.clientY - canvasRect.top
+                if (mouseDown) {
+                    mouseDown = false
+                    if (selection === 0) {
+                        line.endPoint = upPoint
+                        if (!downPoint.equals(upPoint)) {
+                            Utils.addHistory(new Line(new Point(downPoint.x, downPoint.y),
+                                new Point(upPoint.x, upPoint.y)))
+                        }
+                    } else if (selection === 1) {
+                        rect.width = upPoint.x - downPoint.x
+                        rect.height = upPoint.y - downPoint.y
+                        Utils.addHistory(new Rect(new Point(downPoint.x, downPoint.y), rect.width, rect.height))
+                    } else if (selection === 2) {
+                        Utils.addHistory(new Arc(new Point(arc.startPoint.x, arc.startPoint.y), arc.radius))
+                    }
+                    clearCanvas()
+                    Utils.drawHistory(context)
+                }
+            }
+
+
+            function clearCanvas () {
+                context.clearRect(0, 0, canvas.width, canvas.height)
+            }
+
+            function menuBtnClicked (event) {
+                var domId = event.srcElement.id
+                if (domId === 'btn-clear') {
+                    clearCanvas()
+                    Utils.clearHistory()
+                } else if (domId === 'btn-line') {
+                    selection = 0
+                    showHint('当前操作： 画直线')
+                } else if (domId === 'btn-rect') {
+                    selection = 1
+                    showHint('当前操作： 画矩形')
+                } else if (domId === 'btn-oval') {
+                    selection = 2
+                    showHint('当前操作： 画圆形')
+                }
+            }
+            var hint = document.getElementById('hint')
+            function showHint (msg) {
+                hint.innerHTML = msg
+            }
+            function bindClick(domId, handler) {
+                if (domId && domId.length) {
+                    domId.forEach(function (item) {
+                        document.getElementById(item).addEventListener('click', handler, false)
+                    })
+                }
+            }
+
+        }
+    )
+</script>
+</body>
+</html>
