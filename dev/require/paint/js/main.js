@@ -1,7 +1,7 @@
 require.config({
-    baseUrl: 'js/lib',
+    baseUrl: 'js/app',
     paths: {
-        app: '../app'
+        a: '../app'
     }
 })
 // require([], function () {

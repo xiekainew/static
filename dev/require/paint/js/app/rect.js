@@ -1,4 +1,4 @@
-define(['app/point'], function () {
+define(function () {
     return function (startPoint, width, height) {
         this.startPoint = startPoint
         this.width = width
