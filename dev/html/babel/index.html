@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>babel</title>
+</head>
+<body>
+八戒<div>sjdif </div>
+<!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+<script src="../../js/lib/babel.min.js"></script>
+<script type="text/babel" src="js/run.js"></script>
+<script type="text/babel">
+//    import {add} from '../js/export'
+//    const {add} = require('../js/export')
+    var fun = (a, b) =>
+        a + b
+    console.log(fun(1, 3))
+    let name = 'xiekai'
+    let age = 12
+    let funHike = {age, a: 'df', name}
+    console.log(funHike)
+
+    class Animal extends Run{
+        constructor (name) {
+            super(name)
+            this.name = name
+        }
+        say () {
+            console.log(this.name)
+        }
+    }
+    let dog = new Animal('dog')
+    console.log(dog)
+    dog.run()
+    dog.say()
+
+    class Mao extends Animal {
+        constructor (props, food) {
+            console.log('props', props, food)
+            super(props)
+            this.food = food
+        }
+        eat () {
+            console.log(this.food)
+        }
+    }
+    let mao = new Mao('mao', '猫罐头')
+    console.log(mao)
+    mao.eat()
+
+</script>
+</body>
+</html>
