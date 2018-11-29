@@ -1,7 +1,8 @@
 require.config({
     baseUrl: 'js/app',
     paths: {
-        a: '../app'
+        a: '../app',
+        jquery: 'lib/jquery-3.3.1'
     }
 })
 // require([], function () {

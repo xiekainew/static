@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas 画线</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+    canvas.width = document.documentElement.clientWidth
+    canvas.height = document.documentElement.clientHeight
+
+    let mouseDown = false
+    let history = []
+
+    let startNode = new Node(0, 0)
+    let moveNode = new Node(0, 0)
+    let endNode = new Node(0, 0)
+    let line = null
+
+    canvas.addEventListener('mousedown', function (e) {
+        console.log(e)
+        mouseDown = true
+        startNode.x = e.clientX
+        startNode.y = e.clientY
+        line = new Line(startNode, startNode)
+    }, false)
+    canvas.addEventListener('mousemove', function (e) {
+        if (!mouseDown) return
+        moveNode.x = e.clientX
+        moveNode.y = e.clientY
+        clear(ctx)
+        line.end = moveNode
+        line.draw(ctx)
+//        history.push(new Line(startNode, moveNode))
+        drawHistory(ctx)
+    }, false)
+    canvas.addEventListener('mouseup', function (e) {
+        console.log(e)
+        mouseDown = false
+        endNode.x = e.clientX
+        endNode.y = e.clientY
+        clear(ctx)
+        history.push(new Line(new Node(startNode.x, startNode.y), new Node(moveNode.x, moveNode.y)))
+        drawHistory(ctx)
+        console.log(history)
+    }, false)
+
+    function Node (x, y) {
+        this.x = x
+        this.y = y
+    }
+    function drawHistory (ctx) {
+        for (var i = 0, l = history.length; i < l; i++) {
+            history[i].draw(ctx)
+        }
+    }
+
+    function Line (start, end) {
+        this.start = start
+        this.end = end
+        this.draw = function (ctx) {
+            ctx.strokeStyle = 'blue'
+            ctx.beginPath()
+            ctx.moveTo(this.start.x, this.start.y)
+            ctx.lineTo(this.end.x, this.end.y)
+            ctx.closePath()
+            ctx.stroke()
+        }
+    }
+    function clear (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+</script>
+</body>
+</html>
