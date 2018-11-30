@@ -6,9 +6,17 @@
 </head>
 <body>
 八戒<div>sjdif </div>
+<div id="app">
+    <div>{{msg}}</div>
+    <div>{{msg}}</div>
+    <div>{{deep.a}}</div>
+    <input v-model="msg"/>
+    <input v-model="deep.a"/>
+</div>
 <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
 <script src="../../js/lib/babel.min.js"></script>
 <script type="text/babel" src="js/run.js"></script>
+<script type="text/babel" src="js/wue.js"></script>
 <script type="text/babel">
 //    import {add} from '../js/export'
 //    const {add} = require('../js/export')
@@ -47,6 +55,34 @@
     let mao = new Mao('mao', '猫罐头')
     console.log(mao)
     mao.eat()
+
+    function f1 () {
+        f2()
+        console.log(12)
+    }
+    function f2 () {
+        return false
+    }
+    f1()
+
+    let app = new Wue({
+        el: '#app',
+        data: {
+            msg: 'hello wue',
+            deep: {
+                a: 1,
+                b: 2
+            }
+        },
+        created () {
+            console.log('created')
+        },
+        mounted () {
+            console.log('mounted')
+        }
+    })
+    console.log(app)
+    console.log(app.msg)
 
 </script>
 </body>
