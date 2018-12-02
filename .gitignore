@@ -2,3 +2,5 @@
 node-server/node_modules/
 dev/react-demo/node_modules/
 dev/node_modules/
+node/spider/node_modules/
+node_modules
