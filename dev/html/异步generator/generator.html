@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator</title>
+</head>
+<body>
+
+<script>
+    function* Hello () {
+        let a = 12
+        yield 100
+        yield a
+        yield (function () {return 240})()
+        a = 21
+        yield a
+        yield 300
+    }
+    var test = Hello()
+    // console.log(test.next())
+    // console.log(test.next())
+    // console.log(test.next())
+    // console.log(test.next())
+    // console.log(test.next())
+
+    const arr = [100, 200, 300]
+    const iterator = arr[Symbol.iterator]()
+
+    // console.log(iterator.next())
+    // for (let i of iterator) {
+    //     console.log(i)
+    // }
+
+    function* G () {
+        const a = yield 100
+        let _a = '123' + a
+        console.log(_a)
+        console.log('a', a)
+        const b = yield 200
+        console.log('b', b)
+        const c = yield 300
+        console.log('c', c)
+    }
+    let g = G()
+    console.log(g.next('33'))
+    console.log(g.next({a: 12}))
+
+    // function* fib () {
+    //     let [prev, curr] = [0, 1]
+    //     for (let i = 0; i < 5; i++) {
+    //         [prev, curr] = [prev, prev + curr]
+    //         yield curr
+    //     }
+    // }
+    // for (let k of fib()) {
+    //     if ()
+    // }
+
+</script>
+</body>
+</html>

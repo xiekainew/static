@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function* G1 () {
+        yield 'a'
+        yield* G2()
+        yield 'b'
+    }
+    function* G2 () {
+        yield 'c'
+        yield 'd'
+    }
+    // for (let i of G1()) {
+    //     console.log(i)
+    // }
+    let a = G1()
+    // console.log(a.next())
+    // console.log(a.next())
+    // console.log(a.next())
+    // console.log(a.next())
+    // console.log(a.next())
+
+    // async function f() {
+    //     let promise = new Promise((resolve, reject) => {
+    //         setTimeout(() => resolve('done!'), 1000)
+    //     })
+    //     let result = await promise // 直到promise返回一个resolve值（*）
+    //     console.log(result) // 'done!'
+    //     console.log(12)
+    // }
+    // f()
+
+    async function as() {
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('haha')
+            }, 1200)
+        })
+        let re = await p
+        console.log(re)
+        let p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('haha2')
+            }, 1200)
+        })
+        let re2 = await p1
+        console.log(re2)
+    }
+    as()
+
+    async function test() {
+        return 34
+    }
+    test().then(value => {
+        console.log(value)
+    })
+</script>
+</body>
+</html>
