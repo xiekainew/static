@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>polyline</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script src="js/line.js"></script>
+<script>
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+
+    let line = new Line(ctx, [ 10, 30, 50, 430, 200, 50, 1500, 2000, 600 ])
+    line.draw()
+</script>
+</body>
+</html>
