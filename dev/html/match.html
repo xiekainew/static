@@ -7,18 +7,24 @@
 <body>
 
 <script>
-    var url = "asdf<iframe src='http://fwww'></iframe> sdf <iframe height=498 width=510 src='http://player.youku.com/embed/XMzYzNjM1ODc0MA==' frameborder=0 'allowfullscreen'></iframe>asdfasf"
-    console.log(url)
-    var reg = /<iframe(.*?)<\/iframe>/g
-    var match = url.match(reg)
-    console.log(match)
-    if (match && match.length) {
-        for (var i = 0, t; t = match[i++];) {
-            var copy = t
-            url = url.replace(copy, t.replace('http:', 'https:'))
-        }
+//    var url = "asdf<iframe src='http://fwww'></iframe> sdf <iframe height=498 width=510 src='http://player.youku.com/embed/XMzYzNjM1ODc0MA==' frameborder=0 'allowfullscreen'></iframe>asdfasf"
+//    console.log(url)
+//    var reg = /<iframe(.*?)<\/iframe>/g
+//    var match = url.match(reg)
+//    console.log(match)
+//    if (match && match.length) {
+//        for (var i = 0, t; t = match[i++];) {
+//            var copy = t
+//            url = url.replace(copy, t.replace('http:', 'https:'))
+//        }
+//    }
+//    console.log(url)
+    function getUrlData (name) {
+        var reg = new RegExp('(^|&)'+ name + '=([^&]*)(&|$)')
+        var r = window.location.search.substr(1).match(reg)
+        console.log(r)
     }
-    console.log(url)
+    getUrlData('name')
 </script>
 </body>
 </html>

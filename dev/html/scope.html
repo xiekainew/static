@@ -86,15 +86,15 @@
 //    var rr = 2
 //    console.log(rr)
 
-    for (var i = 0; i < 3; i++) {
-        setTimeout(function () {
-            console.log(i)
-        }, (function () {
-            var b = i * 1000
-            console.log(b)
-            return b
-        })())
-    }
+//    for (var i = 0; i < 3; i++) {
+//        setTimeout(function () {
+//            console.log(i)
+//        }, (function () {
+//            var b = i * 1000
+//            console.log(b)
+//            return b
+//        })())
+//    }
     // 0 1000 2000 3 3 3
 //    console.log(!!(0 == false))
 //    console.log(!!(0 == undefined))
@@ -108,11 +108,31 @@
     arr = arr.filter(function (item, index, target) {
         return target.indexOf(item) === index
     })
-    console.log(arr)
+//    console.log(arr)
 
     var mei = 'com.meitu.mtxx/6.8.0(ios10.2)/lang:zh'
     var result = mei.match(/\/(\S*)\(/)[1]
-    console.log(result)
+//    console.log(result)
+
+//    var name1="haha";
+////    console.log(b)
+//    function changName(){
+//        var name2="xixi";
+//        console.log(a)
+//        var a = b = 'wang';
+//        console.log(b)
+//    }
+//    changName();
+////    console.log(a);//haha
+//    console.log(b);//Uncaught ReferenceError: name2 is not defined
+
+    var name="haha";
+    function changeName(){
+        console.log(name);
+        var name="xixi";
+    }
+    changeName();
+    console.log(name);
 </script>
 </body>
 </html>
