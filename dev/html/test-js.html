@@ -11,6 +11,58 @@ sdfasdfdf   deee  sdf
     var a = '1sdfji323'
     var reg = new RegExp(/^[0-9][0-9a-zA-Z]*$/)
     console.log(reg.test(a))
+
+    var num = '1232800023990022r'
+
+    function toNum (n) {
+        let s = n%3
+        if (s) {
+            return n.substr(0, s) + ',' + n.substr(s).match(/\d{3}/g).join(',')
+        } else {
+            return n.substr(s).match(/\d{3}/g).join(',')
+        }
+    }
+    console.log(toNum(num))
+
+    var a = '123456789876543212345678987654321'
+
+    function getN (n) {
+        let num = 0
+        let flag = true
+        for (let i = 0; i <= n; i++) {
+            if (i === 1) flag = true
+            if (i === 9) flag = false
+            flag ? num++ : num--
+        }
+        return num
+    }
+    console.log(getN(1))
+
+    function Person () {
+        this.name = 'person'
+    }
+    let person = new Person()
+
+    console.log(person.__proto__ === Person.prototype)
+
+    function MyNew (target) {
+        let obj = new Object()
+        obj.__proto__ = target.prototype
+        target.call(this)
+        return obj
+    }
+    let person2 = MyNew(Person)
+    console.log(person2)
+    console.log(person2.__proto__ === Person.prototype)
+
+    var arr = [1,2,3,4,5,6,7,8]
+    console.log(arr.sort(function () {
+        return Math.random() - 0.5
+    }))
+
+    var reg = new RegExp('(^|&)age=([^&]*)')
+    console.log(window.location.search.substr(1).match(reg))
+
 </script>
 </body>
 </html>

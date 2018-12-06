@@ -160,6 +160,19 @@
     // var p = new MyPromise(a)
     // p.then(b)
 //    new MyPromise(a).then(b)
+
+    var num = '1232800023990022r'
+
+    function toNum (n) {
+        let s = n%3
+        if (s) {
+            return n.substr(0, s) + ',' + n.substr(s).match(/\d{3}/g).join(',')
+        } else {
+            return n.substr(s).match(/\d{3}/g).join(',')
+        }
+    }
+    console.log(toNum(num))
+
 </script>
 </body>
 </html>
