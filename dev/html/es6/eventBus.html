@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class EventBus{
+        constructor() {
+            this.eventList = new Map()
+        }
+        $emit(evName, ...args) {
+            let fn = this.eventList.get(evName)
+            if(!fn) {
+                console.error(`'${evName}' is undefined`)
+                return
+            }
+            this.eventList.get(evName).apply(this, args)
+        }
+        $on(evName, fn) {
+            if(this.eventList.get(evName)) {
+                console.error(`duplicated event name : '${evName}'`)
+                return
+            }
+            this.eventList.set(evName, fn)
+            return {
+                remove: () => {
+                    this.eventList.delete(evName)
+                }
+            }
+        }
+    }
+    let bus = new EventBus()
+    let b = bus.$on('test', function (name) {
+        console.log(name)
+    })
+    console.log(b)
+    setTimeout(function () {
+        bus.$emit('test', 'wang')
+    }, 2000)
+</script>
+</body>
+</html>
