@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setTimeout</title>
+</head>
+<body>
+
+
+<script>
+    console.time('start')
+//    setTimeout(function () {
+//        console.timeEnd('start')
+//        console.log('end')
+//    }, 200)
+    var n = 0
+    var timer = setInterval(function () {
+        console.timeEnd('start')
+        clearInterval(timer)
+    }, 200)
+</script>
+</body>
+</html>
