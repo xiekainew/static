@@ -1,10 +1,10 @@
 
 class Person {
-    static name: string
+    name: string
     tell () {
-        console.log(Person.name)
+        console.log(this.name)
     }
 }
 var p = new Person()
-Person.name = 'sdf'
+p.name = 'sdf'
 p.tell()

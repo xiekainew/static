@@ -2,10 +2,10 @@ var Person = (function () {
     function Person() {
     }
     Person.prototype.tell = function () {
-        console.log(Person.name);
+        console.log(this.name);
     };
     return Person;
 }());
 var p = new Person();
-Person.name = 'sdf';
+p.name = 'sdf';
 p.tell();
