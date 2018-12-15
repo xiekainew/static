@@ -4,6 +4,7 @@ let common = require('../lib/common')
 let fs = require('fs')
 
 let Login = require('./controller/login')
+let React = require('./controller/react')
 
 router.use(function timeLog(req, res, next) {
     req.__starttime = new Date().getTime()
@@ -37,5 +38,6 @@ router.get('/get/user', function (req, res) {
     console.log(req.query.name)
     common.send(req, res, '我的信息')
 })
-
+router.get('/home/list', React.homeList, errorHandler)
+router.get('/product/detail', React.productDetail, errorHandler)
 module.exports = router
