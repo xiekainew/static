@@ -1,0 +1,268 @@
+html, body {
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+html, body {
+  height: 100%;
+  background-color: #f8fbfc;
+  // overflow: hidden;
+  // -webkit-overflow-scrolling: touch;
+}
+#root, #root > div {
+  position: relative;
+  height: 100%;
+  background-color: #f8fbfc;
+  // -webkit-overflow-scrolling: touch;
+}
+
+/*
+.scrollable {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+*/
+
+// helper
+/*
+.clearfix {
+  width: 100%;
+  overflow: hidden;
+  zoom: 1;
+  &:after {
+    content: '';
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+}
+*/
+/*
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+*/
+.hide {
+  display: none;
+}
+.pre-line {white-space: pre-line;}
+.align-center {text-align: center}
+.align-right {text-align: right}
+.align-left {text-align: left}
+
+.full-width {
+  width: 100%;
+}
+.full-height {
+  height: 100%;
+}
+.fixed-bottom {
+  position: fixed;
+  z-index: 99;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.text-block {
+  line-height: 20px;
+}
+
+.no-border {border: none}
+
+// color
+.color-orange {color: #ff8825}
+.color-blue {color: #547eef}
+
+// bg
+.bg-default {background-color: #f8fbfc}
+.bg-white {background-color: #fff}
+.bg-blue {background-color: #547eef}
+
+.row {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.pull-left {float: left}
+.pull-right {float: right}
+
+.mt0 {margin-top: 0;}
+.mt10 {margin-top: 10px;}
+.mt12 {margin-top: 12px;}
+.mt15 {margin-top: 15px;}
+.mt20 {margin-top: 20px;}
+.mt25 {margin-top: 25px;}
+.mt30 {margin-top: 30px;}
+.ml18 {margin-left: 18px;}
+
+.mb0 {margin-bottom: 0}
+.mb5 {margin-bottom: 5px}
+.mb8 {margin-bottom: 8px}
+.mb10 {margin-bottom: 10px}
+.mb15 {margin-bottom: 15px}
+.mb20 {margin-bottom: 20px}
+.mb25 {margin-bottom: 25px}
+.mb30 {margin-bottom: 30px}
+.mb35 {margin-bottom: 35px}
+.mb40 {margin-bottom: 40px}
+.mb50 {margin-bottom: 50px}
+
+.pr5 {padding-right: 5px;}
+.pr8 {padding-right: 8px;}
+.pr10 {padding-right: 10px;}
+.p15 {padding: 15px;}
+.pl15 {padding-left: 15px;}
+.pr15 {padding-right: 15px;}
+.pb15 {padding-bottom: 15px;}
+.pt15 {padding-top: 15px;}
+.pl18 {padding-left: 18px;}
+.pr18 {padding-right: 18px;}
+.pt18 {padding-top: 18px;}
+.pb18 {padding-bottom: 18px;}
+
+
+/* btn rewrite */
+.btn {
+  color: #fff;
+  font-size: 15px;
+  &.btn-primary {
+    background-color: #547eef;
+    &:active, &:hover, &:focus {
+      background-color: #4A89DC;
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.fixed-btn {
+  &::after {
+    border-radius: 0;
+  }
+}
+
+// weui reset
+.weui-loadmore {
+  display: none;
+}
+.weui-panel__hd {
+  > span {
+    display: inline-block;
+    float: right;
+  }
+}
+.weui-mask {
+  z-index: 1000000;
+}
+.weui-dialog {
+  z-index: 99999999;
+}
+.weui-dialog {
+  &.wide-dialog {
+    width: 90%;
+    max-width: initial;
+  }
+}
+.clean-dialog {
+  .weui-dialog__hd {
+    padding: 0;
+  }
+  .weui-dialog__bd {
+    padding: 0;
+  }
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.weui-cells {
+  line-height: 40px;
+  font-size: 15px;
+}
+
+.weui-label {
+  color: #333333;
+}
+
+.weui-cell_select {
+  padding: 10px 15px;
+}
+
+.weui-select {
+  height: 40px;
+  line-height: 40px;
+}
+
+.weui-select {
+  height: 40px;
+  line-height: 40px;
+  // color: #797979;
+}
+select.normal-select {
+  color: #797979;
+}
+
+.weui-input {
+  color: #797979;
+}
+.weui-form-preview {
+  .weui-form-preview__bd {display: none;}
+}
+
+.fixed-btn {
+  width: 100%;
+  font-size: 15px;
+  color: #fff;
+  line-height: 44px;
+}
+
+// html5 page wrapper
+.nb-h5-page {
+  width: 100%;
+  height: 100%;
+}
+
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder { /* WebKit browsers */
+  color: #c3c3c3;
+}
+
+input::-moz-placeholder,
+select::-moz-placeholder,
+textarea::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #c3c3c3;
+}
+
+input::-moz-placeholder,
+select::-moz-placeholder,
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #c3c3c3;
+}
+
+input::-ms-input-placeholder,
+select::-ms-input-placeholder,
+textarea::-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #c3c3c3;
+}
+
+
+select{
+  color:#A9A9A9;
+}
+.select option {color:#A9A9A9;}
+.select option.nms{
+  color:#000;
+}

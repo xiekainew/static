@@ -1,0 +1,108 @@
+.policy-list-item {
+    padding-bottom: 20px;
+    padding-left: 18px;
+    margin-top: 12px;
+    >div {
+        font-size: 15px;
+        color: #333333;
+    }
+    .policy-subTitle {
+        font-size: 12px;
+        color: #aaaaaa;
+    }
+    .policy-money {
+        font-size: 20px;
+        color: #547eef;
+        >span {
+            font-size: 12px;
+        }
+    }
+    .img {
+        position: relative;
+        float: right;
+        width: 45px;
+        height: 45px;
+    }
+    .hidden {
+        display: none;
+    }
+}
+
+.weui-navbar {
+    background-color: #FFFFFF;
+    &::after {
+        border: none;
+    }
+    .weui-navbar__item {
+        border: none;
+        &::after {
+            height: 20px;
+            top: auto;
+            bottom: auto;
+        }
+        &::active {
+            background-color: transparent;
+        }
+        &.weui-bar__item_on {
+            background-color: transparent;
+            color: #547eef;
+        }
+    }
+}
+
+.footer {
+    height: 44px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #FFF;
+    align-items: center;
+    position: relative;
+    &::before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 1px;
+        border-top: 1px solid #e5e5e5;
+        color: #e5e5e5;
+        -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transform: scaleY(0.5);
+        -ms-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        z-index: 999;
+    }
+    >div {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        line-height: 44px;
+        position: relative;
+        &::after {
+            content: " ";
+            position: absolute;
+            right: 0;
+            height: 22px;
+            width: 1px;
+            margin-top: 11px;
+            border-right: 1px solid #e5e5e5;
+            color: #e5e5e5;
+            -webkit-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleX(0.5);
+            -ms-transform: scaleX(0.5);
+            transform: scaleX(0.5);
+            z-index: 999;
+        }
+    }
+    .red {
+        color: #fa716a;
+    }
+    .blue {
+        color: #547eef;
+    }
+}

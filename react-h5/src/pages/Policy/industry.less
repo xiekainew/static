@@ -1,0 +1,49 @@
+.page-industry {
+    background-color: #f8fbfc;
+    z-index: 99999999;
+    .weui-cell__ft {
+        &.cell-down {
+            &::after {
+                transform: rotate(134deg);
+            }
+        }
+    }
+    .weui-cell:before {
+        visibility: hidden;
+    }
+    .weui-cell:after {
+        position: absolute;
+        left: 18px;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        color: #dcdcdc;
+        border-bottom: 1px solid #dcdcdc;
+        transform: scaleY(0.5);
+        content: " "
+    }
+    .weui-cell {
+        line-height: 60px;
+        padding: 0 18px;
+        font-size: 15px;
+        color: #797979;
+    }
+    
+    .weui-cell__bd {
+        font-size: 15px;
+        color: #333333;
+        margin-right: 8px;
+    }
+    // 只显示一行
+    .one-line {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .industry-item {
+        margin-left: 18px;
+        font-size: 15px;
+        color: #797979;
+        line-height: 60px;
+    }
+}

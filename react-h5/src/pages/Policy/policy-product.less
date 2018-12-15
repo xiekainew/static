@@ -1,0 +1,158 @@
+@color-79: #797979;
+@color-33: #333333;
+// 产品详情
+.page-product-detail {
+    .product-cover {
+        width: 100%;
+        min-height: 140px;
+        float: left;
+    }
+    .pro-detail-top {
+        > span {
+            &:first-child {
+                font-size: 20px;
+                color: #ff801a;
+                > em {
+                    font-style: normal;
+                    font-size: 15px;
+                }
+            }
+            &:last-child {
+                color: @color-79;
+                font-size: 15px;
+            }
+        }
+    }
+    .sub-row {
+        > div {
+            &:first-child {
+                color: @color-33;
+            }
+            &:last-child {
+                color: @color-79;
+                font-size: 15px;
+            }
+        }
+    }
+    // 重写weui的样式
+    .weui-panel:before, .weui-panel:after, .weui-cells:before, .weui-cells:after {
+        visibility: hidden;
+    }
+    .weui-panel__hd {
+        padding-left: 18px;
+        font-size: 15px;
+        color: @color-33;
+    }
+    .weui-panel__hd:after {
+        left: 18px;
+        color: #dcdcdc;
+    }
+    .weui-media-box__desc {
+        color: @color-79;
+        font-size: 14px;
+    }
+    .weui-media-box {
+        padding: 15px 18px;
+    }
+    .weui-cell {
+        padding: 0px 18px;
+        line-height: 44px;
+    }
+    .weui-cell__bd {
+        font-size: 15px;
+        color: @color-33;
+    }
+}
+// 遮罩层
+.cover {
+    background-color: rgba(0, 0, 0, 0.5);
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index:99999;
+}
+// 弹出的选择View
+.bottom-view {
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99999;
+    .bottom-view-item {
+        margin: 25px 18px;
+        font-size: 14px;
+        color: @color-79;
+        > em {
+            font-style: normal;
+            color: #ff801a;
+        }
+    }
+    .search-industry-btn {
+        background-color: #547eef;
+        padding: 0px 10px;
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-right: 7px;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        color: white;
+        font-size: 13px;
+        float: right;
+        &:active, &:hover, &:focus {
+            background-color: #4A89DC;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+        text-align: center;
+        line-height: 28px;
+    }
+    .bottom-view-flexitem {
+        text-align: center;
+        margin: 0 7px;
+        font-size: 13px;
+        line-height: 28px;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+    }
+    // 没有选中的flexitem
+    .bottom-view-flexitem-normal {
+        background-color: white;
+        color: @color-79;
+        border: solid 1px #cccccc;
+    }
+    // 选中的flexitem
+    .bottom-view-flexitem-selected {
+        background-color: #547eef;
+        color: white;
+        border: solid 1px #547eef;
+    }
+    .weui-flex {
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+    .weui-panel {
+        margin-top: 20px;
+    }
+    .weui-form-preview:after, .weui-form-preview:before, .weui-panel:before, .weui-panel:after, .weui-panel__hd:after {
+        visibility: hidden;
+    }
+    .weui-panel__hd {
+        font-size: 14px;
+        color: @color-79;
+        padding: 0 18px 5px 18px;
+    }
+}
+
+.weui-form-preview__ft {
+    line-height: 44px;
+}
+
+.weui-form-preview:after, .weui-form-preview__ft:after {
+    display: none;
+}
+
+// .clearfix:after {
+//     display: none;
+// }

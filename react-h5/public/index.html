@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>保险服务</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="%PUBLIC_URL%/jquery.min.js"></script>
+    <script>window.NB = {};window.NB.loadUrl = window.location.href.split('#')[0];</script>
+    <script>
+    $(function(){
+      var url = encodeURIComponent(location.href.split('#')[0])
+      $.get('/api/v1/wechat/insurance/js/sign?url=' + url)
+        .then(function(res){
+          var share = res.data
+          var config = {
+            debug: false,
+            appId: share.appid,
+            nonceStr: share.nonceStr,
+            signature: share.signature,
+            timestamp: share.timestamp,
+            success: res => {},
+            error: err => {},
+            jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage']
+          }
+          window.wx.config(config)
+          window.wx.error(function (err) {
+            console.log('wx-error:', err)
+          })
+        })
+    })
+    </script>
+  </head>
+  <body>
+    <noscript>
+      如果您看到这个页面，说明您的浏览器可能禁用了JavaScript，请在设置里开启JavaScript支持。
+    </noscript>
+    <div id="root">
+      <style>
+      html, body {
+        background-color: #2f4050;
+        margin: 0;
+        padding: 0;
+      }
+      .init-spinner {
+        margin: 0 auto;
+        width: 60px;
+        height: 40px!important;
+        text-align: center;
+        font-size: 10px;
+        position: absolute!important;
+        background-color: transparent!important;
+        z-index: 10;
+        left: 50%;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: -30px;
+      }
+      .init-spinner > div {
+        background-color: #1ab394;
+        height: 100%;
+        width: 6px;
+        margin-right: 1px;
+        margin-left: 1px;
+        display: inline-block;
+        -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+        animation: stretchdelay 1.2s infinite ease-in-out;
+      }
+      .init-spinner .node-2 {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+      }
+      .init-spinner .node-3 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+      }
+      .init-spinner .node-4 {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+      }
+      .init-spinner .node-5 {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+      }
+      @-webkit-keyframes stretchdelay {
+        0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+        20% { -webkit-transform: scaleY(1.0) }
+      }
+      @keyframes stretchdelay {
+        0%, 40%, 100% {
+          transform: scaleY(0.4);
+          -webkit-transform: scaleY(0.4);
+        }  20% {
+          transform: scaleY(1.0);
+          -webkit-transform: scaleY(1.0);
+        }
+      }
+      </style>
+      <div class="init-spinner">
+        <div class="node-1"></div>
+        <div class="node-2"></div>
+        <div class="node-3"></div>
+        <div class="node-4"></div>
+        <div class="node-5"></div>
+      </div>
+    </div>
+  </body>
+</html>

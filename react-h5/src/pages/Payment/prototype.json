@@ -1,0 +1,15 @@
+{
+  "amount": 120,
+  "id": null,
+  "ownerName": "投保人",
+  "ownerPhone": "18900001111",
+  "payCode": "",
+  "payState": "POLICY_INIT",
+  "payTaskCode": "pay-task-code",
+  "payType": "WACHAT_PAY_H5",
+  "payingDuration": "1",
+  "policyCode": "policy-code",
+  "policyId": "",
+  "productName": "产品名称001",
+  "tradeCode": "trade-code-001"
+}

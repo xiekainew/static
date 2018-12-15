@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <title>保险服务123</title>
+  </head>
+  <body>
+    <button id="">test</button>
+    <div id="data"></div>
+    <script>
+    $(function(){
+      var url = encodeURIComponent(location.href.split('#')[0])
+      $.get('/api/v1/wechat/insurance/js/sign?url=' + url, function(res){
+        alert('data:'+JSON.stringify(res.data))
+        var share = res.data
+        var config = {
+          // debug: process.env.NODE_ENV !== 'production',
+          debug: true,
+          appId: 'wxb4259197ca391129',
+          nonceStr: share.nonceStr,
+          signature: share.signature,
+          timestamp: share.timestamp,
+          success: res => {
+            alert('config-success:'+JSON.stringify(res))
+          },
+          error: err => {
+            alert('config-error:'+JSON.stringify(err))
+          },
+          jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage']
+        }
+        window.wx.config(config)
+        window.wx.ready(function(r) {
+          window.wx.onMenuShareAppMessage({
+            title: 'asdfasdfasd阿斯蒂芬这是title',
+            desc: '这是描述安达市打发斯蒂芬desc',
+            link: 'http://ish5-dev.newbanker.cn/product/dsfasdfsdfsdasd',
+            imgUrl: 'http://is.newbanker.cn/contract/a179e472-3538-4f33-9138-5b5f71d5fd83.png',
+            trigger: function (r) {
+              // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+              alert('用户点击发送给朋友')
+            },
+            success: function (r) {
+              alert('已分享');
+            },
+            cancel: function (r) {
+              alert('已取消');
+            },
+            fail: function (r) {
+              window.alert('fail:' + JSON.stringify(r));
+            }
+          })
+
+        })
+        window.wx.error(function(err) {
+          window.alert('wx-error:' + JSON.stringify(err))
+        })
+      })
+    })
+    </script>
+  </body>
+</html>

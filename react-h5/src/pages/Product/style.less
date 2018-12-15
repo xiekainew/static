@@ -1,0 +1,349 @@
+.page-product-detail {
+  .product-cover {
+    width: 100%;
+    // min-height: 180px;
+    float: left;
+  }
+  .pro-detail-top {
+    > span {
+      &:first-child {
+        font-size: 1.4rem;
+        color: #ff8825;
+        > em {
+          font-style: normal;
+          font-size: 13px;
+        }
+      }
+      &:last-child {
+        font-size: .8rem;
+        color: #888;
+        padding-left: 3px;
+      }
+    }
+  }
+  .sub-row {
+    > div {
+      &:first-child {}
+      &:last-child {
+        font-size: .8rem;
+        color: #999;
+      }
+    }
+  }
+  .weui-panel__hd, .weui-cell__bd {
+    font-weight: normal;
+    font-size: .9rem;
+    color: #666;
+  }
+  .media-box-inner {
+    font-size: .8rem;
+    color: #777;
+    > div {
+      padding-bottom: 3px;
+    }
+  }
+}
+
+// notice page
+.page-product-notice {
+  // position: relative;
+  z-index: 99999999;
+  .close-btn-bottom {
+    width: 100%;
+    position: fixed;
+    bottom: 20px;
+    text-align: center;
+    > button {
+      width: 30%;
+    }
+  }
+}
+.page-product-cover {
+  background-color: #fff;
+  .close-btn-bottom {
+    width: 100%;
+    position: fixed;
+    bottom: 32px;
+    text-align: center;
+    > h2 {
+      margin-bottom: 20px;
+      font-weight: lighter;
+      font-size: 1rem;
+      color: #b0746c;
+    }
+    > button {
+      width: 145px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 1rem;
+      font-weight: lighter;
+      border-radius: 20px;
+      background-color: #ff5024;
+      color: #fff;
+      border-color: #ff5024;
+      &:active, &:hover, &:focus {
+        background-color: #ee3a0d;
+        color: #fff;
+        border-color: #ee3a0d;
+      }
+    }
+  }
+}
+
+// plan
+.page-product-plan {
+  .form-li-title {
+    margin: 0;
+    padding: 10px 15px;
+    background-color: #fff;
+    color: #888;
+    > span {
+      display: inline-block;
+      float: right;
+      font-size: .9rem;
+      color: #649AE1;
+    }
+  }
+  .product-title-icon {
+    > span {
+      vertical-align: middle;
+      padding: 4px;
+      &.text-icon {
+        padding: 4px 6px;
+        color: #fff;
+        font-size: .6rem;
+        border-radius: 3px;
+        background-color: #026cf6;
+      }
+    }
+  }
+  .form-cell-no-border {
+    &::before {
+      border-top: none;
+    }
+  }
+  .cal-offset {
+    .weui-vcode-btn {
+      text-align: left;
+      padding-left: 0;
+      width: auto!important;
+    }
+  }
+}
+
+// 开启
+.page-product-open {
+  height: 100%;
+  .open-top {
+    color: #333;
+    padding-bottom: 20px;
+    > h2 {
+      font-weight: normal;
+      font-size: 1.2rem;
+    }
+    > p {
+      margin-top: 27px;
+      color: #999;
+      font-size: 1rem;
+    }
+    > h1 {
+      font-weight: normal;
+      font-size: 2.4rem;
+      color: #ff8825;
+      margin-bottom: 34px;
+      > span {
+        font-size: .6rem;
+        color: #333;
+        padding-left: 2px;
+      }
+    }
+    .flex-info {
+      > p {
+        color: #999;
+        font-size: .8rem;
+        padding-bottom: 6px;
+      }
+      > div {
+        font-size: 1rem;
+      }
+    }
+  }
+  ul.safeguard-dec {
+    with: 100%;
+    > li {
+      display: inline-block;
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      > h2 {
+        font-weight: 400;
+        font-size: 15px;
+        padding-bottom: 15px;
+        color: #333;
+        > img {
+          display: inline-block;
+          width: 10px;
+          margin-right: 10px;
+          padding-bottom: 1px;
+        }
+      }
+      > div {
+        padding: 0 10px 0 20px;
+        font-size: .9rem;
+        font-weight: normal;
+        color: #888;
+        em {
+          font-style: normal;
+          color: #333;
+        }
+      }
+      > p {
+        padding: 10px 10px 10px 20px;
+        font-size: .85rem;
+        color: #999;
+        line-height: 22px;
+      }
+    }
+  }
+  .weui-panel__hd {
+    font-size: 15px;
+    color: #333;
+    &:after {
+      border-bottom: 0.5px solid #dcdcdc;
+    }
+  }
+  .text-notice {
+    font-size: 14px;
+    color: #797979l;
+    padding: 10px 0;
+  }
+  .open-btn {
+    .weui-form-preview__btn {
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      &.weui-form-preview__btn_primary {
+        background: rgb(255, 136, 37);
+      }
+    }
+  }
+}
+
+.open-dialog {
+  .weui-dialog__bd {
+    > div {
+      max-height: 80%;
+      overflow: hidden;
+      padding-bottom: 30px;
+      > h2 {
+        font-weight: normal;
+        padding: 15px 0;
+        font-size: 18px;
+        border-bottom: 1px #ddd solid;
+      }
+      .tab-content {
+        overflow-y: auto;
+        height: 100%;
+        max-height: 100px;
+        padding: 0 20px;
+        text-align: left;
+      }
+      ul.tab-ul {
+        padding-top: 10px;
+        > li {
+          list-style: none;
+          padding-bottom: 3px;
+        }
+      }
+    }
+    .weui-navbar {
+      background-color: transparent;
+      &::after {
+        border: none;
+      }
+      .weui-navbar__item {
+        border: none;
+        &::after {
+          border: none;
+        }
+        &.weui-bar__item_on {
+          background-color: transparent;
+          color: #ff8825;
+        }
+      }
+    }
+  }
+  .weui-dialog__ft {
+    > a:first-child {
+      color: #ff8825;
+    }
+  }
+}
+
+.success-dialog {
+  .weui-dialog__ft {
+    > a:first-child {
+      color: #ff8825;
+    }
+  }
+}
+
+.contact-form-dialog {
+  .weui-dialog__bd {
+    padding: 0 20px;
+  }
+  .weui-cells:before {
+    border: 0;
+  }
+  .weui-cells_form {
+    &::after {
+      border-bottom: none;
+    }
+    .weui-cell {
+      background: #f5f5f5;
+      border-radius: 5px;
+      padding: 0px 15px;
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 20px;
+      }
+      &::before {
+        left: 0;
+        border: 0;
+      }
+    }
+  }
+  .weui-dialog__ft {
+    a:first-child {
+      color: #797979;
+    }
+    a:last-child {
+      color: #ff8825;
+    }
+  }
+}
+
+.sub-tit {
+  color: #333!important;
+  font-size: 15px!important;
+}
+.weui-btn.fixed-btn {
+  font-size: 15px;
+}
+
+.weui-form-preview__btn.weui-form-preview__btn_primary {
+  line-height: 44px;
+}
+
+.weui-form-preview:after {
+  border-bottom: none;
+}
+
+input[type="date"]:before{
+  color: #c3c3c3;
+  content: attr(placeholder);
+}
+input[type="date"].clear-placeholder:before {
+  color: black;
+  content: ""!important;
+}

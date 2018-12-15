@@ -1,0 +1,26 @@
+{
+  "consultant": {
+    "id": null,
+    "innerId": "",
+    "innerName": "",
+    "innerPhone": "",
+    "outerId": null,
+    "outerName": null,
+    "outerPhone": null,
+    "tenantName": null
+  },
+  "consultantName": null,
+  "consultantPhone": null,
+  "contractCode": null,
+  "flag": false,
+  "insuranceAmount": "",
+  "insuredDuration": "",
+  "insuredGender": "",
+  "ownerName": "",
+  "payDuration": "",
+  "premiumFirst": "",
+  "productId": "",
+  "reservationCode": null,
+  "reservationState": "RESERVATION_STATE_INIT",
+  "tenantId": null
+}

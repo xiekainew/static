@@ -1,0 +1,42 @@
+// 保单填写
+.page-product-plan {
+  .form-li-title {
+    margin: 0;
+    padding: 10px 15px;
+    background-color: #fff;
+    color: #797979;
+    font-size: 15px;
+  }
+}
+
+.agreement-container {
+  margin: 0;
+  color: #797979;
+  padding-left: 10px;
+  > span {
+    display: inline-block;
+    font-size: 14px;
+    color: #547eef;
+  }
+}
+
+.extra_line {
+  &::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #e5e5e5;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    left: 15px;
+    z-index: 2;
+  }
+}
