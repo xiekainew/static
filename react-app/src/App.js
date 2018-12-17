@@ -1,64 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Props from './pages/props'
-import AddColor from './pages/addColor'
-import StarRating from './pages/starRating'
-import ColorState from './pages/colorState'
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <p>
-//             Edit <code>src/App.js</code> and save to reload.
-//           </p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Learn React
-//           </a>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
-class Img extends Component {
+import RouterMap from './router'
+
+import 'weui'
+import 'react-weui/build/packages/react-weui.css'
+import 'animate.css'
+import './App.css'
+class App extends Component {
     render () {
         return (
-            <img src={logo}/>
+            <RouterMap/>
         )
     }
 }
-let data = {
-    ingredients: '23',
-    steps: 2,
-    title: '哈喽'
-}
-const App = () =>
-    <div className='app'>
-        {/*<Props {...data}/>*/}
-        {/*<AddColor/>*/}
-        {/*<StarRating totalStars={5}/>*/}
-        <ColorState/>
-        <header className="App-header">
-          {/*<img src={logo} className="App-logo" alt="logo" />*/}
-          {/*<Img/>*/}
-          {/*<p>*/}
-            {/*Edit <code>src/App.js</code> and save to reload.*/}
-          {/*</p>*/}
-          {/*<a*/}
-            {/*className="App-link"*/}
-            {/*href="https://reactjs.org"*/}
-            {/*target="_blank"*/}
-            {/*rel="noopener noreferrer"*/}
-          {/*>*/}
-            {/*Learn React*/}
-          {/*</a>*/}
-        </header>
-    </div>
 
 export default App;
