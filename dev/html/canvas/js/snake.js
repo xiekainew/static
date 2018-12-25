@@ -1,4 +1,4 @@
-function Snake (canvas, space, number) {
+function Snake (canvas, space, number, lineColor) {
     canvas.width = document.documentElement.clientWidth - 100
     canvas.height = document.documentElement.clientHeight - 100
     this.ctx = canvas.getContext('2d')
@@ -10,12 +10,14 @@ function Snake (canvas, space, number) {
     this.cel = 0
     this.snakeList = []
     this.moveList = []
+    this.timer = null
+    this.lineColor = lineColor || 'rgba(0, 0, 255, .3)'
 }
 Snake.prototype.line = function () {
     var that = this
     function lineRow () {
         that.ctx.beginPath()
-        that.ctx.strokeStyle = 'red'
+        that.ctx.strokeStyle = that.lineColor
         that.ctx.lineWidth = 1
         that.ctx.moveTo(0, that.row)
         that.ctx.lineTo(that.width, that.row)
@@ -29,7 +31,7 @@ Snake.prototype.line = function () {
     lineRow()
     function lineCel () {
         that.ctx.beginPath()
-        that.ctx.strokeStyle = 'red'
+        that.ctx.strokeStyle = that.lineColor
         that.ctx.lineWidth = 1
         that.ctx.moveTo(that.cel, 0)
         that.ctx.lineTo(that.cel, that.height)
@@ -42,8 +44,8 @@ Snake.prototype.line = function () {
     }
     lineCel()
 }
-Snake.prototype.randomSnake = function () {
-    while (this.number) {
+Snake.prototype.randomSnake = function (number) {
+    while (number) {
         var x = randoms(this.row / this.space) * this.space
         var y = randoms(this.cel / this.space) * this.space
         this.snakeList.push({
@@ -51,7 +53,7 @@ Snake.prototype.randomSnake = function () {
             y: y,
             color: '#'+Math.floor(Math.random()*0xffffff).toString(16)
         })
-        this.number--
+        number--
     }
     this.snakeList.forEach(function (item) {
         this.ctx.beginPath()
@@ -60,45 +62,63 @@ Snake.prototype.randomSnake = function () {
         this.ctx.fill()
         this.ctx.closePath()
     })
-    console.log(this.snakeList)
+}
+Snake.prototype.randomPushSnake = function () {
+    var that = this
+    var timer = setTimeout(function () {
+        clearTimeout(timer)
+        that.randomSnake(1)
+    }, 3000)
 }
 Snake.prototype.moveSnake = function () {
-    var that = this
     this.moveList = this.snakeList.splice(0, 1)
+    this.step(39)
+}
+Snake.prototype.bindSnake = function () {
+    var that = this
     document.addEventListener('keydown', function (e) {
-        that.checkSnake(e.keyCode)
-        that.clearSnake(that.moveList[that.moveList.length - 1])
-        var o = {}
-        switch (e.keyCode) {
-            case 39: // 右
-                o = {
-                    x: that.moveList[0].x + that.space,
-                    y: that.moveList[0].y
-                }
-                break
-            case 40: // 下
-                o = {
-                    x: that.moveList[0].x,
-                    y: that.moveList[0].y + that.space
-                }
-                break
-            case 37: // 左
-                o = {
-                    x: that.moveList[0].x - that.space,
-                    y: that.moveList[0].y
-                }
-                break
-            case 38: // 上
-                o = {
-                    x: that.moveList[0].x,
-                    y: that.moveList[0].y - that.space
-                }
-                break
-        }
-        that.moveList.unshift(o)
-        that.moveList.pop()
-        that.drawSnake(that.moveList[0])
+        clearTimeout(that.timer)
+        that.step(e.keyCode)
     })
+}
+Snake.prototype.step = function (keyCode) {
+    var that = this
+    var checked = that.checkSnake(keyCode)
+    if (checked) return
+    that.clearSnake(that.moveList[that.moveList.length - 1])
+    var o = {}
+    switch (keyCode) {
+        case 39: // 右
+            o = {
+                x: that.moveList[0].x + that.space,
+                y: that.moveList[0].y
+            }
+            break
+        case 40: // 下
+            o = {
+                x: that.moveList[0].x,
+                y: that.moveList[0].y + that.space
+            }
+            break
+        case 37: // 左
+            o = {
+                x: that.moveList[0].x - that.space,
+                y: that.moveList[0].y
+            }
+            break
+        case 38: // 上
+            o = {
+                x: that.moveList[0].x,
+                y: that.moveList[0].y - that.space
+            }
+            break
+    }
+    that.moveList.unshift(o)
+    that.moveList.pop()
+    that.drawSnake(that.moveList[0])
+    that.timer = setTimeout(function () {
+        that.step(keyCode)
+    }, 1000 / that.moveList.length)
 }
 Snake.prototype.checkSnake = function (keyCode) {
     var that = this
@@ -120,6 +140,10 @@ Snake.prototype.checkSnake = function (keyCode) {
             first.y -= that.space
             break
     }
+    var flag = this.moveList.some(function (item) {
+        return item.x === first.x && item.y === first.y
+    })
+    if (flag) return true
     var i = ''
     this.snakeList.forEach(function (item, index) {
         if (item.x === first.x && item.y === first.y) {
@@ -129,6 +153,7 @@ Snake.prototype.checkSnake = function (keyCode) {
     })
     if (i !== '') {
         this.snakeList.splice(i, 1)
+        this.randomPushSnake()
     }
 }
 Snake.prototype.drawSnake = function (target) {
@@ -143,8 +168,9 @@ Snake.prototype.clearSnake = function (target) {
 }
 Snake.prototype.run = function () {
     this.line()
-    this.randomSnake()
+    this.randomSnake(this.number)
     this.moveSnake()
+    this.bindSnake()
 }
 function randoms (n) {
     return Math.floor(Math.random() * n - 1)
