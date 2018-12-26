@@ -67,7 +67,7 @@ Snake.prototype.randomPushSnake = function () {
     var that = this
     var timer = setTimeout(function () {
         clearTimeout(timer)
-        that.randomSnake(1)
+        that.randomSnake(3)
     }, 3000)
 }
 Snake.prototype.moveSnake = function () {
@@ -118,7 +118,8 @@ Snake.prototype.step = function (keyCode) {
     that.drawSnake(that.moveList[0])
     that.timer = setTimeout(function () {
         that.step(keyCode)
-    }, 1000 / that.moveList.length)
+    }, 200)
+    // }, 1000 / that.moveList.length)
 }
 Snake.prototype.checkSnake = function (keyCode) {
     var that = this
@@ -159,7 +160,7 @@ Snake.prototype.checkSnake = function (keyCode) {
 Snake.prototype.drawSnake = function (target) {
     this.ctx.beginPath()
     this.ctx.rect(target.x + 1, target.y + 1, this.space - 2, this.space - 2)
-    this.ctx.fillStyle = 'blue' || item.color
+    this.ctx.fillStyle = 'red' || item.color
     this.ctx.fill()
     this.ctx.closePath()
 }
