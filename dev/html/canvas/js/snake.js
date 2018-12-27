@@ -58,7 +58,7 @@ Snake.prototype.randomSnake = function (number) {
     this.snakeList.forEach(function (item) {
         this.ctx.beginPath()
         this.ctx.rect(item.x + 1, item.y + 1, this.space - 2, this.space - 2)
-        this.ctx.fillStyle = 'blue' || item.color
+        this.ctx.fillStyle = item.color
         this.ctx.fill()
         this.ctx.closePath()
     })
@@ -160,7 +160,7 @@ Snake.prototype.checkSnake = function (keyCode) {
 Snake.prototype.drawSnake = function (target) {
     this.ctx.beginPath()
     this.ctx.rect(target.x + 1, target.y + 1, this.space - 2, this.space - 2)
-    this.ctx.fillStyle = 'red' || item.color
+    this.ctx.fillStyle = target.color
     this.ctx.fill()
     this.ctx.closePath()
 }
