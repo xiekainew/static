@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>in-of</title>
+</head>
+<body>
+<script>
+    Array.prototype.method=function(){
+        console.log(this.length);
+    }
+    var arr = [1, 2, 3, 4]
+    var a_t = arr[Symbol.iterator]()
+    console.log(a_t.next())
+    console.log(arr[Symbol.iterator]())
+    arr.name = 'kai'
+    for (var i in arr) {
+        console.log(i)
+    }
+    for (var j of arr) {
+        console.log(j)
+    }
+    Object.prototype.method = function () {
+        console.log('method')
+    }
+    var obj = {
+        a: '1',
+        b: '2',
+        c: '3'
+    }
+    console.log(Object.keys(obj))
+    for (var m in obj) {
+        if (m === 'b') continue
+        console.log(m)
+    }
+    // for (var n of obj) { // 报错  for of 只能遍历拥有迭代器的对象
+    // for (var n of Object.keys(obj)) { // for of 可以使用break、continue 不能用return
+    //     if (n === 'b') {
+    //         break
+    //     }
+    //     console.log(n)
+    // }
+
+    // var copy = {
+    //     name: 'wang',
+    //     time: new Date()
+    // }
+    // var copy1 = JSON.parse(JSON.stringify(copy))
+    // console.log(copy1)
+    // console.log(copy)
+
+</script>
+</body>
+</html>

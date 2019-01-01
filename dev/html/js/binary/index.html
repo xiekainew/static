@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>binary</title>
+</head>
+<body>
+<script>
+    class Node {
+        constructor (key) {
+            this.key = key
+            this.left = null
+            this.right = null
+        }
+    }
+    class BinarySearchTree {
+        constructor (key) {
+            this.root = null
+        }
+        insert (key) {
+            let newNode = new Node(key)
+            const insertNode = (node, newNode) => {
+                if (newNode.key < node.key) {
+                    if (node.left === null) {
+                        node.left = newNode
+                    } else {
+                        insertNode(node.left, newNode)
+                    }
+                } else {
+                    if (node.right === null) {
+                        node.right = newNode
+                    } else {
+                        insertNode(node.right, newNode)
+                    }
+                }
+            }
+            if (!this.root) {
+                this.root = newNode
+                return
+            }
+            insertNode(this.root, newNode)
+        }
+        inOrder (callback) {
+            const inOrderNode = (node, callback) => {
+                if (node) {
+                    inOrderNode(node.left, callback)
+                    callback(node.key)
+                    inOrderNode(node.right, callback)
+                }
+            }
+            inOrderNode(this.root, callback)
+        }
+        preOrder (callback) {
+            const preOderNode = (node, callback) => {
+                if (node) {
+                    callback(node.key)
+                    preOderNode(node.left, callback)
+                    preOderNode(node.right, callback)
+                }
+            }
+            preOderNode(this.root, callback)
+        }
+        postOrder (callback) {
+            const postOderNode = (node, callback) => {
+                if (node) {
+                    postOderNode(node.left, callback)
+                    postOderNode(node.right, callback)
+                    callback(node.key)
+                }
+            }
+            postOderNode(this.root, callback)
+        }
+        remove (key) {
+            const removeNode = (node, key) => {
+                if (node === null) {
+                    return null
+                }
+                if (key < node.key) {
+                    node = removeNode(node.left, key)
+                    return node
+                } else if (key > node.key) {
+                    node = removeNode(node.right, key)
+                    return node
+                } else {
+                    if (!node.left && !node.right) {
+                        node = null
+                        return node
+                    }
+                    if (node.left === null) {
+                        node = node.right
+                        return node
+                    } else if (node.right === null) {
+                        node = node.left
+                        return node
+                    }
+                    let aux = findMinNode(node.right)
+                    node.key = aux.key
+                    node.right = removeNode(node.right, aux.key)
+                    return node
+                }
+            }
+            const findMinNode = (node) => {
+                while (node && node.left) {
+                    node = node.left
+                }
+                return node
+            }
+            this.root = removeNode(this.root, key)
+        }
+    }
+    var b = new BinarySearchTree()
+    // b.insert(4)
+    // b.insert(5)
+    // b.insert(3)
+    // b.insert(6)
+    // b.insert(7)
+    // b.insert(9)
+    // b.insert(1)
+    // b.insert(2)
+    // console.log(b)
+    // b.inOrder(function(data) {
+    //     console.log(data)
+    // })
+    // b.preOrder(function(data) {
+    //     console.log(data)
+    // })
+
+    var arr = [1, 3,4,8, 6,4,2,5, 7,9]
+    var arr2 = [4,3,1, 2]
+
+    function select (arr) {
+        var n = 0
+        for (var i = 0; i < arr.length; i++) {
+            var minIndex = i
+            for (var j = i; j < arr.length; j++) {
+                n++
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j
+                }
+            }
+            var temp = arr[i]
+            arr[i] = arr[minIndex]
+            arr[minIndex] = temp
+        }
+        console.log(n)
+        return arr
+    }
+    function fast (arr) {
+        if (arr.length <= 1) {
+            return arr
+        }
+        let left = []
+        let right = []
+        let p = arr.shift()
+        for (let i = 0, l = arr.length; i < l; i++) {
+            if (p > arr[i]) {
+                left.push(arr[i])
+            } else {
+                right.push(arr[i])
+            }
+        }
+        return [].concat(fast(left), [p], fast(right))
+    }
+    function insert(arr) {
+        for (var i = 1; i < arr.length; i++) {
+            var temp = arr[i]
+            var j = i - 1
+            while (j >= 0 && arr[j] > temp) {
+                arr[j+ 1] = arr[j]
+                j--
+            }
+            arr[j + 1] = temp
+        }
+        return arr
+    }
+    console.log(insert(arr2))
+    // var t = [1,2 ,3,4]
+    // console.log(t)
+    // console.log(t.shift())
+    // console.log(t.slice(0, 1))
+    // console.log(t)
+</script>
+</body>
+</html>

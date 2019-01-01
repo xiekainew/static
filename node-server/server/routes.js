@@ -30,7 +30,7 @@ function errorHandler(req, res, next) {
 }
 // router.get('*', function (req, res) {
 //     console.log(__dirname)
-//     // res.send(fs.readFileSync('./public2/saas/index.html'), 'utf-8')
+//     // res.send(fs.readFileSync('./public2/saas/array.html'), 'utf-8')
 //     res.sendFile(__dirname + '/' + '/public2/saas', 'utf-8')
 // })
 router.post('/server/login', Login.handleLogin, errorHandler)

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<div id="app">
+    <div>{{msg}}</div>
+    <!--<anchored-heading :level="1">大标题</anchored-heading>-->
+    <anchored-heading :level="3">链接</anchored-heading>
+    <book-list :list="books"></book-list>
+    <v-input v-model="input"></v-input>
+    <async-example></async-example>
+    <!--<anchored-heading :level="3">大标题</anchored-heading>-->
+</div>
+<script src="../../js/lib/vue-2.5.21.js"></script>
+<script src="./common/plugin.js"></script>
+<script type="text/x-template" id="anchored-heading-template">
+    <h1 v-if="level === 1">
+        <slot></slot>
+    </h1>
+    <h2 v-else-if="level === 2">
+        <slot></slot>
+    </h2>
+    <h3 v-else-if="level === 3">
+        <slot></slot>
+    </h3>
+    <h4 v-else-if="level === 4">
+        <slot></slot>
+    </h4>
+    <h5 v-else-if="level === 5">
+        <slot></slot>
+    </h5>
+    <h6 v-else-if="level === 6">
+        <slot></slot>
+    </h6>
+    <!--<strong>{{strong}}<slot name="em"></slot></strong>-->
+</script>
+<script>
+    Vue.component('anchored-heading', {
+        // template: '#anchored-heading-template',
+        data () {
+            return {
+                strong: 'strongd' // 显示
+            }
+        },
+        render(createElement) {
+            console.log(arguments)
+            for (var i of arguments) {
+                console.log(i)
+            }
+            console.log(this.$slots)
+            return createElement(
+                'h' + this.level,
+                // 'strong',
+                // this.$slots.em,
+                // this.strong,
+                {
+                    class: {
+                        foo: true,
+                        bar: true
+                    },
+                    style: {
+                        color: 'red'
+                    },
+                    attrs: {
+                        id: 'foo',
+                        time: '12-23'
+                    }
+                },
+                [
+                    '先写一些文字',
+                    createElement('a', {
+                        attrs: {
+                            id: 'a',
+                            href: '#a'
+                        }
+                    }, this.$slots.default)
+                ]
+            )
+        },
+        props: {
+            level: {
+                type: Number
+            }
+        }
+    })
+
+    Vue.component('book-list', {
+        props: {
+            list: {
+                type: Array,
+                default: ()  => []
+            }
+        },
+        render(createElement) {
+            console.log(this.list)
+            if (this.list.length) {
+                return createElement('ul', this.list.map(item => createElement('li', item)))
+            } else {
+                return createElement('div', 'no books list')
+            }
+        }
+    })
+    Vue.component('v-input', {
+        props: {
+            value: String
+        },
+        render (createElement) {
+            var that = this
+            return createElement('input', {
+                domProps: {
+                    value: that.value
+                },
+                on: {
+                    input(e) {
+                        console.log(e)
+                        that.$emit('input', e.target.value)
+                    },
+                    blur(e) {
+                        console.log('blur')
+                    }
+                }
+            })
+        },
+        mounted() {
+            console.log(this.$root.msg)
+            console.log(this.con)
+        }
+    })
+    Vue.use(MyPlugin)
+    Vue.component('async-example', function (resolve, reject) {
+        setTimeout(function () {
+            // 向 `resolve` 回调传递组件定义
+            resolve({
+                template: '<div>{{data}}</div>',
+                data() {
+                    return {
+                        data: 'I am async!'
+                    }
+                }
+            })
+        }, 1000)
+    })
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                msg: 'hello wold',
+                strong: 'eeee',
+                books: ['方法', '时间简史'],
+                input: ''
+            }
+        },
+        watch: {
+            input (val) {
+                this.con(val)
+            }
+        },
+        mounted() {
+            console.log(this.con)
+        }
+        // render (h) {
+        //     // return (
+        //     //     <div>
+        //     //         <span>rendertst</span>
+        //     //     </div>
+        //     // )
+        // }
+    })
+    // }).$mount('#app')
+
+
+
+    Array.apply(null, {length: 2}).map(function (item) {
+        console.log(item)
+        return item
+    })
+</script>
+</body>
+</html>

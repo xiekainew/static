@@ -171,8 +171,97 @@
             return n.substr(s).match(/\d{3}/g).join(',')
         }
     }
-    console.log(toNum(num))
+    // console.log(toNum(num))
 
+    function a1 () {
+        var p = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve('a1')
+            }, 1000)
+        })
+        return p
+    }
+    function a2 () {
+        var p = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve('resolve')
+            }, 1000)
+        })
+        return p
+    }
+    function a3 () {
+        var p = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve('a3')
+            }, 1000)
+        })
+        return p
+    }
+    // a1().then(function (data) {
+    //     console.log(data)
+    //     return a2()
+    // }).then(function (data) {
+    //     console.log(data)
+    //     return a3()
+    // }).then(function (data) {
+    //     console.log(data)
+    // }).catch(function (msg) {
+    //     console.log(msg)
+    // })
+    Promise.all([a1(), a2(), a3()]).then(function (result) {
+        console.log(result)
+    })
+
+    function getImg () {
+        var p = new Promise(function (resolve, reject) {
+            var img = new Image()
+            img.onload = function () {
+                resolve(img)
+            }
+            // img.src = 'https://avatar-static.segmentfault.com/414/533/4145336861-579aea6a4eb9f_big64'
+            img.src = '2323'
+        })
+        return p
+    }
+    function timeout () {
+        var p = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                reject('请求超时')
+            }, 2000)
+        })
+        return p
+    }
+    Promise.race([getImg(), timeout()]).then(function (data) {
+        console.log(data)
+    }).catch(function (msg) {
+        console.log(msg)
+    })
+
+    //创建一个 thenable 对象
+    var thenable = {
+        then(resolve, reject) {
+            reject('错误原因');
+        }
+    };
+    //将 thenable 作为参数使用
+    var testC = Promise.reject(thenable);
+    // 此处判定 e 与  thenable
+    testC.catch(e => {
+        console.log("我居然是接受进来的thenable对象",e === thenable)
+    })
+
+    function Person () {
+        this.name = '我那个'
+        this.age = 12
+        this.sayAge = function () {
+            console.log(this.age)
+        }
+    }
+    Person.prototype.say = function () {
+        console.log(this.name)
+    }
+    // Person.sayAge()
+    // Person.say()
 </script>
 </body>
 </html>
