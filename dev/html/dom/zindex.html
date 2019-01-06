@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zindg</title>
+    <style>
+        .content{
+            width: 200px;
+            height: 200px;
+            background: #f2f2f2;
+            border: 10px solid #b1b1b1;
+        }
+        .child{
+            width: 100px;
+            height: 50px;
+            background: red;
+            /*z-index: 3;*/
+            /*position: relative;*/
+            border: 3px solid burlywood;
+            display:inline-block;
+        }
+        .child2{
+            width: 100px;
+            height: 50px;
+            background: yellow;
+            border: 3px solid yellowgreen;
+            margin-top: -30px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <div class="child">sdfsdfsdf</div>
+    <div class="child2">wefewfwe</div>
+</div>
+<script>
+    Function.prototype.binds = function () {
+        var that = this
+        var target = [].shift.call(arguments)
+        var args = arguments
+        return function () {
+            return that.apply(target, args)
+        }
+    }
+    function name (data, a) {
+        console.log(data)
+        console.log(a)
+        console.log(this.name)
+    }
+    var obj = {
+        name: 'obj'
+    }
+    var b = name.binds(obj, 1, 2)
+    b()
+    console.log(b)
+</script>
+</body>
+</html>

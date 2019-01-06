@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>variable</title>
+    <style>
+        #div{
+            z-index: -1;
+            position: relative;
+        }
+        .outer {
+            position: relative;
+            z-index:0;
+            background-color: blue
+        }
+
+        .inner-inner{
+            position: relative;
+            z-index: -1;
+            background-color: brown
+        }
+        .btn{
+            position: absolute;
+            top: 70px;
+            z-index:-4
+        }
+    </style>
+</head>
+<body>
+<div id="div">sdf</div>
+<div class="outer">
+    <p>outer</p>
+    <div class="inner">
+        <p>inner</p>
+        <!--<div> -->
+        <button class="btn">huhu</button>
+        <p class="inner-inner">inner-inner</p>
+        <!--</div>-->
+    </div>
+</div>
+<script>
+    // function fn () {
+    //     sayName = function () {
+    //         console.log(1)
+    //     }
+    //     return this
+    // }
+    // fn.prototype.sayName = function () {
+    //     console.log(4)
+    // }
+    //
+    // var sayName = function () {
+    //     console.log(2)
+    // }
+    // function sayName () {
+    //     console.log(3)
+    // }
+    // sayName()
+    // fn()
+    // sayName()
+    // new fn().sayName()
+    // new new fn().sayName()
+    function Foo() {
+        getName = function(){
+            console.log("1");
+        };
+        return this;
+    }
+    Foo.getName = function() {
+        console.log("2");
+    };
+
+    Foo.prototype.getName = function(){
+        console.log("3");
+    };
+
+    var getName = function() {
+        console.log("4");
+    };
+    function getName(){
+        console.log("5");
+    }
+    // Foo.getName(); // 2
+    // getName(); // 4
+    // Foo().getName(); //1 ? 4 ? 2 ?报错
+    // // console.log(Foo())
+    // getName(); // ?    1
+    // new Foo.getName(); //  2
+    new Foo().getName(); // 3
+    new new Foo().getName(); // 3
+    console.log(new Foo().getName())
+    console.log(new new Foo().getName())
+
+
+</script>
+</body>
+</html>

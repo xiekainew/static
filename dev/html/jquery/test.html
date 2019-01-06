@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="js-odoo"></div>
+<!--倒计时显示-->
+<script src="../../js/lib/jquery-3.3.1.js"></script>
+<script>
+    var num = 1;
+    j_number=0;
+    (function($) {
+        /*jQuery对象添加  runNum  方法*/
+        $.fn.extend({
+            /*
+             *	滚动数字
+             *	@ val 值，	params 参数对象
+             *	params{addMin(随机最小值),addMax(随机最大值),interval(动画间隔),speed(动画滚动速度),width(列宽),height(行高)}
+             */
+            runNum: function(val, params) {
+                /*初始化动画参数*/
+                var valString = val || "70225800";
+                var par = params || {};
+                var runNumJson = {
+                    el: $(this),
+                    value: valString,
+                    valueStr: valString.toString(10),
+                    width: par.width || 0,
+                    height: par.height || 50,
+                    addMin: par.addMin || 10000,
+                    addMax: par.addMax || 99999,
+                    interval: par.interval || 2000,
+                    speed: par.speed || 1000,
+                    width: par.width || 28,
+                    length: valString.toString(10).length
+                };
+                $._runNum._list(runNumJson.el, runNumJson);
+                $._runNum._interval(runNumJson.el.children("li"), runNumJson);
+            }
+        });
+        /*jQuery对象添加  _runNum  属性*/
+        $._runNum = {
+            /*初始化数字列表*/
+            _list: function(el, json) {
+                console.log(json);
+                var str = "";
+                for (var i = 0; i < json.length; i++) {
+                    var w = json.width * i;
+                    var t = json.height * parseInt(json.valueStr[i]);
+                    var h = json.height * 10;
+                    str +=
+                        '<li style="width:' +
+                        json.width +
+                        "px;left:" +
+                        w +
+                        "px;top: " +
+                        -t +
+                        "px;height:" +
+                        h +
+                        'px;">';
+                    for (var j = 0; j < 10; j++) {
+                        str +=
+                            '<div style="height:' +
+                            json.height +
+                            "px;line-height:" +
+                            json.height +
+                            'px;">' +
+                            j +
+                            "</div>";
+                    }
+                    str += "</li>";
+                }
+                el.html(str);
+            },
+            /*生成随即数*/
+            _random: function(json) {
+                // var Range = json.addMax - json.addMin;
+                // var Rand = Math.random();
+                // var num=json.addMin + Math.round(Rand * Range);
+                console.log(num);
+                j_number++;
+
+                if(j_number==100){
+                    var id = "{$article['orderid']}";
+                    var uvcounts = $("#uvcounts").val();
+                    var proportion = parseInt(uvcounts) + parseInt(j_number);
+                    $("#uvcounts").val(proportion);
+                    $.ajax({
+                        data:{id:id,proprotion:proportion},
+                        type:"post",
+                        url:"/Order/report",
+                        success:function () {
+
+                        }
+                    })
+                    j_number=0
+                }
+                return num;
+                num++;
+            },
+            /*执行动画效果*/
+            _animate: function(el, value, json) {
+                for (var x = 0; x < json.length; x++) {
+                    var topPx = value[x] * json.height;
+                    el.eq(x).animate({ top: -topPx + "px" }, json.speed);
+                }
+                // console.log(1111)
+            },
+            /*定期刷新动画列表*/
+            _interval: function(el, json) {
+
+                var val = json.value;
+                setInterval(function() {
+                    val += $._runNum._random(json);
+                    $._runNum._animate(el, val.toString(10), json);
+                }, json.interval);
+
+            }
+        };
+    })(jQuery);
+
+    //底部计数需要有上限  js比较
+    //页面加载先去比较已经存的值是否大于等于 当前值  是停止 否计算
+    //100s统计一次，统计时后台需判断传来的值是否大于等于总值 计算时也需要不断比较是否已经大于等于总值了  如果是停止计数 同时请求最后一次后台
+    //
+    // 52013141  后台计数的变量（重点）
+    // var uvcount = "{$uvcount}";   //总值
+    // var uvcounts = "{$uvcounts}"; //初始值
+    // var dataLeng = '1' + uvcounts + 100000000;
+    // odoo.default({ el: ".js-odoo", value: dataLeng });
+    // //使用方法名字执行方法
+    // var jsOdoo = document.querySelector(".js-odoo");
+    // function show() {
+    //   jsOdoo.style.display = "none";
+    //   test.style.display = "block";
+    //   $("#test").runNum(dataLeng);/
+    // }
+    // setTimeout("show()", 4000);
+    //console.log("{$uvcount}");
+    var dataLeng1 = "{$uvcount}" ;
+    var dataLeng1=String.
+    // var dataLeng = 52013141;
+    odoo.default({ el: ".js-odoo", value: dataLeng });
+    //使用方法名字执行方法
+    var jsOdoo = document.querySelector(".js-odoo");
+    function show() {
+        jsOdoo.style.display = "none";
+        test.style.display = "block";
+        $("#test").runNum(dataLeng);
+    }
+    setTimeout("show()", 4000);
+</script>
+</body>
+</html>

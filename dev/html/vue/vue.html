@@ -7,14 +7,27 @@
 <body>
 <div id="app">
     <div>{{msg}}</div>
+    <!--<div>计数count：{{count}}</div>-->
+    <div>计数：{{counts}}</div>
+    <div>计数：{{counts2}}</div>
+    <div>计数：{{counts3}}</div>
+    <div>总计数：{{sum}}</div>
+    <div>
+        <button @click="up">增加</button>
+        <button @click="add">增加add</button>
+        <button @click="down">减少</button>
+    </div>
     <!--<anchored-heading :level="1">大标题</anchored-heading>-->
     <anchored-heading :level="3">链接</anchored-heading>
     <book-list :list="books"></book-list>
     <v-input v-model="input"></v-input>
     <async-example></async-example>
+    <vuex-data></vuex-data>
     <!--<anchored-heading :level="3">大标题</anchored-heading>-->
 </div>
 <script src="../../js/lib/vue-2.5.21.js"></script>
+<script src="../../js/lib/vuex-v3.0.1.js"></script>
+<script src="./common/vuex.js"></script>
 <script src="./common/plugin.js"></script>
 <script type="text/x-template" id="anchored-heading-template">
     <h1 v-if="level === 1">
@@ -38,6 +51,10 @@
     <!--<strong>{{strong}}<slot name="em"></slot></strong>-->
 </script>
 <script>
+    var mapState = Vuex.mapState
+    var mapGetters = Vuex.mapGetters
+    var mapMutations = Vuex.mapMutations
+    var mapActions = Vuex.mapActions
     Vue.component('anchored-heading', {
         // template: '#anchored-heading-template',
         data () {
@@ -46,11 +63,6 @@
             }
         },
         render(createElement) {
-            console.log(arguments)
-            for (var i of arguments) {
-                console.log(i)
-            }
-            console.log(this.$slots)
             return createElement(
                 'h' + this.level,
                 // 'strong',
@@ -95,7 +107,6 @@
             }
         },
         render(createElement) {
-            console.log(this.list)
             if (this.list.length) {
                 return createElement('ul', this.list.map(item => createElement('li', item)))
             } else {
@@ -115,18 +126,16 @@
                 },
                 on: {
                     input(e) {
-                        console.log(e)
+                        // console.log(e)
                         that.$emit('input', e.target.value)
                     },
                     blur(e) {
-                        console.log('blur')
+                        // console.log('blur')
                     }
                 }
             })
         },
         mounted() {
-            console.log(this.$root.msg)
-            console.log(this.con)
         }
     })
     Vue.use(MyPlugin)
@@ -143,14 +152,45 @@
             })
         }, 1000)
     })
+    Vue.component('vuex-data', {
+        template: `<div>
+                    <div>count: {{doneTodosCount}}</div>
+                    <p v-for="item in doneTodosList">{{item.text}}</p>
+                    <button @click="tens">tens</button>
+                    <input v-model="school"/>
+                    </div>`,
+        computed: {
+            ...mapGetters({
+                doneTodosList: 'doneTodos',
+                doneTodosCount: 'doneTodosCount'
+            }),
+            school: {
+                get () {
+                    return this.$store.state.message
+                },
+                set(val) {
+                    this.$store.commit('updateMessage', val)
+                }
+            }
+        },
+        methods: {
+            ...mapActions({
+                tens: 'ten'
+            })
+        }
+    })
+    // Vue.use(Vuex)
+
     new Vue({
         el: '#app',
+        store,
         data () {
             return {
                 msg: 'hello wold',
                 strong: 'eeee',
                 books: ['方法', '时间简史'],
-                input: ''
+                input: '',
+                countMsg: '计数累加'
             }
         },
         watch: {
@@ -159,7 +199,42 @@
             }
         },
         mounted() {
-            console.log(this.con)
+            // console.log(this.con)
+        },
+        // computed: mapState({
+        //     counts: state => state.count,
+        //     counts2: 'count',
+        //     counts3 (state) {
+        //         return state.count + this.countMsg
+        //     }
+        // }),
+        // computed: mapState([
+        //     'count'
+        // ]),
+        computed: {
+            // ...mapState(['count'])
+            ...mapState({
+                counts: state => state.count,
+                counts2: 'count',
+                counts3 (state) {
+                    return state.count + this.countMsg
+                }
+            }),
+            sum () {
+                return this.counts + this.counts2
+            }
+        },
+        methods: {
+            ...mapMutations({
+               up: 'update'
+            }),
+            add () {
+                // this.$store.commit('update')
+                this.$store.dispatch('ten')
+            },
+            down () {
+                this.$store.commit('down')
+            }
         }
         // render (h) {
         //     // return (
@@ -173,22 +248,34 @@
 
 
 
-    Array.apply(null, {length: 2}).map(function (item) {
-        console.log(item)
-        return item
-    })
-    var x = 1;
-    console.log(x);
-    if(true){
-        var x = 2;
-        console.log(x);
-    }
-    function say () {
-        x = 3
-        console.log(x)
-    }
-    say()
-    console.log(x);
+    // Array.apply(null, {length: 2}).map(function (item) {
+    //     console.log(item)
+    //     return item
+    // })
+    // var x = 1;
+    // console.log(x);
+    // if(true){
+    //     var x = 2;
+    //     console.log(x);
+    // }
+    // function say () {
+    //     x = 3
+    //     console.log(x)
+    // }
+    // say()
+    // console.log(x);
+    // var name = 2
+    // var obj = {
+    //     name: 1,
+    //     sayName: function () {
+    //         console.log(this.name)
+    //     }
+    // }
+    // obj.sayName()
+    // var f = obj.sayName
+    // f()
+    // var b = new obj.sayName()
+    // setTimeout(obj.sayName, 0)
 </script>
 </body>
 </html>
