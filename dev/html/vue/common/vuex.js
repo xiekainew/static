@@ -1,5 +1,34 @@
+const user = {
+    namespaced: true,
+    state: {
+        name: '王大力',
+        age: 12
+    },
+    mutations: {
+        updateAge (state, age) {
+            state.age = age
+        },
+        updateName (state, name) {
+            state.name = name
+        }
+    },
+    actions: {
+
+    }
+}
+const people = {
+    state: {
+        name: '小明'
+    },
+    mutations: {
+        updateName (state, name) {
+            state.name = name
+        }
+    }
+}
 const store = new Vuex.Store({
     state: {
+        name: 'vue',
         count: 0,
         todos: [
             { id: 1, text: '1', done: true },
@@ -27,6 +56,9 @@ const store = new Vuex.Store({
         },
         down (state) {
             state.count--
+        },
+        updateName (state, name) {
+            state.name = name
         }
     },
     actions: {
@@ -35,5 +67,9 @@ const store = new Vuex.Store({
                 commit('update')
             }, 1000)
         }
+    },
+    modules: {
+        user,
+        people
     }
 })

@@ -13,7 +13,7 @@
     <div>计数：{{counts3}}</div>
     <div>总计数：{{sum}}</div>
     <div>
-        <button @click="up">增加</button>
+        <button @click="up(2)">增加</button>
         <button @click="add">增加add</button>
         <button @click="down">减少</button>
     </div>
@@ -200,6 +200,10 @@
         },
         mounted() {
             // console.log(this.con)
+            this.$store.commit('user/updateName', '光头强')
+            console.log(this.$store.state['name'])
+            console.log(this.$store.state.user.name)
+            console.log(this.$store.state.people.name)
         },
         // computed: mapState({
         //     counts: state => state.count,
@@ -225,12 +229,13 @@
             }
         },
         methods: {
-            ...mapMutations({
-               up: 'update'
+            ...mapMutations('user',{
+               up: 'updateName'
             }),
             add () {
                 // this.$store.commit('update')
                 this.$store.dispatch('ten')
+                console.log(this.$store.state.user.name)
             },
             down () {
                 this.$store.commit('down')
