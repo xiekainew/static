@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>margin</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content{
+            /*width: 150px;*/
+            overflow: hidden;
+            border:1px solid #aaaaaa;
+        }
+        .div1{
+            /*margin-right: 50px;*/
+            /*float:left;*/
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin-left: 50px;
+            padding-left: 10px;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .div2{
+            /*margin-left: 100px;*/
+            /*float:left;*/
+            width: 100px;
+            height: 100px;
+            background: yellowgreen;
+            /*margin-top: 50px;*/
+        }
+        .img{
+            margin-left: 20px;
+            display: table-cell;
+            vertical-align: middle
+        }
+        .img img{
+            display: block;
+            margin: 0 auto;
+
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="div1">div1</div>
+    <div class="div2">2</div>
+</div>
+<!--<div class="img">-->
+    <!--<img width="30" src="../../static/image/fengjing.jpg"/>-->
+<!--</div>-->
+<script>
+    var name = 1
+    var obj = {
+        name: 2,
+        fn: function () {
+            console.log(this.name)
+        }
+    }
+    var o = new obj.fn()
+    console.log(o)
+    var obj2 = obj.fn
+    obj2()
+    setTimeout(obj.fn,0)
+    setTimeout(() => {
+        obj.fn()
+        console.log(this.name)
+    })
+
+    function news (target) {
+        var obj = {}
+        obj.__proto__ = target.prototype
+        target.apply(obj)
+        return obj
+    }
+    function newss () {
+        var target = [].shift.call(arguments)
+        var obj = new Object()
+        obj.__proto__ = target.prototype
+        target.apply(obj, arguments)
+        return obj
+    }
+    function Person () {
+        this.name = 'ren'
+    }
+    var person = new Person()
+    console.log(person)
+    var person2 = newss(Person)
+    console.log(person2)
+
+</script>
+</body>
+</html>
