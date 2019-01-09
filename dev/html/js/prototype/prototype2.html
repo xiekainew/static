@@ -6,31 +6,91 @@
 </head>
 <body>
 <script>
-    function B (name) {
-        this.name = name
+//    function B (name) {
+//        this.name = name
+//    }
+//    function A (name) {
+//        B.call(this, name)
+//    }
+//
+//    function Extends (child, parent) {
+//        var F = function () {}
+//        F.prototype = parent.prototype
+//        child.prototype = new F()
+//        child.prototype.constructor = child
+//    }
+//    Extends(A, B)
+//
+//    console.log(A.prototype.__proto__ === B.prototype)
+//
+//    console.log(A.constructor === Function)
+//    console.log(A.prototype.constructor === A)
+//    console.log(B.prototype.constructor === B)
+//    console.log(A.prototype)
+//
+//    var a = new A('wang')
+//    console.log(a)
+//    console.log(a.constructor === A)
+//    console.log(a.__proto__ === A.prototype)
+//    console.log(A.prototype.constructor === A)
+/**
+ *
+ * @param name
+ * @param age
+ * @constructor
+ */
+    function Person (name, age) {
+        this.name = name || '无名'
+        this.age = age || 20
+        this.sayName = function () {
+            console.log(this.name)
+        }
     }
-    function A (name) {
-        B.call(this, name)
+    Person.prototype.sayAge = function () {
+        console.log(this.age)
     }
 
-    function Extends (child, parent) {
-        var F = function () {}
-        F.prototype = parent.prototype
-        child.prototype = new F()
-        child.prototype.constructor = child
+    function Student (name, age) {
+        Person.call(this, name, age)
     }
-    Extends(A, B)
+    Student.prototype = Person.prototype
+    Student.prototype.constructor = Student
+//    Student.prototype = new Person()
 
-    console.log(A.constructor === Function)
-    console.log(A.prototype.constructor === A)
-    console.log(B.prototype.constructor === B)
-    console.log(A.prototype)
+    var ming = new Student('大虾', 12)
+//    console.log(ming)
+//    console.log(ming.name)
+//    console.log(ming.age)
+//    ming.sayName()
+//    ming.sayAge()
+    Function.prototype.bind = function () {
+        var self = this
+        var target = [].shift.call(arguments)
+        var args = arguments
+        return function () {
+            return target.apply(self, args)
+        }
+    }
+    function News () {
+        var target = [].shift.call(arguments)
+        var obj = new Object()
+        obj.__proto__ = target.prototype
+        target.apply(obj, arguments)
+        return obj
+    }
+    var wang = News(Student, 'wang', 13)
+//    console.log(wang)
+//    console.log(wang.__proto__ === Student.prototype)
 
-    var a = new A('wang')
-    console.log(a)
-    console.log(a.constructor === A)
-    console.log(a.__proto__ === A.prototype)
-    console.log(A.prototype.constructor === A)
+    var obj1 = {
+        name: 'obj1'
+    }
+    var obj2 = Object.create(obj1)
+    console.log(obj2)
+    console.log(obj2.name)
+    var obj3 = Object.create(null)
+    obj3.name = 'obj3'
+    console.log(obj3)
 </script>
 </body>
 </html>
