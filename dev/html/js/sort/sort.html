@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sort</title>
+</head>
+<body>
+<script>
+    var arr = [
+        {name: '张飞', age: 12},
+        {name: '关于', age: 43},
+        {name: '刘备', age: 24}
+    ]
+    arr.sort(function(a, b) {
+        return a.age - b.age
+    })
+    console.log(arr)
+</script>
+</body>
+</html>
