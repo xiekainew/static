@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>sort</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 300px;
+            border: 1px solid red;
+            overflow-y: auto;
+        }
+        .content{
+            min-height: 100%;
+            background: darkgray;
+            overflow: hidden;
+            margin-bottom: -30px;
+        }
+        .footer{
+            height: 30px;
+            line-height: 30px;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<div class="box">
+    <div class="content">
+        <p>main</p>
+        <p>main</p><p>main</p>
+        <!--<p>main</p><p>main</p>-->
+        <!--<p>main</p><p>main</p>-->
+        <!--<p>main</p><p>main</p>-->
+        <!--<p>main</p><p>main</p>-->
+    </div>
+    <div class="footer">footer</div>
+</div>
 <script>
     var arr = [
         {name: '张飞', age: 12},
@@ -14,7 +44,24 @@
     arr.sort(function(a, b) {
         return a.age - b.age
     })
-    console.log(arr)
+//    console.log(arr)
+//    alert(9)
+//    var a = 3
+//    function test () {
+//        console.log(a)
+//        console.log(900)
+//        alert(2)
+//        function a () {
+//        }
+//        alert(4)
+//    }
+//    test()
+//    console.log(a)
+//    console.log(12)
+//    alert(5)
+//    setTimeout(function () {
+//        alert(8)
+//    }, 0)
 </script>
 </body>
 </html>
