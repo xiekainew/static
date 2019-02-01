@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electron app</title>
+    <style>
+        #ipt{
+            outline: none;
+            width: 200px;
+            height: 30px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+你好、世界
+<!--<h1>Hello World!</h1>-->
+<!--We are using node <script>document.write(process.versions.node)</script>,-->
+<!--Chrome <script>document.write(process.versions.chrome)</script>,-->
+<!--and Electron <script>document.write(process.versions.electron)</script>.-->
+<input id="ipt" onchange="changeInput"/>
+<div id="holder">
+    Drag your file here
+</div>
+
+<script>
+    function changeInput (value) {
+        console.log(value)
+    }
+    document.addEventListener('drop', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        for (let f of e.dataTransfer.files) {
+            console.log('File(s) you dragged here: ', f.path)
+        }
+    });
+    document.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+</script>
+</body>
+</html>
