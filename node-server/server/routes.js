@@ -34,6 +34,7 @@ function errorHandler(req, res, next) {
 //     res.sendFile(__dirname + '/' + '/public2/saas', 'utf-8')
 // })
 router.post('/server/login', Login.handleLogin, errorHandler)
+router.post('/server/register', Login.register, errorHandler)
 router.get('/get/user', function (req, res) {
     console.log(req.query.name)
     common.send(req, res, '我的信息')

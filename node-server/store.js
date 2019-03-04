@@ -16,6 +16,163 @@ store.error = (err, callback) => {
     }
 }
 
+
+// 从mongodb中查找数据
+store.find = function(schema, query, opts, callback) {
+    if (!schema) {
+        var err = new Error('schema is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!query) {
+        var err = new Error('query is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!opts) {
+        var err = new Error('opts is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+
+    var collection = self.mongodb.collection(schema);
+    if (!opts || typeof(opts) == 'function') {
+        callback = opts;
+        opts = {};
+    }
+
+    if (opts.find == 'findOne') {
+        collection.findOne(query, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store]", opts.find, "error", schema, 'query:', json(query), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store]", opts.find, "result", schema, 'query:', json(query), 'opts:', json(opts), 'result:', (result ? result._id : null));
+            }
+            if (callback) {
+                callback(err, result);
+            } else {
+                // not callback
+            }
+        });
+    } else if (opts.find == 'count') {
+        collection.count(query, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store]", opts.find, "error", schema, 'query:', json(query), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store]", opts.find, "result", schema, 'query:', json(query), 'opts:', json(opts), 'result:', (result ? result._id : null));
+            }
+            if (callback) {
+                callback(err, result);
+            } else {
+                // not callback
+            }
+        })
+    } else {
+        if (opts.map == 'sort') {
+            if (opts.skip>=0 && opts.limit) {
+                collection.find(query, opts.options||{}).sort(opts.sort).skip(opts.skip).limit(opts.limit).toArray(function(err, result){
+                    if (err) {
+                        logger.error("[store] find error", schema, 'query:', json(query), 'opts:', json(opts), 'errmsg:', err.message);
+                    }
+                    if (opts.debug) {
+                        //logger.debug("[store] find result", schema, 'query:', json(query), 'opts:', json(opts), 'result:', result.length);
+                    }
+                    if (callback) {
+                        callback(err, result);
+                    } else {
+                        // not callback
+                    }
+                });
+            } else {
+                collection.find(query, opts.options||{}).sort(opts.sort).toArray(function(err, result){
+                    if (err) {
+                        logger.error("[store] find error", schema, 'query:', json(query), 'opts:', json(opts), 'errmsg:', err.message);
+                    }
+                    if (opts.debug) {
+                        //logger.debug("[store] find result", schema, 'query:', json(query), 'opts:', json(opts), 'result:', result.length);
+                    }
+                    if (callback) {
+                        callback(err, result);
+                    } else {
+                        // not callback
+                    }
+                });
+            }
+        } else {
+            collection.find(query, opts.options||{}).toArray(function(err, result){
+                if (err) {
+                    logger.error("[store] find error", schema, 'query:', json(query), 'opts:', json(opts), 'errmsg:', err.message);
+                }
+                if (opts.debug) {
+                    //logger.debug("[store] find result", schema, 'query:', json(query), 'opts:', json(opts), 'result:', result.length);
+                }
+                if (callback) {
+                    callback(err, result);
+                } else {
+                    // not callback
+                }
+            });
+        }
+    }
+}
+// 插入数据到mongodb
+store.insert = function(schema, docs, opts, callback) {
+    if (!schema) {
+        var err = new Error('schema is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!docs) {
+        var err = new Error('docs is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!opts) {
+        var err = new Error('opts is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+
+    var collection = self.mongodb.collection(schema);
+    if (!opts || typeof(opts) == 'function') {
+        callback = opts;
+        opts = {};
+    }
+
+    if (opts.insert == 'insertOne') {
+        collection.insertOne(docs, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store]", opts.insert, "error", schema, 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store]", opts.insert, "result", schema, 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.ops[0]:null);
+            } else {
+                // not callback
+            }
+        })
+    } else {
+        collection.insert(docs, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store] insert error", schema, 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store] insert result", schema, 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.ops:null);
+            } else {
+                // not callback
+            }
+        });
+    }
+
+}
+
 store.mongo = (callback => {
     logger.info('[lib] mongo start %s', config.mongo.url)
     let mongoClient = mongo.MongoClient
@@ -34,20 +191,27 @@ store.mongo = (callback => {
             logger.info('[lib] mongo connect success')
             if (callback) callback(null, db)
         } else {
-            db.authenticate(config.mongo.user, config.mongo.password, (err, result) => {
-                if (err) {
-                    logger.error('[lib] mongo auth error')
-                    if (callback) callback(err)
-                    return
-                }
-                if (config.mongo.db) {
-                    store.mongodb = mongodb = db.db(config.mongo.db)
-                } else {
-                    store.mongodb = mongodb = db
-                }
-                logger.info('[lib] mongo connect $s', result)
-                if (callback) callback(null, result)
-            })
+            if (config.mongo.db) {
+                store.mongodb = mongodb = db.db(config.mongo.db)
+            } else {
+                store.mongodb = mongodb = db
+            }
+            // logger.info(db)
+            // logger.info(store.mongodb)
+            // db.authenticate(config.mongo.user, config.mongo.password, (err, result) => {
+            //     if (err) {
+            //         logger.error('[lib] mongo auth error')
+            //         if (callback) callback(err)
+            //         return
+            //     }
+            //     if (config.mongo.db) {
+            //         store.mongodb = mongodb = db.db(config.mongo.db)
+            //     } else {
+            //         store.mongodb = mongodb = db
+            //     }
+            //     logger.info('[lib] mongo connect $s', result)
+            //     if (callback) callback(null, result)
+            // })
         }
     })
 })

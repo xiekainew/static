@@ -17,7 +17,7 @@ function listen () {
   common.logger.info('[app]', 'server listening on port', app.get('port'))
 }
 // console.log(proxy)
-proxy.all('init', 'routes', listen)
+proxy.all('init', 'routes', 'store', listen)
 proxy.fail(function(err) {
   common.logger.error('[app]', err.stack);
 });
@@ -45,6 +45,7 @@ proxy.fail(function(err) {
 (function() {
   // let lib = require('./lib')
   // lib.init((proxy.done('lib')))
+    proxy.emit(require('./store').init())
 })();
 
 

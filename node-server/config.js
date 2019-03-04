@@ -10,12 +10,12 @@ let config = {
 config.mongo = {}
 if (app.get('env') === 'development') {
     config.mongo.url = 'mongodb://127.0.0.1:27017/admin'
-    config.mongo.user = 'userAdmin'
+    config.mongo.user = 'root'
     config.mongo.password = '123123'
     config.mongo.db = 'test'
 } else {
     config.mongo.url = 'mongodb://127.0.0.1:27017/admin'
-    config.mongo.user = 'userAdmin'
+    config.mongo.user = 'root'
     config.mongo.password = '123123'
     config.mongo.db = 'test'
 }
