@@ -41,8 +41,10 @@
             };
         },
         created() {
-            this.$http.get('seller?id=' + this.seller.id).then((data) => {
-                this.seller = Object.assign({}, this.seller, data.body.data);
+            console.log(this.seller.id);
+            this.$http.get('../static/data.json').then((data) => {
+                console.log(data);
+                this.seller = Object.assign({}, this.seller, data.body.seller);
             });
         }
     };

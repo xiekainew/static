@@ -21,18 +21,21 @@
             width: 100px;
             height: 100px;
             background: red;
-            margin-left: 50px;
+            margin-bottom: 50px;
             padding-left: 10px;
             padding-top: 10px;
             margin-top: 10px;
+            margin-right: 50px;
         }
         .div2{
             /*margin-left: 100px;*/
             /*float:left;*/
+            display: inline-block;
             width: 100px;
             height: 100px;
             background: yellowgreen;
-            /*margin-top: 50px;*/
+            margin-top: 50px;
+            margin-left: 50px;
         }
         .img{
             margin-left: 20px;
@@ -47,6 +50,7 @@
     </style>
 </head>
 <body>
+
 <div class="content">
     <div class="div1">div1</div>
     <div class="div2">2</div>
@@ -55,6 +59,11 @@
     <!--<img width="30" src="../../static/image/fengjing.jpg"/>-->
 <!--</div>-->
 <script>
+    /**
+     * 布局：块级元素左右浮动的情况下margin-left与margin-right不会合并，不浮动的情况下，
+     * 上下margin会自动合并；display：inline-block；不会自动合并
+     * @type {number}
+     */
     var name = 1
     var obj = {
         name: 2,
@@ -62,11 +71,11 @@
             console.log(this.name)
         }
     }
-    var o = new obj.fn()
-    console.log(o)
-    var obj2 = obj.fn
-    obj2()
-    setTimeout(obj.fn,0)
+//    var o = new obj.fn()
+//    console.log(o)
+//    var obj2 = obj.fn
+//    obj2()
+//    setTimeout(obj.fn,0)
     setTimeout(() => {
         obj.fn()
         console.log(this.name)
@@ -91,7 +100,7 @@
     var person = new Person()
     console.log(person)
     var person2 = newss(Person)
-    console.log(person2)
+    console.log(person2.__proto__ === Person.prototype)
 
 </script>
 </body>

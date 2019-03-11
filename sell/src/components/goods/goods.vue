@@ -144,8 +144,9 @@
             }
         },
         created() {
-            this.$http.get('/goods').then((data) => {
-                this.goods = data.body.data;
+            this.$http.get('../../../static/data.json').then((data) => {
+                console.log(data);
+                this.goods = data.body.goods;
                 this.$nextTick(() => {
                     this._initScroll();
                     this._calculateHeight();

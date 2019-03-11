@@ -26,6 +26,13 @@
     </p>
 </div>
 <script>
+    /**
+     * dom事件执行顺序：捕获-目标元素-冒泡
+     * 捕获：window-document-documentElement-body - 元素
+     * 目标元素
+     * 冒泡：元素-body-documentElement-document-window
+     * @type {Element}
+     */
     var wrapDiv = document.getElementById("wrapDiv");
     var innerP = document.getElementById("innerP");
     var textSpan = document.getElementById("textSpan");
@@ -39,13 +46,14 @@
         console.log("document 捕获", e.target.nodeName, e.currentTarget.nodeName);
     }, true);
 
+    document.body.addEventListener("click", function(e){
+        console.log("body 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
     document.documentElement.addEventListener("click", function(e){
         console.log("documentElement 捕获", e.target.nodeName, e.currentTarget.nodeName);
     }, true);
 
-    document.body.addEventListener("click", function(e){
-        console.log("body 捕获", e.target.nodeName, e.currentTarget.nodeName);
-    }, true);
+
 
     wrapDiv.addEventListener("click", function(e){
         console.log("wrapDiv 捕获", e.target.nodeName, e.currentTarget.nodeName);

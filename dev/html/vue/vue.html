@@ -122,7 +122,9 @@
             var that = this
             return createElement('input', {
                 domProps: {
-                    value: that.value
+                    value: that.value,
+                    placeholder: '请输入',
+                    maxLength: 10
                 },
                 on: {
                     input(e) {

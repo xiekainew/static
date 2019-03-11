@@ -39,27 +39,27 @@
     </div>
 </div>
 <script>
-    // function fn () {
-    //     sayName = function () {
-    //         console.log(1)
-    //     }
-    //     return this
-    // }
-    // fn.prototype.sayName = function () {
-    //     console.log(4)
-    // }
-    //
-    // var sayName = function () {
-    //     console.log(2)
-    // }
-    // function sayName () {
-    //     console.log(3)
-    // }
-    // sayName()
-    // fn()
-    // sayName()
-    // new fn().sayName()
-    // new new fn().sayName()
+//     function fn () {
+//         sayName = function () {
+//             console.log(1)
+//         }
+//         return this
+//     }
+//     fn.prototype.sayName = function () {
+//         console.log(4)
+//     }
+//
+//     var sayName = function () {
+//         console.log(2)
+//     }
+//     function sayName () {
+//         console.log(3)
+//     }
+//     sayName()
+//     fn()
+//     sayName()
+//     new fn().sayName()
+//     new new fn().sayName()
     function Foo() {
         getName = function(){
             console.log("1");
@@ -80,16 +80,16 @@
     function getName(){
         console.log("5");
     }
-    // Foo.getName(); // 2
-    // getName(); // 4
-    // Foo().getName(); //1 ? 4 ? 2 ?报错
-    // // console.log(Foo())
-    // getName(); // ?    1
-    // new Foo.getName(); //  2
+     Foo.getName(); // 2
+     getName(); // 4
+     Foo().getName(); //1 ? 4 ? 2 ?报错
+     // console.log(Foo())
+     getName(); // ?    1
+     new Foo.getName(); //  2
     new Foo().getName(); // 3
     new new Foo().getName(); // 3
-    console.log(new Foo().getName())
-    console.log(new new Foo().getName())
+//    console.log(new Foo().getName())
+//    console.log(new new Foo().getName())
 
 
 </script>

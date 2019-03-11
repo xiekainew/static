@@ -83,9 +83,9 @@
             }
         },
         created() {
-            this.$http.get('/ratings').then((res) => {
+            this.$http.get('../../../static/data.json').then((res) => {
             	res = res.body;
-            	this.ratings = res.data;
+            	this.ratings = res.ratings;
             	this.$nextTick(() => {
             		this.scroll = new BScroll(this.$refs.ratingss, {
                         click: true

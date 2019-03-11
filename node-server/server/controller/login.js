@@ -37,8 +37,8 @@ login.handleLogin = (req, res, next) => {
 
 login.register = function (req, res, next) {
     let nick = req.body.nick || ''
-    let phone = req.body.phone || ''
-    let pwd = req.body.password || ''
+    let phone = req.body.phone || 13333333333
+    let pwd = req.body.password || 123456
     if (!phone || !pwd) {
         return common.send(req, res, {status: 1, msg: '手机号或密码不能为空！'})
     }
