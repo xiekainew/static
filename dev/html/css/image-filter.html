@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>图片模糊</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	html, body{
+		width: 100%;
+		height: 100%;
+	}
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.parent{
+		width: 100%;
+		height: 100%;
+		background:url('../../static/image/meinv.jpg') no-repeat fixed;
+		position: relative;
+		background-position: center;
+	}
+	.parent:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: inherit;
+        filter: blur(3px);
+        z-index: 1;
+    }
+    .child {
+        position: absolute;
+        left: 37%;
+    	top: 38%;
+        /*transform: translate(-50%,-50%);*/
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        border-radius: 50%;
+        background: inherit;
+        z-index: 11;
+        box-shadow: 0 0 10px 6px rgba(0, 0, 0, .5);
+    }shape-rendering: 
+</style>
+</head>
+<body>
+    <div class="parent">
+    	<div class="child"></div>
+    </div>
+</body>
+</html>
