@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>轮询排队</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <button id="add">添加</button>
+
+    <script type="text/javascript">
+    	let urlList = []
+    	let timer = null
+    	let text = 'https://ieg-img.justfun.live/gift/fireWorks.svga'
+    	let add = document.getElementById('add')
+    	add.onclick = function() {
+    		addUrl()
+    	}
+
+    	function addUrl() {
+    		urlList.push(text)
+    		console.log(urlList)
+    		console.log(timer)
+    		if (!timer) {
+    			checkList()
+    		}
+    	}
+
+    	function checkList() {
+    		let url = urlList.shift()
+    		console.log(url)
+    		timer = setTimeout(function() {
+    			clearTimeout(timer)
+    			timer = null
+    			console.log(urlList)
+    			if (urlList.length) {
+    				checkList()
+    			}
+    		}, 3000)
+    	}
+    </script>
+</body>
+</html>
