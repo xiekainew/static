@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>scroll-top</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.parent{
+		width: 200px;
+		height: 400px;
+		margin: 0 auto;
+		border: 1px solid black;
+		overflow: auto;
+
+	}
+</style>
+</head>
+<body>
+    <div class='parent'>
+		<p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p>
+		<p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p>
+		<p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p>
+		<p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p>
+		<p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p><p>1fsddfsd</p>
+    </div>
+    <script type="text/javascript">
+    	let parent = document.getElementsByClassName('parent')[0]
+    	parent.addEventListener('scroll', function() {
+    		console.log(parent.scrollTop)
+    	})
+    </script>
+</body>
+</html>
