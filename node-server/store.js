@@ -36,6 +36,7 @@ store.find = function(schema, query, opts, callback) {
     }
 
     var collection = self.mongodb.collection(schema);
+    console.log(query)
     if (!opts || typeof(opts) == 'function') {
         callback = opts;
         opts = {};

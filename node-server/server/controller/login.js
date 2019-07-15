@@ -8,19 +8,17 @@ let Wx_user = require('../../model/wx_user')
 
 
 login.handleLogin = (req, res, next) => {
-    // console.log(req)
-    // console.log(req.body)
     let nick = req.body.nick || ''
     let pwd = req.body.password || ''
+
     if (!nick || !pwd) {
         return common.send(req, res, {status: 1, msg: '用户名或密码为空！'})
     }
+    console.log(nick)
     let wx = new Wx_user()
-    console.log(wx.set({name: '大王'}))
-    console.log(wx.wx_getType())
-    console.log(store)
+    console.log(wx)
     var opts = {find:'findOne', debug:true}
-    store.find('user', {phone: '15567656788'}, opts, function(err, result){
+    store.find('user', {name: nick}, opts, function(err, result){
         console.log(111, result)
         // if (err) {
         //     callback(err);
@@ -36,14 +34,14 @@ login.handleLogin = (req, res, next) => {
 }
 
 login.register = function (req, res, next) {
-    let nick = req.body.nick || ''
-    let phone = req.body.phone || 13333333333
-    let pwd = req.body.password || 123456
+    let nick = req.body.nick || null
+    let phone = req.body.phone || null
+    let pwd = req.body.password || null
     if (!phone || !pwd) {
         return common.send(req, res, {status: 1, msg: '手机号或密码不能为空！'})
     }
     let wx = new Wx_user()
-    wx.set({name: nick, phone: phone, password: md5(pwd)})
+    wx.set({name: nick || phone, phone: phone, password: md5(pwd)})
     let proxy = common.eventProxy()
     var opts = {find:'findOne', debug:true}
 
