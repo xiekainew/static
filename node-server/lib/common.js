@@ -1,12 +1,16 @@
 let logger = require('./logger')
+const uuid = require('uuid')
 let config = require('../config')
 let EventProxy = require('eventproxy')
 let moment = require('moment')
 let apiLogger = require('./apilogger')
 let defined = require('./defined')
+let out = require('./out.js')
 let common = {
+    schema: defined.schema,
     logger: logger,
     config: config,
+    out: out,
     errcode: defined.errcode
 }
 
@@ -41,14 +45,22 @@ common.send = function (req, res, resText = {status: 0, msg: 'ok'}, isweb = 0) {
         "resp<|>" + (resp.length||'0') + '<|>respt<|>' + ((resp.length <= 512 ? resp : '-')) + '<|>' +
         "status<|>" + (resText ? resText.status : '-') + '<|>msg<|>' + (resText ? resText.msg : '-')  + '<|>' +
         "time<|>" + (time||'-') + '<|>perf<|>' + (time >= 100 ? '100' : (time >= 50 ? '50' : '0')) + '<|>';
-    // apiLogger.info(logText);
-    console.log(logText)
     let result = res.json(resText);
     return result;
 }
 
 common.date = function(date, format = 'yyyy-mm-dd HH:MM:ss.L') {
     return moment(date).format(format)
+}
+
+common.errorHandler = function(req, res, err, next) {
+    logger.error('[messsage]', new Error(err.message).stack);
+    common.out.send(req, res, errcode.SERVER_ERROR);
+    if (next) next();
+};
+
+common.uuid = function() {
+    return uuid.v4().replace(/-/g, '')
 }
 
 module.exports = common

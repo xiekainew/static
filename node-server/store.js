@@ -102,7 +102,9 @@ store.find = function(schema, query, opts, callback) {
                 });
             }
         } else {
+            console.log('hahah')
             collection.find(query, opts.options||{}).toArray(function(err, result){
+                console.log(result)
                 if (err) {
                     logger.error("[store] find error", schema, 'query:', json(query), 'opts:', json(opts), 'errmsg:', err.message);
                 }

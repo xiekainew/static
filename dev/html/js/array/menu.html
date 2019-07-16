@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let list = [{
+        id: 1,
+        name: 'haah',
+        parent: 5,
+        children: []
+    }, {
+        id: 2,
+        name: 'haah',
+        children: [],
+        parent: 4
+    }, {
+        id: 3,
+        name: 'haah',
+        children: []
+    }, {
+        id: 4,
+        name: 'haah',
+        parent: 3,
+        children: []
+    }, {
+        id: 5,
+        name: 'haah',
+        parent: 4,
+        children: []
+    }]
+    console.log(list)
+
+    let arr = []
+    let l = list.length
+
+    for (let i = 0; i < l; i++) {
+        let target = list.shift()
+        console.log(target)
+        if (!target.parent) {
+            arr.push(target)
+        } else {
+            let p = findArr(arr, target.parent)
+            if (p) {
+                p.children.push(target)
+            } else {
+                findList(target)
+            }
+        }
+    }
+    function findList(target) {
+        let t = null
+        list.forEach(item => {
+            if (item.id === target.parent) {
+                t = item
+            }
+        })
+        t && t.children.push(target)
+    }
+    function findArr(arrs, id) {
+        let t = null
+        arrs.forEach(item => {
+            if (item.id === id) {
+                t = item
+                return
+            }
+            if (item.children && item.children.length) {
+                t = findArr(item.children, id)
+            }
+        })
+        return t
+    }
+
+    console.log(arr)
+
+</script>
+</body>
+</html>

@@ -6,6 +6,13 @@ let md5 = require('md5')
 
 let Wx_user = require('../../model/wx_user')
 
+// 错误处理
+login.errorHandler = function(req, res, err, next) {
+    logger.error('[messsage]', new Error(err.message).stack);
+    common.out.send(req, res, errcode.SERVER_ERROR);
+    if (next) next();
+};
+
 
 login.handleLogin = (req, res, next) => {
     let nick = req.body.nick || ''
@@ -14,58 +21,48 @@ login.handleLogin = (req, res, next) => {
     if (!nick || !pwd) {
         return common.send(req, res, {status: 1, msg: '用户名或密码为空！'})
     }
-    console.log(nick)
     let wx = new Wx_user()
-    console.log(wx)
-    var opts = {find:'findOne', debug:true}
-    store.find('user', {name: nick}, opts, function(err, result){
-        console.log(111, result)
-        // if (err) {
-        //     callback(err);
-        //     return;
-        // }
-        // if (!result) {
-        //     callback(null, null);
-        //     return;
-        // }
-        // callback(null, result);
-    });
-    return common.send(req, res, {status: 0, msg: '登录成功！', data: wx.get()})
+    let proxy = common.eventProxy()
+
+    wx.find({name: nick}, proxy.doneLater('checkName'))
+    proxy.once('checkName', function(result) {
+        if (result) {
+            if (md5(pwd) === result.password) {
+                delete result.password
+                return common.send(req, res, {status: 0, msg: '登录成功！', data: result})
+            } else {
+                return common.send(req, res, {status: 1001, msg: '密码不正确！', data: null})
+            }
+        } else {
+            return common.send(req, res, {status: 1002, msg: '用户不存在！', data: null})
+        }
+    })
 }
 
 login.register = function (req, res, next) {
     let nick = req.body.nick || null
-    let phone = req.body.phone || null
     let pwd = req.body.password || null
-    if (!phone || !pwd) {
+    if (!nick || !pwd) {
         return common.send(req, res, {status: 1, msg: '手机号或密码不能为空！'})
     }
     let wx = new Wx_user()
-    wx.set({name: nick || phone, phone: phone, password: md5(pwd)})
+    wx.set({name: nick, password: md5(pwd)})
     let proxy = common.eventProxy()
     var opts = {find:'findOne', debug:true}
 
-    // proxy.once('register', function () {
-    //     console.log(1)
-    //
-    // })
-    var opts = {insert:'insertOne', debug:true};
-    store.insert('user', wx, opts, function(err, result){
-        console.log(12)
-        if (err) {
-            common.send(req, res, {status: 0, msg: '注册失败！', data: wx.get()})
-            return;
+    wx.find({name: nick}, proxy.doneLater('checkName'))
+    proxy.once('checkName', function(result) {
+        if (result) {
+            return common.send(req, res, {status: 1003, msg: '用户已存在！', data: null})
         }
-        common.send(req, res, {status: 0, msg: '注册成功！', data: wx.get()})
-    });
-    // store.find('user', {phone: phone}, opts, function (err, result){
-    //     console.log(err, result)
-    //     if (!result) {
-    //         console.log(0)
-    //         proxy.doneLater('register')
-    //     }
-    // })
-    // return common.send(req, res, {status: 0, msg: '注册成功！', data: wx.get()})
+        wx.insert(proxy.doneLater('toRegister'))
+    })
+    proxy.once('toRegister', function(result) {
+        if (!result) {
+            return common.send(req, res, {status: 1004, msg: '注册失败', data: null})
+        }
+        return common.send(req, res, {status: 0, msg: '注册成功', data: result})
+    })
 }
 
 module.exports = login

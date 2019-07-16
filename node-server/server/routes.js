@@ -6,6 +6,7 @@ let fs = require('fs')
 let Login = require('./controller/login')
 let React = require('./controller/react')
 let Posts = require('./controller/posts')
+let Menu = require('./controller/menu.js')
 
 router.use(function timeLog(req, res, next) {
   req.__starttime = new Date().getTime()
@@ -44,4 +45,8 @@ router.get('/home/list', React.homeList, errorHandler)
 router.get('/product/detail', React.productDetail, errorHandler)
 
 router.post('/posts', Posts.sendPosts, errorHandler)
+
+router.post('/menu/create', Menu.createMenu, errorHandler)
+router.get('/menu/list', Menu.getMenuList, errorHandler)
+
 module.exports = router
