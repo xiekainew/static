@@ -1,8 +1,12 @@
+const jwt = require('jsonwebtoken')
+const fs = require('fs')
+const path = require('path')
+const md5 = require('md5')
+
 let common = require('../../lib/common')
 let login = {}
 let self = login
 let store = require('../../store')
-let md5 = require('md5')
 
 let Wx_user = require('../../model/wx_user')
 
@@ -12,7 +16,6 @@ login.errorHandler = function(req, res, err, next) {
     common.out.send(req, res, errcode.SERVER_ERROR);
     if (next) next();
 };
-
 
 login.handleLogin = (req, res, next) => {
     let nick = req.body.nick || ''
@@ -29,7 +32,9 @@ login.handleLogin = (req, res, next) => {
         if (result) {
             if (md5(pwd) === result.password) {
                 delete result.password
-                return common.send(req, res, {status: 0, msg: '登录成功！', data: result})
+                req.body.result = result
+                next() // to createToken
+                // return common.send(req, res, {status: 0, msg: '登录成功！', data: result})
             } else {
                 return common.send(req, res, {status: 1001, msg: '密码不正确！', data: null})
             }
@@ -37,6 +42,20 @@ login.handleLogin = (req, res, next) => {
             return common.send(req, res, {status: 1002, msg: '用户不存在！', data: null})
         }
     })
+}
+
+login.createToken = (req, res, next) => {
+    let result = req.body.result
+    let cert = fs.readFileSync(path.resolve(__dirname, '../../lib/rsa/jwt.pem'))
+    let token = jwt.sign({
+        _id: result._id,
+        name: result.name
+    }, cert, {
+        algorithm: 'RS256',
+        expiresIn: '24h'
+    })
+    result.token = token
+    return common.send(req, res, {status: 0, msg: '登录成功！', data: result})
 }
 
 login.register = function (req, res, next) {
