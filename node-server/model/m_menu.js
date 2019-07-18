@@ -2,17 +2,18 @@ const M_base = require('./m_base.js')
 const common = require('../lib/common.js')
 
 class M_menu extends M_base{
-	constructor(title = '', icon = '', path = '', parent = '', children = []) {
+	constructor(title = '', icon = '', path = '', parent = '', sort = 999, id = '') {
 		super();
 		let date = new Date()
-		this.id = common.uuid()
+		this.id = id || common.uuid()
 		this.create = date
 		this.update = date
 		this.title = title
 		this.icon = icon
 		this.path = path
 		this.parent = parent
-		this.children = children
+		this.sort = sort
+		this.children = []
 	}
 	checknull(...params) {
 		var msg = ''
@@ -72,7 +73,18 @@ class M_menu extends M_base{
 	        })
 	        return t
 	    }
-	    return arr
+	    return this.sortList(arr)
+	}
+	sortList(list) {
+		list.sort(function(a, b) {
+			return a.sort - b.sort
+		})
+		list.forEach(item => {
+			if (item.children && item.children.length) {
+				this.sortList(item.children)
+			}
+		})
+		return list
 	}
 }
 

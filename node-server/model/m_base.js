@@ -32,7 +32,30 @@ class M_base {
         delete this[key]
         return this
     }
-    list(query, opts, callback) {
+    updates (update, callback) {
+        let opts = {update: 'updateOne', debug: true}
+        for (let key in update) {
+            this[key] = update[key]
+        }
+        store.update(this.table(), {id: this.id}, this, opts, function(err, result) {
+            if (err) {
+                callback(err)
+                return
+            }
+            callback(null, result)
+        })
+    }
+    delete(query, callback) {
+        let key = query?query:{_id:this._id};
+        store.remove(this.table(), key, key, {update:'deleteOne', debug:true}, function(err, result){
+            if (err) {
+                callback(err);
+                return;
+            }
+            callback(null, result);
+        })
+    }
+    list (query, opts, callback) {
         store.find(this.table(), query, opts, function(err, result) {
             if (err) {
                 return callback(err)
@@ -56,7 +79,6 @@ class M_base {
     }
     insert (callback) {
         let opts = {insert: 'insertOne', debug: true}
-
         store.insert(this.table(), this, opts, function (err, result) {
             if (err) {
                 callback(err)

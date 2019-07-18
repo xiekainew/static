@@ -176,6 +176,157 @@ store.insert = function(schema, docs, opts, callback) {
 
 }
 
+// 更新数据到mongodb
+store.update = function(schema, query, docs, opts, callback) {
+    if (!schema) {
+        var err = new Error('schema is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!query) {
+        var err = new Error('query is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!docs) {
+        var err = new Error('docs is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!opts) {
+        var err = new Error('opts is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+
+    var collection = self.mongodb.collection(schema);
+    if (!opts || typeof(opts) == 'function') {
+        callback = opts;
+        opts = {};
+    }
+
+    if (opts.update == 'updateOne') {
+        collection.updateOne(query, {$set: docs}, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store]", opts.update, "error", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store]", opts.update, "result", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.result:null);
+            } else {
+                // not callback
+            }
+        })
+    } else if (opts.update = 'upsert') {
+        collection.update(query, {$set: docs}, opts.options||{upsert:true}, function(err, result){
+            if (err) {
+                logger.error("[store] update error", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store] update result", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.ops:null);
+            } else {
+                // not callback
+            }
+        });
+    } else {
+        collection.update(query, {$set: docs}, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store] update error", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store] update result", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.ops:null);
+            } else {
+                // not callback
+            }
+        });
+    }
+}
+
+
+// 从mongodb移除数据，暂时实现为假删除
+store.remove = function(schema, query, docs, opts, callback) {
+    if (!schema) {
+        var err = new Error('schema is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!query) {
+        var err = new Error('query is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!docs) {
+        var err = new Error('docs is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+    if (!opts) {
+        var err = new Error('opts is null');
+        logger.error('[store] error', err.message);
+        return callback(err);
+    }
+
+    var collection = self.mongodb.collection(schema);
+    if (!opts || typeof(opts) == 'function') {
+        callback = opts;
+        opts = {};
+    }
+
+    docs = {status:-1};
+    if (opts.update == 'updateOne') {
+        collection.updateOne(query, docs, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store]", opts.update, "error", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store]", opts.update, "result", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.ops[0]:null);
+            } else {
+                // not callback
+            }
+        })
+    } else if (opts.update == 'deleteOne') {
+        collection.deleteOne(query, /*docs, opts.options||{}, */function(err, result){
+            if (err) {
+                logger.error("[store]", opts.update, "error", schema, 'query:', json(query), 'docs:', /*json(docs), 'opts:', json(opts), */'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store]", opts.update, "result", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.result.n/*result.ops[0]*/:null);
+            } else {
+                // not callback
+            }
+        })
+    } else {
+        collection.update(query, {$set: docs}, opts.options||{}, function(err, result){
+            if (err) {
+                logger.error("[store] update error", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'errmsg:', err.message);
+            }
+            if (opts.debug) {
+                //logger.debug("[store] update result", schema, 'query:', json(query), 'docs:', json(docs), 'opts:', json(opts), 'result:', result?result.result:null);
+            }
+            if (callback) {
+                callback(err, result?result.ops:null);
+            } else {
+                // not callback
+            }
+        });
+    }
+}
+
+
 store.mongo = (callback => {
     logger.info('[lib] mongo start %s', config.mongo.url)
     let mongoClient = mongo.MongoClient

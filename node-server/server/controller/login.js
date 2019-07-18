@@ -65,4 +65,14 @@ login.register = function (req, res, next) {
     })
 }
 
+login.getUserList = function(req, res, next) {
+    let u = new Wx_user()
+    let proxy = common.eventProxy()
+
+    u.list({}, {}, proxy.doneLater('getList'))
+    proxy.once('getList', function(result) {
+        return common.send(req, res, {status: 0, msg: '成功！', data: result})
+    })
+}
+
 module.exports = login

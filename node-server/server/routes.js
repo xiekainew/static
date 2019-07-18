@@ -37,6 +37,8 @@ function errorHandler(req, res, next) {
 // })
 router.post('/server/login', Login.handleLogin, errorHandler)
 router.post('/server/register', Login.register, errorHandler)
+router.get('/server/user/list', Login.getUserList, errorHandler)
+
 router.get('/get/user', function (req, res) {
   console.log(req.query.name)
   common.send(req, res, '我的信息')
@@ -46,7 +48,8 @@ router.get('/product/detail', React.productDetail, errorHandler)
 
 router.post('/posts', Posts.sendPosts, errorHandler)
 
-router.post('/menu/create', Menu.createMenu, errorHandler)
+router.post('/menu/create', Menu.createMenu, Menu.updateMenu, errorHandler)
+router.post('/menu/delete', Menu.deleteMenu, errorHandler)
 router.get('/menu/list', Menu.getMenuList, errorHandler)
 
 module.exports = router
