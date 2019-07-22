@@ -69,6 +69,7 @@ function errorHandler(req, res, next) {
 router.post('/server/login', Login.handleLogin, Login.createToken, errorHandler)
 router.post('/server/register', Login.register, errorHandler)
 router.get('/server/user/list', Login.getUserList, errorHandler)
+router.post('/server/delete', Login.deleteUser, errorHandler)
 
 router.get('/get/user', function (req, res) {
   console.log(req.query.name)

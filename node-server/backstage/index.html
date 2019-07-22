@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link href=./src/assets/icon1.ico rel="shortcut icon" type=image/x-icon><title>管理平台</title><link rel="shortcut icon" href=/favicon.ico><link href=/static/css/app.2cc56308e849e79174ba0198e676e691.css rel=stylesheet></head><body><div id=app><style>html, body, #app {
+          margin: 0;
+          padding: 0;
+          background: #fafafa;
+          font-size: 13px;
+          color: #777;
+        }
+
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        @-webkit-keyframes ball-scale-multiple {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            opacity: 0;
+          }
+
+          5% {
+            opacity: 1;
+          }
+
+          100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 0;
+          }
+        }
+
+        @keyframes ball-scale-multiple {
+          0% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            opacity: 0;
+          }
+
+          5% {
+            opacity: 1;
+          }
+
+          100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 0;
+          }
+        }
+
+        .__ball-scale-multiple {
+          position: relative;
+          -webkit-transform: translateY(-30px);
+          transform: translateY(-30px);
+        }
+
+        .__ball-scale-multiple > div:nth-child(2) {
+          -webkit-animation-delay: -0.4s;
+          animation-delay: -0.4s;
+        }
+
+        .__ball-scale-multiple > div:nth-child(3) {
+          -webkit-animation-delay: -0.2s;
+          animation-delay: -0.2s;
+        }
+
+        .__ball-scale-multiple > div {
+          background-color: #fff;
+          width: 15px;
+          height: 15px;
+          border-radius: 100%;
+          margin: 2px;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          position: absolute;
+          left: -30px;
+          top: 0px;
+          opacity: 0;
+          margin: 0;
+          width: 60px;
+          height: 60px;
+          -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+          animation: ball-scale-multiple 1s 0s linear infinite;
+        }
+
+        .__loader {
+          box-sizing: border-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -ms-flex-positive: 1;
+          flex-grow: 1;
+          -ms-flex-negative: 0;
+          flex-shrink: 0;
+          -ms-flex-align: center;
+          align-items: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .__ball-scale-multiple {
+          position: relative;
+          -webkit-transform: translateY(-30px);
+          transform: translateY(-30px);
+        }
+
+        .ball-beat > div, .__ball-scale-multiple>div {
+          background-color: #0081ff;
+          border-radius: 100%;
+        }
+
+        .__ball-scale-multiple > div {
+          position: absolute;
+          left: -30px;
+          top: 0;
+          opacity: 0;
+          margin: 0;
+          width: 60px;
+          height: 60px;
+          -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+          animation: ball-scale-multiple 1s 0s linear infinite;
+        }
+
+        .__ball-scale-multiple > div:nth-child(2) {
+          -webkit-animation-delay: -.4s;
+          animation-delay: -.4s;
+        }
+
+        .__ball-scale-multiple > div:nth-child(3) {
+          -webkit-animation-delay: -.2s;
+          animation-delay: -.2s;
+        }</style><div class=__loader><div class=__ball-scale-multiple><div></div><div></div><div></div></div></div></div><script type=text/javascript src=/static/js/manifest.2319d08821da4adae3f0.js></script><script type=text/javascript src=/static/js/vendor.d097e2457dc69b14bef3.js></script><script type=text/javascript src=/static/js/app.c43b57c4741a7b616ab3.js></script></body></html>

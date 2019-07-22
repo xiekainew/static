@@ -94,4 +94,21 @@ login.getUserList = function(req, res, next) {
     })
 }
 
+login.deleteUser = function(req, res, next) {
+    let name = req.body.name || ''
+    let u = new Wx_user()
+    let proxy = common.eventProxy()
+
+    u.find({name: name}, proxy.doneLater('findName'))
+    proxy.once('findName', function(result) {
+        if (!result) {
+            return common.send(req, res, {status: 1001, msg: '用户不存在！', data: null})
+        }
+        u.delete({name: name}, proxy.doneLater('del'))
+    })
+    proxy.once('del', function(result) {
+        return common.send(req, res, {status: 0, msg: '成功！', data: null})
+    })
+}
+
 module.exports = login
