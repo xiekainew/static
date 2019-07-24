@@ -10,6 +10,7 @@ let Login = require('./controller/login')
 let React = require('./controller/react')
 let Posts = require('./controller/posts')
 let Menu = require('./controller/menu.js')
+let Qiniu = require('./controller/qiniu.js')
 
 /**
  * 校验白名单
@@ -55,6 +56,7 @@ router.use(function timeLog(req, res, next) {
   if (checkUrl(req.originalUrl)) {
     next()
   } else {
+    // next()
     checkToken(req, res, next)
   }
 })
@@ -66,22 +68,22 @@ function errorHandler(req, res, next) {
 //     // res.send(fs.readFileSync('./public2/saas/array.html'), 'utf-8')
 //     res.sendFile(__dirname + '/' + '/public2/saas', 'utf-8')
 // })
-router.post('/server/login', Login.handleLogin, Login.createToken, errorHandler)
-router.post('/server/register', Login.register, errorHandler)
-router.get('/server/user/list', Login.getUserList, errorHandler)
-router.post('/server/delete', Login.deleteUser, errorHandler)
+router.post('/api/server/login', Login.handleLogin, Login.createToken, Qiniu.createToken, errorHandler)
+router.post('/api/server/register', Login.register, errorHandler)
+router.get('/api/server/user/list', Login.getUserList, errorHandler)
+router.post('/api/server/delete', Login.deleteUser, errorHandler)
 
-router.get('/get/user', function (req, res) {
+router.get('/api/get/user', function (req, res) {
   console.log(req.query.name)
   common.send(req, res, '我的信息')
 })
-router.get('/home/list', React.homeList, errorHandler)
-router.get('/product/detail', React.productDetail, errorHandler)
+router.get('/api/home/list', React.homeList, errorHandler)
+router.get('/api/product/detail', React.productDetail, errorHandler)
 
-router.post('/posts', Posts.sendPosts, errorHandler)
+router.post('/api/posts', Posts.sendPosts, errorHandler)
 
-router.post('/menu/create', Menu.createMenu, Menu.updateMenu, errorHandler)
-router.post('/menu/delete', Menu.deleteMenu, errorHandler)
-router.get('/menu/list', Menu.getMenuList, errorHandler)
+router.post('/api/menu/create', Menu.createMenu, Menu.updateMenu, errorHandler)
+router.post('/api/menu/delete', Menu.deleteMenu, errorHandler)
+router.get('/api/menu/list', Menu.getMenuList, errorHandler)
 
 module.exports = router

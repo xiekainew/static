@@ -7,14 +7,14 @@ var proxyMiddleware = require('http-proxy-middleware')
 var bodyParser = require('body-parser')
 
 
-let common = require('./lib/common')
-let config = common.config
+var common = require('./lib/common')
+var config = common.config
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-let proxy = common.eventProxy()
+var proxy = common.eventProxy()
 common.logger.info('[app]', 'app start... at port: http://localhost:' + config.port)
 function listen () {
   common.logger.info('[app]', 'server listening on port', app.get('port'))
@@ -36,7 +36,15 @@ var proxyTable = {
     },
     changeOrigin: true,
     secure: false
-  }
+  },
+  // '/api': {
+  //   target: 'http://10.220.8.165:2001/',
+  //   changeOrigin: true,
+  //   pathRewrite: {
+  //       '^/api': ''
+  //   },
+  //   secure: false
+  // }
 };
 
 (function () {
@@ -54,7 +62,8 @@ var proxyTable = {
   app.use(bodyParser.urlencoded({extended: false}))
 
   // app.use('/', serve('public', true))
-  app.use('/', express.static(path.join(__dirname, 'public')));
+  // app.use('/', express.static(path.join(__dirname, 'public')));
+  app.use('/', express.static(path.join(__dirname, 'backstage')));
   Object.keys(proxyTable).forEach(function(context) {
     // console.log(context)
     var options = proxyTable[context]

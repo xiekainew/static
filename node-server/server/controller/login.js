@@ -52,10 +52,12 @@ login.createToken = (req, res, next) => {
         name: result.name
     }, cert, {
         algorithm: 'RS256',
-        expiresIn: '24h'
+        expiresIn: '1h'
     })
     result.token = token
-    return common.send(req, res, {status: 0, msg: '登录成功！', data: result})
+    req.body.result = result
+    next()
+    // return common.send(req, res, {status: 0, msg: '登录成功！', data: result})
 }
 
 login.register = function (req, res, next) {

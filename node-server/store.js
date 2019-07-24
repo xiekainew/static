@@ -6,6 +6,8 @@ let mongodb
 let store = {
     mongodb: mongodb
 }
+var json = JSON.stringify;
+var parse = JSON.parse;
 
 let self = store
 
@@ -330,7 +332,9 @@ store.remove = function(schema, query, docs, opts, callback) {
 store.mongo = (callback => {
     logger.info('[lib] mongo start %s', config.mongo.url)
     let mongoClient = mongo.MongoClient
-    mongoClient.connect(config.mongo.url, (err, db) => {
+    mongoClient.connect(config.mongo.url, {
+        // useNewUrlParser: true
+    }, (err, db) => {
         if (err) {
             logger.error('[lib] mongo connect error')
             if (callback) callback(err)
@@ -345,27 +349,29 @@ store.mongo = (callback => {
             logger.info('[lib] mongo connect success')
             if (callback) callback(null, db)
         } else {
-            if (config.mongo.db) {
-                store.mongodb = mongodb = db.db(config.mongo.db)
-            } else {
-                store.mongodb = mongodb = db
-            }
+            // if (config.mongo.db) {
+            //     store.mongodb = mongodb = db.db(config.mongo.db)
+            // } else {
+            //     store.mongodb = mongodb = db
+            // }
             // logger.info(db)
             // logger.info(store.mongodb)
-            // db.authenticate(config.mongo.user, config.mongo.password, (err, result) => {
-            //     if (err) {
-            //         logger.error('[lib] mongo auth error')
-            //         if (callback) callback(err)
-            //         return
-            //     }
-            //     if (config.mongo.db) {
-            //         store.mongodb = mongodb = db.db(config.mongo.db)
-            //     } else {
-            //         store.mongodb = mongodb = db
-            //     }
-            //     logger.info('[lib] mongo connect $s', result)
-            //     if (callback) callback(null, result)
-            // })
+            // logger.info('权限登录')
+            // logger.info(db)
+            db.authenticate(config.mongo.user, config.mongo.password, (err, result) => {
+                if (err) {
+                    logger.error('[lib] mongo auth error')
+                    if (callback) callback(err)
+                    return
+                }
+                if (config.mongo.db) {
+                    store.mongodb = mongodb = db.db(config.mongo.db)
+                } else {
+                    store.mongodb = mongodb = db
+                }
+                logger.info('[lib] mongo connect $s', result)
+                if (callback) callback(null, result)
+            })
         }
     })
 })
@@ -375,7 +381,9 @@ store.init = (callback) => {
     let proxy = common.eventProxy()
     proxy.all(['mongo'], (mongo) => {
         logger.info('[lib] lib init success !')
-        callback(null, mongo)
+        if (callback) {
+            callback(null, mongo);
+        }
     })
     proxy.fail((err) => {
         logger.info('[lib] lib init failed')
