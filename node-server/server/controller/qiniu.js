@@ -12,7 +12,7 @@ niu.createToken = function(req, res, next) {
 
 	var options = {
 		scope: 'images',
-		expires: 3600
+		expires: 3700
 	}
 
 	var putPolicy = new qiniu.rs.PutPolicy(options)
