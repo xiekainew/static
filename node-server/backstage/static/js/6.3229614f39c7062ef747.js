@@ -1,0 +1,2 @@
+webpackJsonp([6],{GTy2:function(t,n,e){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r={render:function(){var t=this.$createElement;return(this._self._c||t)("div",{staticClass:"dashboard"},[this._v("\n\tdashboard\n")])},staticRenderFns:[]};var s=e("VU/8")({data:function(){return{}},methods:{},mounted:function(){}},r,!1,function(t){e("Q2OX")},null,null);n.default=s.exports},Q2OX:function(t,n){}});
+//# sourceMappingURL=6.3229614f39c7062ef747.js.map
