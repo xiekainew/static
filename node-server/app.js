@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var proxyMiddleware = require('http-proxy-middleware')
 var bodyParser = require('body-parser')
+var history = require('connect-history-api-fallback')
 
 
 var common = require('./lib/common')
@@ -14,6 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+app.use(history())
 var proxy = common.eventProxy()
 common.logger.info('[app]', 'app start... at port: http://localhost:' + config.port)
 function listen () {

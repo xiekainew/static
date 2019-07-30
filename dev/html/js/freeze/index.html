@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<div id="app">
+		<span v-for="item in list">{{item.name}}</span>
+	</div>
+
+	<script type="text/javascript" src="../../../js/lib/vue-2.5.21.js"></script>
+<script>
+	'use strict'
+	// var arr = Object.freeze([])
+	// // var arr = []
+	// arr.push(1)
+	// console.log(arr)
+
+	
+
+    new Vue({
+    	el: '#app',
+    	data() {
+    		return {
+    			list: Object.freeze([{
+    				name: '1'
+    			}, {
+    				name: '2'
+    			}])
+    		}
+    	},
+    	mounted() {
+    		this.list[0].name = '3'
+    	}
+    })
+</script>
+</body>
+</html>
