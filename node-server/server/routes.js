@@ -11,6 +11,7 @@ let React = require('./controller/react')
 let Posts = require('./controller/posts')
 let Menu = require('./controller/menu.js')
 let Qiniu = require('./controller/qiniu.js')
+const Blog = require('./controller/blog.js')
 
 /**
  * 校验白名单
@@ -85,5 +86,8 @@ router.post('/api/posts', Posts.sendPosts, errorHandler)
 router.post('/api/menu/create', Menu.createMenu, Menu.updateMenu, errorHandler)
 router.post('/api/menu/delete', Menu.deleteMenu, errorHandler)
 router.get('/api/menu/list', Menu.getMenuList, errorHandler)
+
+router.post('/api/blog/create', Blog.create, errorHandler)
+router.get('/api/blog/list', Blog.list, errorHandler)
 
 module.exports = router
