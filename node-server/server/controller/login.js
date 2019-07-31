@@ -89,7 +89,6 @@ login.register = function (req, res, next) {
 login.getUserList = function(req, res, next) {
     let u = new Wx_user()
     let proxy = common.eventProxy()
-
     u.list({}, {}, proxy.doneLater('getList'))
     proxy.once('getList', function(result) {
         return common.send(req, res, {status: 0, msg: '成功！', data: result})
@@ -113,4 +112,30 @@ login.deleteUser = function(req, res, next) {
     })
 }
 
+login.updateUser = function(req, res, next) {
+    let avatar = req.body.avatar || ''
+    let id = req.body.id || ''
+    if (!id) return common.send(req, res, {status: 1001, msg: '用户不存在！', data: null})
+
+    let u = new Wx_user()
+
+    let proxy = common.eventProxy()
+
+    u.find({id: id}, proxy.doneLater('findId'))
+    proxy.once('findId', function(result) {
+        if (!result) {
+            return common.send(req, res, {status: 1001, msg: '用户不存在！', data: null})
+        }
+        result.avatar = avatar
+        u.set(result)
+        u.updates({}, proxy.doneLater('up'))
+    })
+    proxy.once('up', function(result) {
+        console.log(result)
+        common.send(req, res, {status: 0, msg: '成功！', data: null})
+    })
+}
+
 module.exports = login
+
+

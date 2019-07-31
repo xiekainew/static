@@ -8,7 +8,6 @@ class M_base {
     }
     table() {
         let tableName = this.constructor.name.split('_')[1]
-        console.log(tableName)
         switch(tableName) {
             case 'l': tableName = 'user'; break;
             case 'person': tableName = 'user'; break;

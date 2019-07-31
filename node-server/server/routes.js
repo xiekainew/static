@@ -73,6 +73,7 @@ router.post('/api/server/login', Login.handleLogin, Login.createToken, Qiniu.cre
 router.post('/api/server/register', Login.register, errorHandler)
 router.get('/api/server/user/list', Login.getUserList, errorHandler)
 router.post('/api/server/delete', Login.deleteUser, errorHandler)
+router.post('/api/server/update', Login.updateUser, errorHandler)
 
 router.get('/api/get/user', function (req, res) {
   console.log(req.query.name)
