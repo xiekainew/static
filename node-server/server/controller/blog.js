@@ -16,8 +16,6 @@ blog.create = function(req, res, next) {
 	proxy.once('create', function(result) {
 		return common.send(req, res, {status: 0, msg: '成功'})
 	})
-	console.log(title)
-	console.log(content)
 }
 
 blog.list = function(req, res, next) {
@@ -27,6 +25,18 @@ blog.list = function(req, res, next) {
 	b.list({}, {}, proxy.doneLater('getList'))
 	proxy.once('getList', function(result) {
 		return common.send(req, res, {status: 0, msg: '成功', data: result})
+	})
+}
+
+blog.del = function(req, res, next) {
+	let id =req.body.id || ''
+	if (!id) return common.send(req, res, {status: 1001, msg: 'id不能为空'})
+
+	let b = new M_blog()
+	let proxy = common.eventProxy()
+	b.delete({id}, proxy.doneLater('del'))
+	proxy.once('del', function(result) {
+		return common.send(req, res, {status: 0, msg: '删除成功！'})
 	})
 }
 

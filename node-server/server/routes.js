@@ -88,6 +88,7 @@ router.post('/api/menu/delete', Menu.deleteMenu, errorHandler)
 router.get('/api/menu/list', Menu.getMenuList, errorHandler)
 
 router.post('/api/blog/create', Blog.create, errorHandler)
+router.post('/api/blog/delete', Blog.del, errorHandler)
 router.get('/api/blog/list', Blog.list, errorHandler)
 
 module.exports = router
