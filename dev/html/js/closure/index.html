@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <script type="text/javascript">
+        var btn = document.getElementById("btn")
+        btn.onclick = debounce(function(num) {
+            console.log(num)
+        }, 1000)
+        function debounce(fn, delay) {
+            var timer = null
+            var start = new Date()
+            var count = 0
+            // console.log(start)
+            return function() {
+                var end = new Date()
+                clearTimeout(timer)
+                // console.log(timer)
+                count++
+                if (end - start >= delay && timer) {
+                    fn(count)
+                } else {
+                    timer = setTimeout(function() {
+                        timer = null
+                        clearTimeout(timer)
+                        fn(count)
+                    }, delay)
+                }
+                start = end
+            }
+        }
+        (function() {
+            console.log(444)
+        })()
+    </script>
+<script>
+    var Counter = (function() {
+        var privateCounter = 0;
+        function changeBy(val) {
+            privateCounter += val
+        }
+        return {
+            increment: function() {
+                changeBy(1)
+            },
+             decrement: function() {
+                changeBy(-1);
+            },
+            value: function() {
+                return privateCounter;
+            }
+        }
+    })()
+    Counter.increment()
+    Counter.increment()
+    console.log(Counter.value())
+
+    function outer() {
+        var name = 12
+        var inner = function() {
+            return name
+        }
+        return inner
+    }
+    var inner = outer()
+    console.log(inner())
+
+    var name = 1
+    function getName () {
+        console.log(name)
+        var name = 'Aristotle'
+        var intro = function() {  // 这是一个闭包
+            console.log('I am ' + name)
+        }
+        return intro
+    }
+    function myName () {
+        var name = 3
+        // getName()
+        var myName = getName()
+        myName()
+    }
+    myName()
+
+    function v() {
+        setTimeout(function() {
+            // 闭包函数
+        }, 0)
+        document.getElementById('btn').addEventListener('click', function() {
+            // 闭包函数
+        })
+        $.ajax({
+            url: '',
+            type: 'post',
+            success: function() {
+                // 闭包函数
+            }
+        })
+        return {
+            n: function() {
+                // 闭包函数
+            }
+            n: function() {
+                // 闭包函数
+            }
+        }
+    }
+    v()
+</script>
+</body>
+</html>
