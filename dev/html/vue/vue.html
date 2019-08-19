@@ -6,7 +6,8 @@
 </head>
 <body>
 <div id="app">
-    <div>{{msg}}</div>
+    <div ref="msg">{{msg}}{{msg2}}</div>
+    <div >{{msgtest}}</div>
     <!--<div>计数count：{{count}}</div>-->
     <div>计数：{{counts}}</div>
     <div>计数：{{counts2}}</div>
@@ -189,6 +190,8 @@
         data () {
             return {
                 msg: 'hello wold',
+                msg2: '232',
+                msgtest: '1111',
                 strong: 'eeee',
                 books: ['方法', '时间简史'],
                 input: '',
@@ -203,9 +206,19 @@
         mounted() {
             // console.log(this.con)
             this.$store.commit('user/updateName', '光头强')
-            console.log(this.$store.state['name'])
-            console.log(this.$store.state.user.name)
-            console.log(this.$store.state.people.name)
+            // console.log(this.$store.state['name'])
+            // console.log(this.$store.state.user.name)
+            // console.log(this.$store.state.people.name)
+            
+            // this.msg2 = '888'
+            // this.strong = '888'
+            // this.msg2 = '888'
+            
+            this.msgtest = '222'
+            this.$nextTick(() => {
+                console.log(this.$refs.msg.innerText)
+            })
+            this.msg = 'xinde'
         },
         // computed: mapState({
         //     counts: state => state.count,
