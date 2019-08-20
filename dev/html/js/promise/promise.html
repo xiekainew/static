@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>promise</title>
 </head>
+
 <body>
-<script>
+    <script>
     // setTimeout(function() {
     //     console.log(1, new Date().getTime())
     // }, 0)
@@ -19,7 +21,7 @@
     // }).then(function () {
     //     console.log(4)
     // })
-    var fn=function(resolve, reject){
+    var fn = function(resolve, reject) {
         // console.log('begin to execute!');
         // var number=Math.random();
         // if(number<=0.5){
@@ -27,45 +29,46 @@
         // }else{
         //     reject('greater than 0.5');
         // }
-        resolve('hello');
-        reject('hello again');
+        resolve('hello3');
+        reject('hello again4');
     }
 
-    function MyPromse (fn) {
+    function MyPromse(fn) {
         this.value
         this.status = 'pending'
-        this.resolveFun = function () {}
-        this.rejectFun = function () {}
+        this.resolveFun = function() {}
+        this.rejectFun = function() {}
         fn(this.resolve.bind(this), this.reject.bind(this))
     }
-    MyPromse.prototype.resolve = function (val) {
+    MyPromse.prototype.resolve = function(val) {
         var that = this
         if (this.status === 'pending') {
             this.value = val
             this.status = 'resolve'
-            setTimeout(function () {
+            setTimeout(function() {
                 that.resolveFun(that.value)
             }, 0)
         }
     }
-    MyPromse.prototype.reject = function (val) {
+    MyPromse.prototype.reject = function(val) {
         var that = this
         if (this.status === 'pending') {
             that.value = val
             this.status = 'reject'
-            setTimeout(function () {
+            setTimeout(function() {
                 that.rejectFun(that.value)
             }, 0)
         }
     }
-    MyPromse.prototype.then = function (resolveFun, rejectFun) {
+    MyPromse.prototype.then = function(resolveFun, rejectFun) {
         var that = this
-        return new MyPromse(function (resolve_next, reject_next) {
-            function resolveFunWrap () {
+        return new MyPromse(function(resolve_next, reject_next) {
+            function resolveFunWrap() {
                 var result = resolveFun(that.value)
                 resolve_next(result)
             }
-            function rejectFunMap () {
+
+            function rejectFunMap() {
                 var result = rejectFun(that.value)
                 reject_next(result)
             }
@@ -75,50 +78,51 @@
     }
 
 
-    var p=new MyPromse(fn);
-    p.then(function(data){
+    var p = new MyPromse(fn);
+    p.then(function(data) {
         console.log('resolve: ', data);
         return 'haha'
-    }, function(data){
+    }, function(data) {
         console.log('reject: ', data);
-    }).then(function (value) {
+    }).then(function(value) {
         console.log(value)
     })
 
 
-    function MyPromise2 (fn) {
+    function MyPromise2(fn) {
         this.value
-        this.resolveFun = function () {}
-        this.rejectFun = function () {}
+        this.resolveFun = function() {}
+        this.rejectFun = function() {}
         fn(this.resolve.bind(this), this.reject.bind(this))
     }
-    MyPromise2.prototype.resolve = function (val) {
+    MyPromise2.prototype.resolve = function(val) {
         var that = this
         this.value = val
-        setTimeout(function () {
+        setTimeout(function() {
             that.resolveFun(that.value)
         }, 0)
     }
-    MyPromise2.prototype.reject = function (val) {
+    MyPromise2.prototype.reject = function(val) {
         var that = this
         this.value = val
-        setTimeout(function () {
+        setTimeout(function() {
             that.rejectFun(that.value)
         }, 0)
     }
-    MyPromise2.prototype.then = function (resolveFun, rejectFun) {
+    MyPromise2.prototype.then = function(resolveFun, rejectFun) {
         this.resolveFun = resolveFun
         this.rejectFun = rejectFun
     }
-    var p2 = new MyPromise2(function (resolve, reject) {
+    var p2 = new MyPromise2(function(resolve, reject) {
         resolve('hello')
         reject('hello2')
     })
-    p2.then(function (val) {
+    p2.then(function(val) {
         console.log(val)
-    }, function (val) {
+    }, function(val) {
         console.log(val)
     })
-</script>
+    </script>
 </body>
+
 </html>

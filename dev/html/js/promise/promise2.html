@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise2</title>
+</head>
+
+<body>
+    <script>
+    	var job1 = new Promise(function(resolve, reject) {
+    		resolve(1)
+    	})
+    	var job2 = function() {
+    		return new Promise(function(resolve, reject){
+	    		// reject('shibai')
+	    		resolve(1.5)
+	    	})
+    	}
+    	var job3 = function() {
+    		return new Promise(function(resolve, reject) {
+    			resolve('23')
+    		})
+    	}
+    	job1.then(job2).then(job3).then(function(result) {
+    		console.log(result)
+    	}).catch(function(error) {
+    		console.log(error)
+    	})
+
+    	var p1 = new Promise(function(resolve, reject) {
+    		var random = Math.random()
+    		if (random < 0.5) {
+    			resolve(111)
+    		} else {
+    			reject(33)
+    		}
+    	})
+    	var p2 = p1.then(function(result) {
+    		console.log(result)
+    	})
+    	p2.catch(function(result) {
+    		console.log(result)
+    	})
+
+    	var r1 = new Promise(function(resolve, reject) {
+    		setTimeout(resolve, 500, 'p1')
+    	})
+    	var r2 = new Promise(function(resolve, reject) {
+    		setTimeout(resolve, 600, 'p2')
+    	})
+
+    	Promise.race([r1, r2]).then(function(result) {
+    	// Promise.all([r1, r2]).then(function(result) {
+    		console.log(result)
+    		return {
+    			data: {
+    				result: 12
+    			}
+    		}
+    	}).then(function(result) {
+    		console.log(result)
+    		return result.data
+    	}).then(function(data) {
+    		console.log(data)
+    	})
+
+    	var foo = Promise.resolve(new Promise(function(resolve, reject) {
+    		resolve('shili')
+    	}))
+    	console.log(foo)
+    	foo.then(function(res) {
+    		console.log(res)
+    	})
+
+    </script>
+</body>
+
+</html>
