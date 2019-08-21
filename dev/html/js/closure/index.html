@@ -86,30 +86,53 @@
     }
     myName()
 
-    function v() {
-        setTimeout(function() {
-            // 闭包函数
-        }, 0)
-        document.getElementById('btn').addEventListener('click', function() {
-            // 闭包函数
-        })
-        $.ajax({
-            url: '',
-            type: 'post',
-            success: function() {
-                // 闭包函数
-            }
-        })
-        return {
-            n: function() {
-                // 闭包函数
-            }
-            n: function() {
-                // 闭包函数
+    // function v() {
+    //     setTimeout(function() {
+    //         // 闭包函数
+    //     }, 0)
+    //     document.getElementById('btn').addEventListener('click', function() {
+    //         // 闭包函数
+    //     })
+    //     $.ajax({
+    //         url: '',
+    //         type: 'post',
+    //         success: function() {
+    //             // 闭包函数
+    //         }
+    //     })
+    //     return {
+    //         n: function() {
+    //             // 闭包函数
+    //         }
+    //         n: function() {
+    //             // 闭包函数
+    //         }
+    //     }
+    // }
+    // v()
+
+    function add() {
+        var list = []
+        return function() {
+            var arg = [].slice.call(arguments)
+            if (arg.length) {
+                list = list.concat(arg)
+            } else {
+                return list.reduce(function(prev, curr) {
+                    return prev + curr
+                })
             }
         }
     }
-    v()
+    var d = add()
+    // console.log(d)
+    d(2)
+    d(4)
+    console.log(d())
+    d(4)
+
+    console.log(d())
+
 </script>
 </body>
 </html>
