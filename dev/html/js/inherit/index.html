@@ -33,11 +33,14 @@
 		child.prototype.constructor = child
 	}
 	Extend(Person, Animal)
+	Person.prototype.self = 'person'
 
 	var p = new Person()
 	p.sayType()
 	p.eat()
 
+	console.log(Animal.prototype.self)
+	console.log(Person.prototype.self)
 	console.log(p.type)
 	console.log(p.move)
 	p.can()
