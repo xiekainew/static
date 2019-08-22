@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承inherit</title>
+</head>
+<body>
+	寄生混合继承</br>
+	1、借用构造函数绑定继承构造函数的属性和方法</br>
+	2、通过原型链继承方法构造函数原型上的属性和方法
+  
+<script>
+	function Animal() {
+		this.type = 'animal'
+		this.eat = function() {
+			console.log('吃肉')
+		}
+	}
+
+	Animal.prototype.can = function() {
+		console.log('进食')
+	}
+	Animal.prototype.move = 'run'
+
+	function Person() {
+		Animal.apply(this, arguments)
+		this.sayType = function() {
+			console.log(this.type)
+		}
+	}
+	function Extend(child, parent) {
+		child.prototype = Object.create(parent.prototype)
+		child.prototype.constructor = child
+	}
+	Extend(Person, Animal)
+
+	var p = new Person()
+	p.sayType()
+	p.eat()
+
+	console.log(p.type)
+	console.log(p.move)
+	p.can()
+</script>
+</body>
+</html>
