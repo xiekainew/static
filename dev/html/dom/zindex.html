@@ -40,48 +40,71 @@
     <!--<div class="child2">wefewfwe</div>-->
 <!--</div>-->
 <script>
-    Function.prototype.binds = function () {
+    // Function.prototype.binds = function () {
+    //     var that = this
+    //     var target = [].shift.call(arguments)
+    //     var args = arguments
+    //     return function () {
+    //         return that.apply(target, args)
+    //     }
+    // }
+
+    Function.prototype.binds = function() {
         var that = this
         var target = [].shift.call(arguments)
-        var args = arguments
-        return function () {
-            return that.apply(target, args)
+        var args = [].slice.call(arguments)
+        console.log(args)
+        return function() {
+            var a = [].slice.call(arguments)
+            console.log(a)
+            return that.apply(target, args.concat(a))
         }
     }
-    function name (data, a) {
+
+    function name (data, a, c) {
         console.log(data)
         console.log(a)
+        console.log(c)
+        console.log(arguments)
         console.log(this.name)
     }
+    // var obj = function() {
+    //     console.log(arguments)
+    //     this.name = 'new name'
+    // }
+    // 
+    // 
     var obj = {
-        name: 'obj'
+        name: 'iiii'
     }
-    var b = name.binds(obj, 1, 2)
-    b()
+
+    var b = name.binds(obj, 3, 2)(4,5)
+    // b(4,5)
     console.log(b)
 
+    
 
-    function Person (name) {
-        this.name = name
-        this.sayName = function () {
-            console.log(this.name)
-        }
-    }
-    function student (name, age) {
-        Person.call(this, name)
-        this.age = age
-    }
-    function Extend (child, person) {
-        var F = function () {}
-        F.prototype = person.prototype
-        child.prototype = new F()
-        child.prototype.constructor = child
-    }
-    Extend(student, Person)
-    var ming = new student('小明', 12)
-    ming.sayName()
-    console.log(ming.age)
-    console.log(ming.__proto__)
+    // function Person (name) {
+    //     this.name = name
+    //     this.sayName = function () {
+    //         console.log(this.name)
+    //     }
+    // }
+    // function student (name, age) {
+    //     Person.call(this, name)
+    //     this.age = age
+    // }
+    // function Extend (child, person) {
+    //     var F = function () {}
+    //     F.prototype = person.prototype
+    //     child.prototype = new F()
+    //     child.prototype.constructor = child
+    // }
+    // Extend(student, Person)
+    // var ming = new student('小明', 12)
+    // ming.sayName()
+    // console.log(ming.age)
+    // console.log(ming.__proto__)
 
 </script>
 </body>
