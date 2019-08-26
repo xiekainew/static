@@ -6,46 +6,10 @@
 </head>
 <body>
 <script>
-    var sym = Symbol()
-    var sym1 = Symbol('foo')
-    var sym2 = Symbol('foo')
-    var sym3 = Symbol.for('foo1')
-    console.log(sym3)
-    console.log(sym)
-    console.log(sym1 === sym2)
-    console.log(sym2)
-    console.log(typeof sym2)
-
-    var obj = {}
-    obj[sym1] = 'foo'
-    obj[sym3] = 'foo1'
-    obj['a'] = 'a'
-    var objName = Object.getOwnPropertySymbols(obj)
-    console.log(objName)
-    console.log(obj)
-    // objName.forEach(function (item) {
-    //     console.log(obj[item])
-    // })
-    var myIterator = {};
-    myIterator[Symbol.iterator] = function* () {
-        yield 1;
-        yield 2;
-        yield 3;
-    };
-    for (var j of myIterator) {
-        console.log(j)
-    }
-    for (var i in obj) {
-        console.log(i)
-    }
-
-    var sym = Symbol();
-    typeof sym;  // "symbol“”
-    var symobj = Object(sym);
-    symobj['a'] = 'a'
-    console.log(symobj)
-    console.log(typeof symobj); // "object"
+    
 </script>
+
+<script src="class-symbol.js"></script>
 <script src="symbol.js"></script>
 </body>
 </html>
