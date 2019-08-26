@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for in for of</title>
+    
+</head>
+<body>
+
+<script>
+	function Animal(name) {
+		this.name = name
+	}
+	Animal.prototype.getName = function() {
+
+	}
+	var dog = new Animal('xiaoqing')
+	// console.log(dog)
+	// for(var k in dog) {
+	// 	console.log(k)
+	// }
+	var obj = {
+		name: '小强',
+		age: 12,
+		like: '苹果'
+	}
+	Array.prototype.test = function() {}
+	Object.prototype.test = function() {}
+	var arr = [23, 13, 2332]
+	// arr.foo = 'hellow'
+	// for(var k in obj) {
+	// 	console.log(k)
+	// }
+	// for(var k in arr) {
+	// 	console.log(k)
+	// }
+	function test() {
+		for(var k of arguments) {
+			console.log(k)
+		}
+	}
+	// test(11, 22, 33)
+
+
+	// for (var i = 0; i < arr.length; i++) {
+	// 	console.log(i)
+	// 	if (i === 0) {
+	// 		break;
+	// 	}
+	// 	console.log(i)
+	// }
+
+	// arr.forEach(item => {
+	// 	console.log(item)
+	// 	if (item === 23) {
+	// 		return
+	// 	}
+	// 	console.log(item)
+	// })
+
+	var o = arr.map(item => {
+		console.log(item)
+		if (item === 23) {
+			return item
+		}
+		console.log(item)
+	})
+	console.log(o)
+
+</script>
+</body>
+</html>
