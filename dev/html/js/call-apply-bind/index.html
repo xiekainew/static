@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>call apply bind</title>
+</head>
+<body>
+<script>
+    function add(a, b) {
+    	this.name = 'add'
+    	console.log(a + b)
+    	console.log(this.name)
+    }
+    function sub(a, b) {
+    	this.name = 'sub'
+    	console.log(this.name)
+    	console.log(a - b)
+    }
+
+    add.call(sub, 1, 2)
+
+    Function.prototype.binds = function() {
+    	var that = this
+    	var target = [].shift.call(arguments)
+    	var arg = [].slice.call(arguments)
+    	return function() {
+    		var a = [].slice.call(arguments)
+    		return that.apply(target, arg.concat(a))
+    	}
+    }
+    function test(a, b, c) {
+    	console.log(arguments)
+    	console.log(this.name)
+    }
+    var obj = {
+    	name: 'obj'
+    }
+    var o = test.binds(obj, 1, 2)
+    o(3)
+
+    function news() {
+    	var obj = {}
+    	var target = [].shift.call(arguments)
+    	obj.__proto__ = target.prototype
+    	target.apply(obj, arguments)
+    	return obj
+    }
+
+    function Animal(name) {
+    	this.name = name
+    }
+    var dog = news(Animal, 'dog')
+    console.log(dog)
+</script>
+</body>
+</html>
