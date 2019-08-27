@@ -8,6 +8,17 @@
 <body>
 
 <script>
+
+	/**
+	 * for 循环中可以使用brack结束整个循环，使用continue来结束当前循环（continue后面的语句都不会执行，直接跳过进行下一个循环）;但是不能使用return
+	 * 语句，不合法
+	 * for in for of 都遵循for循环的特性，都可以使用continue、break，不能使用return
+	 *
+	 * forEach 只能使用return来结束当前循环，并不能结束整个循环事件；不能使用break、continue语句
+	 * map 只能使用return来结束当前循环，并不能结束整个循环事件；不能使用break、continue语句
+	 * 
+	 */
+	
 	function Animal(name) {
 		this.name = name
 	}
@@ -31,12 +42,17 @@
 	// for(var k in obj) {
 	// 	console.log(k)
 	// }
-	// for(var k in arr) {
-	// 	console.log(k)
-	// }
+	for(var k in arr) {
+		if (k === '0') {
+			continue
+		}
+		console.log(k)
+	}
 	function test() {
 		for(var k of arguments) {
+			
 			console.log(k)
+
 		}
 	}
 	// test(11, 22, 33)
@@ -44,8 +60,8 @@
 
 	// for (var i = 0; i < arr.length; i++) {
 	// 	console.log(i)
-	// 	if (i === 0) {
-	// 		break;
+	// 	if (i === 1) {
+	// 		continue;
 	// 	}
 	// 	console.log(i)
 	// }
@@ -58,14 +74,14 @@
 	// 	console.log(item)
 	// })
 
-	var o = arr.map(item => {
-		console.log(item)
-		if (item === 23) {
-			return item
-		}
-		console.log(item)
-	})
-	console.log(o)
+	// var o = arr.map(item => {
+	// 	console.log(item)
+	// 	if (item === 23) {
+	// 		return item
+	// 	}
+	// 	console.log(item)
+	// })
+	// console.log(o)
 
 </script>
 </body>

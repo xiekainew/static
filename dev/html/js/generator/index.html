@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator</title>
+    
+</head>
+<body>
+
+<script>
+	/**
+	 * 用generator编写异步代码的 同步形式
+	 * 1：将所有异步代码的每一步都封装成一个普通的，可以有参数的函数，在异步处理完成之后执行 下面定义的变量.next(参数)
+	 * 2：定义一个generator生成器函数，按照同步的形式按顺序写，把之前定义的函数写进来，可以传参数
+	 * 3：定义一个生成器变量，可以传初始参数
+	 * 4：执行变量.next()。
+	 */
+
+
+	function * test() {
+
+		yield 'wang'
+		var a = 0
+		setTimeout(() => {
+			a = 2
+			console.log(a)
+		}, 0)
+		yield a
+		yield 'liu'
+		return {
+			name: 'over'
+		}
+	}
+	var t = test()
+
+	// for(var k of t) {
+	// 	console.log(k)
+	// }
+
+	// console.log(t.next())
+	// console.log(t.next())
+	// console.log(t.next())
+	// console.log(t.next())
+	
+
+
+	function* fibonacci() {
+		let [prev, curr] = [0, 1];
+		for (;;) { // 这里请思考：为什么这个循环不设定结束条件？
+			[prev, curr] = [curr, prev + curr];
+			yield curr;
+		}
+	}
+
+	// for (let n of fibonacci()) {
+	// 	if (n > 1000) {
+	// 		break;
+	// 	}
+	// 	console.log(n);
+	// }
+
+	// function fibonacci2(n) {
+	// 	let [prev, curr] = [0, 1];
+	// 	for(var i = 0; i < n; i++) {
+	// 		[prev, curr] = [curr, prev + curr];
+	// 		console.log(curr)
+	// 	}
+	// }
+	// fibonacci2(10)
+
+	function request(url) {
+		setTimeout(() => {
+			console.log(url)
+			it.next(url)
+		}, 550)
+	}
+
+	function * aiaxs() {
+		yield request('b.html')
+		yield request('a.html')
+		yield request('c.html')
+	}
+	// var it = aiaxs()
+	// console.log(it.next())
+
+	function getName(name) {
+		setTimeout(() => {
+			console.log('获取了名字' + name)
+			go.next(name)
+		}, 500)
+	}
+
+	function getAge(name) {
+		setTimeout(() => {
+			console.log('来自name' + name)
+			console.log('获取了年龄' + 23)
+			go.next(23)
+		}, 500)
+	}
+
+	function getHome(age) {
+		setTimeout(() => {
+			console.log('来自age' + age)
+			console.log('获取了故乡墨脱')
+			go.next(name)
+		}, 500)
+	}
+
+	function * getGenerator(data) {
+		var name = yield getName(data)
+		console.log(name)
+		var age = yield getAge(name)
+		console.log(age)
+		yield getHome(age)
+	}
+
+	var go = getGenerator('旺财')
+	// go.next()
+
+	/**
+	 * generator Promise
+	 */
+	var protest1 = function(data) {
+		return new Promise(function(resolve, reject) {
+			setTimeout(() => {
+				resolve(data)
+			}, 500)
+		})
+		
+	}
+	var protest2 = function(data) {
+		setTimeout(() => {
+			d.next(data)
+		}, 500)
+	}
+	var gen = function*() {
+		var res1 = yield protest2('111')
+		console.log(res1)
+		var res2 = yield protest2('3333')
+		console.log(res2)
+	}
+	var d = gen()
+	d.next()
+
+	var gen2 = async function() {
+		var re1 = await protest1('pro1111')
+		console.log(re1)
+		var re2 = await protest1('pro2222')
+		console.log(re2)
+	}
+	gen2()
+
+
+</script>
+</body>
+</html>
