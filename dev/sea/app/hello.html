@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="../../js/lib/sea.js"></script>
+<script>
+    seajs.config({
+        base: '../lib/',
+        alias: {
+//            jquery: 'jquery-3.3.1'
+            jquery: 'http://modules.seajs.org/jquery/1.7.2/jquery.js'
+        }
+    })
+    seajs.use('./main.js', function (main) {
+        main.show()
+    })
+</script>
+</body>
+</html>
