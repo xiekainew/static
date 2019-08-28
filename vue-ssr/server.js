@@ -13,7 +13,7 @@ console.log(serverInfo)
 
 const app = express()
 
-function createRender(bundle, template) {
+function createRenderer(bundle, template) {
 	return require('vue-server-renderer').createBundleRenderer(bundle, {
 		template,
 		cache: require('lru-cache')({
@@ -32,7 +32,10 @@ if (isProd) {
 	renderer = createRenderer(bundle, template)
 } else {
 	require('./build/setup-dev-server')(app, (bundle, template) => {
+		// console.log(bundle)
+		// console.log(template)
 		renderer = createRenderer(bundle, template)
+		console.log(1212121212, renderer)
 	})
 }
 
@@ -45,7 +48,9 @@ app.use('/dist', serve('./dist', true))
 app.use('/public', serve('./public', true))
 app.use('/service-worker.js', serve('./dist/service-worker.js', true))
 
+console.log(renderer)
 app.get('*', (req, res) => {
+	console.log(req.url)
 	if (!renderer) {
     	return res.end('waiting for compilation... refresh in a moment.')
 	}
@@ -65,13 +70,26 @@ app.get('*', (req, res) => {
 		}
 	}
 	var title = '测试vue-ssr'
-	renderer.renderToStream({title, url: req.url})
-		.on('error', errorHandler)
-		.on('end', () => console.log(`whole request: ${Date.now() - s}ms`))
-		.pipe(res)
+	// renderer.renderToStream({title, url: req.url})
+	// 	.on('error', errorHandler)
+	// 	.on('end', () => console.log(`whole request: ${Date.now() - s}ms`))
+	// 	.pipe(res)
+	
+	renderer.renderToString({title, url: req.url}, (err, html) => {
+		console.log(html)
+		if (err) {
+			console.log('err', err)
+			return errorHandler(err)
+		}
+		res.send(html)
+		if (!isProd) {
+            console.log(`whole request: ${Date.now() - s}ms`)
+        }
+	}) 	
+	
 })
 
-const port = process.env.PORT || 6666
+const port = process.env.PORT || 9527
 
 app.listen(port, () => {
   	console.log(`server started at localhost:${port}`)

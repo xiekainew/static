@@ -21,11 +21,11 @@ const config = merge(base, {
 if (process.env.NODE_ENV === 'production') {
 	config.plugins.push(
 		// 生产环境下 - 压缩js
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			}
-		}),
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	compress: {
+		// 		warnings: false
+		// 	}
+		// }),
 		// 用于使用service worker来缓存外部项目依赖项。
 		new SWPrecachePlugin({
 			cacheId: 'vue-hn',

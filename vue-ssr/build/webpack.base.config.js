@@ -1,5 +1,6 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
 	mode: process.env.NODE_ENV,
 	devtool: '#source-map',
@@ -71,7 +72,10 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new VueLoaderPlugin()
+		new VueLoaderPlugin(),
+		new MiniCssExtractPlugin({
+			filename: 'style/[name].[chunkhash].css'
+		})
 	],
 	performance: {
 		hints: process.env.NODE_ENV === 'production' ? 'warning' : false

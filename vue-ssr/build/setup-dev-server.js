@@ -30,7 +30,9 @@ module.exports = function setupDevServer(app, cb) {
 		const filePath = path.join(clientConfig.output.path, 'index.html')
 		if (fs.existsSync(filePath)) {
 			template = fs.readFileSync(filePath, 'utf-8')
+			console.log(4444444444)
 			if (bundle) {
+				console.log(11111)
 				cb(bundle, template)
 			}
 		}
@@ -47,7 +49,6 @@ module.exports = function setupDevServer(app, cb) {
 		stats.errors.forEach(err => console.error(err))
 	    stats.warnings.forEach(err => console.warn(err))
 	    // 读取使用vue-ssr-webpack-plugin生成的bundle（vue-ssr-bundle.json）
-		console.log(11111111, serverConfig.output.path)
 	    const bundlePath = path.join(serverConfig.output.path, 'vue-ssr-bundle.json')
 	    bundle = JSON.parse(mfs.readFileSync(bundlePath, 'utf-8'))
 	    console.log(3333333333)

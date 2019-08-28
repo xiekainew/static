@@ -10,7 +10,7 @@ export default context => {
 		router.push(context.url)
 
 		router.onReady(() => {
-			const matchedComponents = router.getMatchComponents()
+			const matchedComponents = router.getMatchedComponents()
 
 			if (!matchedComponents.length) {
 				reject({code: 404})
@@ -21,6 +21,7 @@ export default context => {
 				isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
 
 				context.state = store.state
+				console.log('app121212', app)
 				resolve(app)
 			}).catch(reject)
 		})
