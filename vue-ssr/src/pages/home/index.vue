@@ -12,8 +12,8 @@
 		}
 	}
 </script>
-<!-- <style>
+<style lang="scss">
 	.home{
 		color: red;
 	}
-</style> -->
+</style>

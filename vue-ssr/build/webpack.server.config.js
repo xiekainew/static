@@ -8,7 +8,7 @@ module.exports = merge(base, {
 	entry: './src/entry-server.js',
 	output: {
 		filename: 'server-bundle.js',
-		libraryTarget: 'commonjs2'
+		libraryTarget: 'commonjs2' // exported with module.exports 通用模块定义
 	},
 	externals: Object.keys(require('../package.json').dependencies),
 	plugins: [

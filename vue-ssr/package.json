@@ -1,7 +1,7 @@
 {
   "name": "vue-ssr",
   "version": "1.0.0",
-  "description": "",
+  "description": "vue server preview project",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server",
@@ -18,7 +18,7 @@
     "es6-promise": "^4.1.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^0.17.4",
-    "lru-cache": "^4.0.2",
+    "lodash": "^4.17.15",
     "serve-favicon": "^2.4.1",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2",
@@ -37,7 +37,7 @@
     "html-webpack-plugin": "^3.2.0",
     "lru-cache": "^5.1.1",
     "memory-fs": "^0.4.1",
-    "mini-css-extract-plugin": "^0.8.0",
+    "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.12.0",
     "rimraf": "^3.0.0",
     "sass-loader": "^7.3.1",
@@ -47,10 +47,12 @@
     "vue-loader": "^15.7.1",
     "vue-ssr-webpack-plugin": "^3.0.0",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.39.3",
+    "webpack": "4.19.0",
+    "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.7",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.17.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpackbar": "^4.0.0"
   }
 }

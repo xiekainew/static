@@ -1,9 +1,14 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const webpackbar = require('webpackbar')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const isDev = process.env.NODE_ENV === 'development'
+console.log('isDev', isDev)
 module.exports = {
 	mode: process.env.NODE_ENV,
-	devtool: '#source-map',
+	devtool: isDev ? '#cheap-module-source-map' : false,
 	entry: {
 		app: './src/entry-client.js'
 		// vendor: [
@@ -15,16 +20,19 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		publicPath: '/dist/',
-		filename: '[name].[chunkhash].js'
+		filename: 'js/[name].[chunkhash].js', // 用于长效缓存
+		chunkFilename: 'js/chunk/[id].[chunkhash].js'
 	},
 	optimization: {
 		splitChunks: {
-			chunks: 'async'
+			chunks: 'async',
 		}
 	},
 	resolve: {
+		extensions: ['.js', '.vue', '.json'],
 		alias: {
-			'public': path.resolve(__dirname, '../public')
+			'public': path.resolve(__dirname, '../public'),
+			'@': path.resolve(__dirname, 'src')
 		}
 	},
 	module: {
@@ -34,7 +42,8 @@ module.exports = {
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				options: {
-					preserveWhitespace: false
+					extractCSS: true
+					// preserveWhitespace: false
 					// postcss: [
 					// 	require('autoprefixer')({
 					// 		browsers: ['last 3 versions']
@@ -72,7 +81,13 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new VueLoaderPlugin()
+		new VueLoaderPlugin(),
+		// new bundleAnalyzerPlugin(),
+		new webpackbar(),
+		new MiniCssExtractPlugin({
+			// name: 'vendor',
+			filename: 'style/[name].[chunkhash].css'
+		})
 	],
 	performance: {
 		hints: process.env.NODE_ENV === 'production' ? 'warning' : false

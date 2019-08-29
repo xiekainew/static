@@ -3,23 +3,23 @@ const merge = require('webpack-merge')
 const base = require('./webpack.base.config.js')
 const HTMLPlugin = require('html-webpack-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+
+
 const config = merge(base, {
 	plugins: [
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+			// 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
 			'process.env.VUE_ENV': '"client"'
 		}),
-		// new webpack.optimize.CommonsChunkPlugin({
-		// 	name: 'vendor'
+		// new webpack.optimize.CommonsChunkPlugin({ // 最新版本webpack 已经移除
+		// 	name: 'vendor',
+		// 	filename: 'vendor-[hash].min.js'
 		// }),
 		new HTMLPlugin({
 			template: 'src/index.html'
 		}),
-		new MiniCssExtractPlugin({
-			name: 'vendor',
-			filename: 'style/[name].[chunkhash].css'
-		})
+		new VueSSRClientPlugin()
 	]
 })
 if (process.env.NODE_ENV === 'production') {

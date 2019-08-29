@@ -64,7 +64,7 @@ app.get('*', (req, res) => {
 			console.log(404)
 			res.status(404).end('404 | Page Not Found')
 		} else {
-			res.status(500).end('500 | 服务端报错')
+			res.status(500).end('500 | server error', 'utf-8')
 			console.error('error during render' + req.url)
 			console.error(err)
 		}
