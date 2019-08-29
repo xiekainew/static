@@ -1,6 +1,6 @@
 <template>
-	<div class="">
-		首页
+	<div class="home">
+		首页asdfdf
 	</div>
 </template>
 <script type="text/javascript">
@@ -12,3 +12,8 @@
 		}
 	}
 </script>
+<!-- <style>
+	.home{
+		color: red;
+	}
+</style> -->

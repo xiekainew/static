@@ -3,7 +3,7 @@ const merge = require('webpack-merge')
 const base = require('./webpack.base.config.js')
 const HTMLPlugin = require('html-webpack-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const config = merge(base, {
 	plugins: [
 		new webpack.DefinePlugin({
@@ -15,6 +15,10 @@ const config = merge(base, {
 		// }),
 		new HTMLPlugin({
 			template: 'src/index.html'
+		}),
+		new MiniCssExtractPlugin({
+			name: 'vendor',
+			filename: 'style/[name].[chunkhash].css'
 		})
 	]
 })
