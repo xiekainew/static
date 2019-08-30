@@ -3,10 +3,12 @@ import App from './App.vue'
 import { sync } from 'vuex-router-sync'
 import { createRouter } from './route/index.js'
 import { createStore } from './store/index.js'
-import axios from 'axios'
-import _ from 'lodash'
+import iView from 'iview'
 
-// import '../assets/style/index.css'
+import 'iview/dist/styles/iview.css'
+import '@/assets/style/index.css'
+
+Vue.use(iView)
 
 const router = createRouter()
 const store = createStore()
@@ -19,7 +21,7 @@ const app = new Vue({
 	render: h => h(App)
 })
 
-console.log(_.camelCase('Foo Bar'))
-axios.get('aaa')
+// console.log(_.camelCase('Foo Bar'))
+// axios.get('aaa')
 
 export {app, router, store}

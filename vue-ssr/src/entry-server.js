@@ -6,7 +6,6 @@ export default context => {
 	const s = isDev && Date.now()
 
 	return new Promise((resolve, reject) => {
-		console.log(context)
 		router.push(context.url)
 
 		router.onReady(() => {
@@ -21,7 +20,6 @@ export default context => {
 				isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
 
 				context.state = store.state
-				console.log('app121212', app)
 				resolve(app)
 			}).catch(reject)
 		})

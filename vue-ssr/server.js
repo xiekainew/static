@@ -1,22 +1,28 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
-
+const LruCache = require('lru-cache') // 组件级别的缓存
+const config = require('./config/index.js')
 const compression = require('compression')
+const proxyMiddleware = require('http-proxy-middleware')
 const resolve = file => path.resolve(__dirname, file)
 
 const isProd = process.env.NODE_ENV === 'production'
 const serverInfo = `express/${require('express/package.json').version}` +
   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
 
-console.log(serverInfo)
 
 const app = express()
+
+const microCache = new LruCache({
+	max: 100,
+	maxAge: 10000
+})
 
 function createRenderer(bundle, template) {
 	return require('vue-server-renderer').createBundleRenderer(bundle, {
 		template,
-		cache: require('lru-cache')({
+		cache: new LruCache({
 			max: 1000,
 			maxAge: 1000 * 60 * 15
 		})
@@ -32,10 +38,20 @@ if (isProd) {
 	renderer = createRenderer(bundle, template)
 } else {
 	require('./build/setup-dev-server')(app, (bundle, template) => {
-		// console.log(bundle)
-		// console.log(template)
 		renderer = createRenderer(bundle, template)
-		console.log(1212121212, renderer)
+	})
+}
+
+if (!isProd) {
+	var proxyTable = config.dev.proxyTable
+	Object.keys(proxyTable).forEach((context) => {
+		var options = proxyTable[context]
+		if (typeof options === 'string') {
+			options = {
+				target: options
+			}
+		}
+		app.use(context, proxyMiddleware(options))
 	})
 }
 
@@ -48,12 +64,16 @@ app.use('/dist', serve('./dist', true))
 app.use('/public', serve('./public', true))
 app.use('/service-worker.js', serve('./dist/service-worker.js', true))
 
-console.log(renderer)
+// console.log(renderer)
 app.get('*', (req, res) => {
-	console.log(req.url)
 	if (!renderer) {
     	return res.end('waiting for compilation... refresh in a moment.')
 	}
+	const hit = microCache.get(req.url)
+	if (hit) {
+		return res.send(hit)
+	}
+
 	const s = Date.now()
 
 	res.setHeader("Content-Type", "text/html")
@@ -76,12 +96,13 @@ app.get('*', (req, res) => {
 	// 	.pipe(res)
 	
 	renderer.renderToString({title, url: req.url}, (err, html) => {
-		console.log(html)
+		// console.log(html)
 		if (err) {
 			console.log('err', err)
 			return errorHandler(err)
 		}
 		res.send(html)
+		microCache.set(req.url, html)
 		if (!isProd) {
             console.log(`whole request: ${Date.now() - s}ms`)
         }

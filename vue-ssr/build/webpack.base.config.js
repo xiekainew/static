@@ -3,6 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpackbar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Loaders = require('./loader.js')
 
 const isDev = process.env.NODE_ENV === 'development'
 console.log('isDev', isDev)
@@ -32,53 +33,54 @@ module.exports = {
 		extensions: ['.js', '.vue', '.json'],
 		alias: {
 			'public': path.resolve(__dirname, '../public'),
-			'@': path.resolve(__dirname, 'src')
+			'@': path.resolve(__dirname, '../src')
 		}
 	},
 	module: {
 		noParse: /es6-promise\.js$/,
-		rules: [
-			{
-				test: /\.vue$/,
-				loader: 'vue-loader',
-				options: {
-					extractCSS: true
-					// preserveWhitespace: false
-					// postcss: [
-					// 	require('autoprefixer')({
-					// 		browsers: ['last 3 versions']
-					// 	})
-					// ]
-				}
-			}, {
-				test: /\.js$/,
-				loader: 'buble-loader',
-				exclude: /node_modules/,
-				options: {
-					objectAssign: 'Object.assign'
-				}
-			}, {
-				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'url-loader',
-				options: {
-					limit: 10000,
-					name: '[name].[ext]?[hash]'
-				}
-			}, {
-				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-				loader: 'url-loader',
-				query: {
-					limit: 10000,
-					name: 'fonts/[name].[hash:7].[ext]'
-				}
-			}, {
-				test: /\.css$/,
-				loader: ['style-loader', 'css-loader']
-			}, {
-				test: /\.scss$/,
-				loader: ['style-loader', 'css-loader', 'sass-loader']
-			}
-		]
+		rules: Loaders
+		// rules: [
+		// 	{
+		// 		test: /\.vue$/,
+		// 		loader: 'vue-loader',
+		// 		options: {
+		// 			extractCSS: true
+		// 			// preserveWhitespace: false
+		// 			// postcss: [
+		// 			// 	require('autoprefixer')({
+		// 			// 		browsers: ['last 3 versions']
+		// 			// 	})
+		// 			// ]
+		// 		}
+		// 	}, {
+		// 		test: /\.js$/,
+		// 		loader: 'buble-loader',
+		// 		exclude: /node_modules/,
+		// 		options: {
+		// 			objectAssign: 'Object.assign'
+		// 		}
+		// 	}, {
+		// 		test: /\.(png|jpg|gif|svg)$/,
+		// 		loader: 'url-loader',
+		// 		options: {
+		// 			limit: 10000,
+		// 			name: '[name].[ext]?[hash]'
+		// 		}
+		// 	}, {
+		// 		test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+		// 		loader: 'url-loader',
+		// 		query: {
+		// 			limit: 10000,
+		// 			name: 'fonts/[name].[hash:7].[ext]'
+		// 		}
+		// 	}, {
+		// 		test: /\.css$/,
+		// 		loader: ['style-loader', 'css-loader']
+		// 	}, {
+		// 		test: /\.scss$/,
+		// 		loader: ['style-loader', 'css-loader', 'sass-loader']
+		// 	}
+		// ]
 	},
 	plugins: [
 		new VueLoaderPlugin(),

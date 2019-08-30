@@ -1,6 +1,8 @@
 const urlList = [
 	'/server/login',
-	'/server/register'
+	'/server/register',
+	'/home/list',
+	'menu/list'
 ]
 
 module.exports = urlList

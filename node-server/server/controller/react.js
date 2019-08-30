@@ -3,6 +3,7 @@ let react = {}
 // let query = require('que')
 
 react.homeList = (req, res, next) => {
+	console.log(121212)
     let homeList = require('../data/homeList')
     console.log(homeList)
     common.send(req, res, {status: 0, success: true, data: homeList || []})
