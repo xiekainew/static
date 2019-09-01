@@ -37,27 +37,29 @@
            <!--  <Submenu name="4">
             	
             </Submenu> -->
-            <MenuItem :name="item.id" v-for="item in list">
+            <MenuItem :name="item.id" v-for="item in menuList" :key="item.id">
                 <Icon type="ios-stats" /> {{item.title}}
         	</MenuItem>
         </Menu>
 	</div>
 </template>
 <script type="text/javascript">
+    import Vuex from 'vuex'
 	export default {
 		data() {
 			return {
 				theme2: 'dark'
 			}
 		},
-		props: {
-			list: {
-				type: Array,
-				default: () => {
-					return []
-				}
-			}
-		},
+        async asyncData(store, router) {
+            console.log('navigation.vue')
+            await store.dispatch('getList')
+        },
+        computed: {
+            ...Vuex.mapState({
+                menuList: state => state.menuList
+            })
+        },
 		methods: {
 		},
 		mounted() {

@@ -6,18 +6,15 @@
 			<button class="home-box__button button2">click2</button>
 			<button class="home-box__button">click3</button>
 		</div>
-		<navigation :list="menuList"></navigation>
+		<navigation></navigation>
+		<Menu theme="dark" :open-names="['1']" accordion>
+            <MenuItem :name="item.id" v-for="item in list" :key="item.id">
+                <Icon type="ios-stats" /> {{item.title}}
+        	</MenuItem>
+        </Menu>
 	</div>
 </template>
 <script type="text/javascript">
-	import {
-		getList
-	} from '@/api/index'
-	// import Vuex from 'vuex'
-	import {
-        mapState,
-        mapGetters
-    } from 'vuex'
 	import Navigation from '@/pages/layout/navigation'
 	export default {
 		data() {
@@ -29,27 +26,18 @@
 			Navigation
 		},
 		async asyncData(store, router) {
-			console.log('hollo')
-			await store.dispatch('getList')
-		},
-		computed: {
-			// ...mapState({
-			// 	menuList: state => state.menuList
-			// })
-			menuList() {
-				return this.$store.state.menuList
-			}
+			await Navigation.asyncData(store, router)
 		},
 		methods: {
 			fetch() {
-				getList().then(res => {
-					this.list = res.data.data
-					console.log(this.list)
-				})
+				this.list = [{
+					title: '托尔斯泰',
+					id: '1'
+				}]
 			}
 		},
 		mounted() {
-			// this.fetch()
+			this.fetch()
 		}
 	}
 </script>

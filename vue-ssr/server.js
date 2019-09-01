@@ -66,6 +66,7 @@ app.use('/service-worker.js', serve('./dist/service-worker.js', true))
 
 // console.log(renderer)
 app.get('*', (req, res) => {
+	console.log(req.url)
 	if (!renderer) {
     	return res.end('waiting for compilation... refresh in a moment.')
 	}

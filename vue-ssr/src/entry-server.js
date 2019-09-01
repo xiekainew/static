@@ -10,7 +10,7 @@ export default context => {
 
 		router.onReady(() => {
 			const matchedComponents = router.getMatchedComponents()
-
+			console.log(matchedComponents)
 			if (!matchedComponents.length) {
 				reject({code: 404})
 			}

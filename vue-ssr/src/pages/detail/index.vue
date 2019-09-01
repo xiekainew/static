@@ -10,6 +10,9 @@
 
 			}
 		},
+		async asyncData(store, router) {
+			console.log(router)
+		},
 		methods: {
 
 		},
