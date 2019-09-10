@@ -48,7 +48,7 @@ router.use(function timeLog(req, res, next) {
       let usetime = time.toFixed(3) + 'ms'
       this.setHeader('X-Response-Time', usetime)
       this.setHeader('Access-Control-Allow-Origin', '*')
-      // this.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, X-Custom-Header');
+      this.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, X-Custom-Header, token');
       this.setHeader("Access-Control-Allow-Credentials", "true");
       // this.setHeader("Access-Control-Expose-Headers", "Content-Length, X-Custom-Header");
     }

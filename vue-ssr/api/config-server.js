@@ -6,9 +6,10 @@ const cached = false
 if (process.__API__) {
 	api = process.__API__
 } else {
+	console.log('process.env.SERVERURL', process.env.SERVERURL)
 	api = process.__API__ = {
 		api: process.env.SERVERURL,
-		port: 9527,
+		port: 8080,
 		timeout: 30000,
 		cached: cached && lruCache({
 			max: 1000,

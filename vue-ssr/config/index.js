@@ -52,8 +52,8 @@
          cacheBusting: true,
          cssSourceMap: true,
          proxyTable: {
-             '/api/**': {
-                target: "http://10.220.8.165:2002/api/",
+             '/api': {
+                target: "http://localhost:2002",
                 pathRewrite: {
                     '^/api': ''
                 },

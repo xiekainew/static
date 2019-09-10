@@ -16,6 +16,7 @@
 </template>
 <script type="text/javascript">
 	import Navigation from '@/pages/layout/navigation'
+	import axios from 'axios'
 	export default {
 		data() {
 			return {
@@ -38,6 +39,7 @@
 		},
 		mounted() {
 			this.fetch()
+			// this.$store.dispatch('getList')
 		}
 	}
 </script>

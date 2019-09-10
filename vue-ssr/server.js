@@ -19,6 +19,8 @@ const microCache = new LruCache({
 	maxAge: 10000
 })
 
+process.env.SERVERURL = 'http://localhost:2002'
+
 function createRenderer(bundle, template) {
 	return require('vue-server-renderer').createBundleRenderer(bundle, {
 		template,

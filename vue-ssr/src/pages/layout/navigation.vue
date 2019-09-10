@@ -44,6 +44,7 @@
 	</div>
 </template>
 <script type="text/javascript">
+   
     import Vuex from 'vuex'
 	export default {
 		data() {
@@ -52,7 +53,6 @@
 			}
 		},
         async asyncData(store, router) {
-            console.log('navigation.vue')
             await store.dispatch('getList')
         },
         computed: {
@@ -63,7 +63,7 @@
 		methods: {
 		},
 		mounted() {
-
+            
 		}
 	}
 </script>
