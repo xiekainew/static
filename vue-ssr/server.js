@@ -92,7 +92,7 @@ app.get('*', (req, res) => {
 			console.error(err)
 		}
 	}
-	var title = '测试vue-ssr'
+	var title = '测试vue-ssr3'
 	// renderer.renderToStream({title, url: req.url})
 	// 	.on('error', errorHandler)
 	// 	.on('end', () => console.log(`whole request: ${Date.now() - s}ms`))

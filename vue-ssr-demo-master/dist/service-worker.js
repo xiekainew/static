@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/dist/fonts/ionicons.143146f.woff2","143146fa24554ae2c5ac0a3982abb952"],["/dist/fonts/ionicons.99ac330.woff","99ac3308dd8ee14f749f51538d0d5b9e"],["/dist/fonts/ionicons.a2c4a26.svg","a2c4a261a239aa84463dc70e4bac9b9a"],["/dist/fonts/ionicons.d535a25.ttf","d535a25a79fb1365ae814b61e88fae71"],["/dist/js/app.d29828cb25026e8ea4b4.js","c94927887aea05d885c096462a01f69b"],["/dist/style/app.d29828cb25026e8ea4b4.css","dac879d3c9b866915da005991d8c96e3"],["/dist/vue-ssr-client-manifest.json","3eb033d7684ed40a39e27f27482b9959"]];
+var precacheConfig = [["/dist/app.fb0227a19301a0cecb9f.js","2e45b8e5c355ae8493d772537c791fe0"],["/dist/vendor.c81fa2d50e52edc8a0b5.js","1196418dfb1a1f4c82f562031ba46cdb"]];
 var cacheName = 'sw-precache-v3-vue-hn-' + (self.registration ? self.registration.scope : '');
 
 
