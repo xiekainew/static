@@ -17,9 +17,10 @@ const mutations = {
 }
 const actions = {
 	getList({state, commit}, data) {
-		console.log('服务端获取数据')
+		
 		return new Promise((resolve, reject) => {
 			getList().then(res => {
+				console.log('服务端获取数据', res)
 				commit('updateList', res.data.data)
 				resolve(res.data)
 			}).catch(error => {

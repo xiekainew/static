@@ -6,7 +6,6 @@
 // }
 
 import serverApi from '~api'
-console.log(serverApi)
 
 export const getList = () => {
 	return serverApi.get('/api/menu/list')

@@ -10,6 +10,8 @@ import '@/assets/style/index.css'
 
 Vue.use(iView)
 
+Vue.config.devtools = true
+
 const router = createRouter()
 const store = createStore()
 

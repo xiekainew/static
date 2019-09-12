@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去重</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var arr1 = [{name: 1, title: '清华', num: 2}, {name: 2, title: '北大', num: 2}]
+	var arr2 = [{name: 1, title: '清华', num: 2}, {name: 3, title: '北4大', num: 2}]
+	// arr1.forEach((item, index, self) => {
+	// 	console.log(item, index, self)
+	// 	arr2.map(item2 => {
+	// 		if (item.name === item2.name) {
+	// 			console.log(item2)
+	// 		}
+	// 	})
+	// })
+	var newArr = arr2.filter(item => {
+		return !arr1.some(item2 => {
+			var flag = item.name === item2.name
+			if (flag) {
+				item2.num = item2.num + item.num
+			}
+			return flag
+		})
+	})
+
+	arr1 = arr1.concat(newArr)
+	console.log(arr1)
+
+
+	console.log(newArr)
+</script>
+</body>
+</html>

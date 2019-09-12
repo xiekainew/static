@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+</head>
+<body>
+<div id="login_container"></div>
+<script type="text/javascript" src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+<script type="text/javascript">
+	var code = getQueryString('code')
+	if (code) {
+		document.write(code)
+	} else {
+		var obj = new WxLogin({
+			self_redirect:true,
+			id:"login_container", 
+			appid: "wx25b9ea87e63f46dd", 
+			scope: "snsapi_login", 
+			redirect_uri: "https://www.justfun.fun/wxcallback.html",
+			state: parseInt(Math.random() * 1000000),
+			style: "black",
+			href: ""
+	    });
+	}
+	
+    function getQueryString(name) {  
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+        var r = window.location.search.substr(1).match(reg);  
+        if (r != null) return unescape(r[2]);  
+        return null;  
+    }  
+</script>
+</body>
+</html>

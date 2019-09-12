@@ -63,7 +63,7 @@
 		methods: {
 		},
 		mounted() {
-            
+            console.log(this.menuList)
 		}
 	}
 </script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+</head>
+<body>
+<div id="login_container"></div>
+<script type="text/javascript" src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+<script type="text/javascript">
+	var obj = new WxLogin({
+		self_redirect:true,
+		id:"login_container", 
+		appid: "wx25b9ea87e63f46dd", 
+		scope: "snsapi_login", 
+		redirect_uri: "https://www.justfun.fun/wxcallback.html",
+		state:"",
+		style: "black",
+		href: ""
+    });
+</script>
+</body>
+</html>
