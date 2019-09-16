@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/dist/fonts/ionicons.143146f.woff2","143146fa24554ae2c5ac0a3982abb952"],["/dist/fonts/ionicons.99ac330.woff","99ac3308dd8ee14f749f51538d0d5b9e"],["/dist/fonts/ionicons.a2c4a26.svg","a2c4a261a239aa84463dc70e4bac9b9a"],["/dist/fonts/ionicons.d535a25.ttf","d535a25a79fb1365ae814b61e88fae71"],["/dist/js/app.d29828cb25026e8ea4b4.js","c94927887aea05d885c096462a01f69b"],["/dist/style/app.d29828cb25026e8ea4b4.css","dac879d3c9b866915da005991d8c96e3"],["/dist/vue-ssr-client-manifest.json","3eb033d7684ed40a39e27f27482b9959"]];
+var precacheConfig = [["/dist/fonts/ionicons.143146f.woff2","143146fa24554ae2c5ac0a3982abb952"],["/dist/fonts/ionicons.99ac330.woff","99ac3308dd8ee14f749f51538d0d5b9e"],["/dist/fonts/ionicons.a2c4a26.svg","a2c4a261a239aa84463dc70e4bac9b9a"],["/dist/fonts/ionicons.d535a25.ttf","d535a25a79fb1365ae814b61e88fae71"],["/dist/js/app.d22e784572e6df4cb259.js","318adb9c95cf852bfbdeefa247d5b0f6"],["/dist/style/app.d22e784572e6df4cb259.css","dac879d3c9b866915da005991d8c96e3"],["/dist/vue-ssr-client-manifest.json","9d3c4093227afbf631af61ad476f1ed8"]];
 var cacheName = 'sw-precache-v3-vue-hn-' + (self.registration ? self.registration.scope : '');
 
 

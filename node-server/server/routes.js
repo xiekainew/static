@@ -54,6 +54,7 @@ router.use(function timeLog(req, res, next) {
     }
     prevWriteHead.apply(this, arguments);
   }
+  console.log('req.originalUrl:', req.originalUrl)
   if (checkUrl(req.originalUrl)) {
     next()
   } else {

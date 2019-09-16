@@ -16,10 +16,10 @@ const app = express()
 
 const microCache = new LruCache({
 	max: 100,
-	maxAge: 10000
+	maxAge: 1000
 })
 
-process.env.SERVERURL = isProd ? 'http://39.106.168.120:2002' : 'http://localhost:2002'
+process.env.SERVERURL = !isProd ? 'http://39.106.168.120:2002' : 'http://localhost:2002'
 
 function createRenderer(bundle, template) {
 	return require('vue-server-renderer').createBundleRenderer(bundle, {

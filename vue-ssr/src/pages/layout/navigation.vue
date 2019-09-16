@@ -60,6 +60,11 @@
                 menuList: state => state.menuList
             })
         },
+        watch: {
+            menuList(val) {
+                console.log('val', val)
+            }
+        },
 		methods: {
 		},
 		mounted() {

@@ -19,7 +19,6 @@ export default {
 	},
 	get(url, params) {
 		if (!this.api) this.setCookie()
-		console.log('this.api', this.api)
 		return this.api({
 			method: 'get',
 			url,

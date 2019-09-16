@@ -16,7 +16,9 @@ Vue.mixin({
 })
 
 if (window.__INITIAL_STATE__) {
+	// console.log('__INITIAL_STATE__', window.__INITIAL_STATE__)
 	store.replaceState(window.__INITIAL_STATE__)
+	// store.commit('updateList', window.__INITIAL_STATE__.menuList || [])
 }
 
 router.onReady(() => {

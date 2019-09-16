@@ -3,7 +3,7 @@
 		首页
 		<div class="home-box">
 			<button class="home-box__button">click1</button>
-			<button class="home-box__button button2">click2</button>
+			<button class="home-box__button button2" @click="geted">click2</button>
 			<button class="home-box__button">click3</button>
 		</div>
 		<navigation></navigation>
@@ -17,6 +17,9 @@
 <script type="text/javascript">
 	import Navigation from '@/pages/layout/navigation'
 	import axios from 'axios'
+	import {
+		getList
+	} from '@/api/index'
 	export default {
 		data() {
 			return {
@@ -35,11 +38,21 @@
 					title: '托尔斯泰',
 					id: '1'
 				}]
+			},
+			geted() {
+				this.$store.dispatch('getList')
+				console.log(this.$store.state.menuList)
 			}
 		},
 		mounted() {
 			this.fetch()
-			// this.$store.dispatch('getList')
+			// this.geted()
+			// getList().then(res => {
+			// 	console.log('服务端获取数据', res)
+			// }).catch(error => {
+			// 	console.log(error)
+			// })
+
 		}
 	}
 </script>
