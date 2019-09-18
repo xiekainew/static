@@ -15,7 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-app.use(history())
+// app.use(history())  // vue单页面应用需要设置这个来实现history功能
 var proxy = common.eventProxy()
 common.logger.info('[app]', 'app start... at port: http://localhost:' + config.port)
 function listen () {
@@ -80,6 +80,7 @@ var proxyTable = {
 (function(){
   // app.use('/', indexRouter);
   // app.use('/users', usersRouter);
+  app.use(require('./school-server/routes'))
   app.use(require('./server/routes'))
   proxy.emit('routes')
 })();
