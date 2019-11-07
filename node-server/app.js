@@ -80,6 +80,7 @@ var proxyTable = {
 (function(){
   // app.use('/', indexRouter);
   // app.use('/users', usersRouter);
+  app.use(require('./server-station/routes'))
   app.use(require('./school-server/routes'))
   app.use(require('./server/routes'))
   proxy.emit('routes')
