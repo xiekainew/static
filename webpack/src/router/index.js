@@ -1,11 +1,8 @@
 'use strict'
-
-import Vue from 'vue'
-import Router from 'vue-router'
 import routes from './routes.js'
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
 	mode: 'history',
 	scrollBehavior: () => ({y: 0}),
 	routes

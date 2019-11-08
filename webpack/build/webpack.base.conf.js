@@ -13,8 +13,7 @@ module.exports = {
     mode: process.env.NODE_ENV,
 	context: path.resolve(__dirname, '../'), // 基础目录，绝对路径，用于从配置中解析入口起点(entry point)和 loader
 	entry: {
-		app: './src/main.js',
-        vender: ['vue', 'vue-router', 'element-ui']
+		app: './src/main.js'
 	},
 	resolve: {
 		extensions: ['.js', '.vue', '.json'], // 默认扩展名
@@ -22,6 +21,11 @@ module.exports = {
 			'@': path.resolve(__dirname, '../src/') // 快捷路径
 		}
 	},
+    externals: {
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'element-ui': 'ELEMENT'
+    },
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/',

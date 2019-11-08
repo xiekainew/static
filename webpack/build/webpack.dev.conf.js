@@ -9,7 +9,8 @@ module.exports = merge(webapckBaseConf, {
 		hot: true,
 		host: '0.0.0.0',
 		port: '9528',
-		compress: true
+		compress: true,
+		historyApiFallback: true // 在vue-router路由history模式下 需要配置该属性
 	},
 	plugins: [
 		new webpack.DefinePlugin({
