@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>for in for of</title>
-    
+    <style type="text/css">
+    	.div{
+    		background: #f2f2f2;
+    		height: 50px;
+    		/*line-height: 50px;*/
+    		/*position: absolute;*/
+    		/*float: left;*/
+    		/*left: 0;*/
+    		font-size: 0;
+    	}
+    	.child{
+    		display: inline-block;
+    		vertical-align: middle;
+    		font-size: 14px;
+    	}
+    </style>
 </head>
 <body>
+	<div class="div">
+		<div class="child">child</div>
+		<div class="child">child</div>
+	</div>
 
 <script>
 
@@ -82,6 +101,11 @@
 	// 	console.log(item)
 	// })
 	// console.log(o)
+
+	let obj2 = Object.create({age: 23})
+	obj2.name = 'wang'
+	console.log(obj2)
+	console.log(obj2.__proto__)
 
 </script>
 </body>

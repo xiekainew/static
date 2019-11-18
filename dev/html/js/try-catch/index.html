@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>try-catch</title>
+</head>
+<body>
+<script>
+    function test(str, callback) {
+    	try{
+    		var result = JSON.parse(str)
+    		callback(null, result)
+    	} catch(err) {
+    		callback(err)
+    	}
+    }
+    test('333rr', function(err, result) {
+    	console.log(err)
+    	console.log(result)
+    })
+</script>
+
+</body>
+</html>

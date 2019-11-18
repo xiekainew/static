@@ -16,6 +16,9 @@
 			console.log('吃肉')
 		}
 	}
+	Animal.show = function() {
+		console.log(222)
+	}
 
 	Animal.prototype.can = function() {
 		console.log('进食')
@@ -28,21 +31,22 @@
 			console.log(this.type)
 		}
 	}
+	Person.showPerson = function() {
+		console.log('person')
+	}
 	function Extend(child, parent) {
 		child.prototype = Object.create(parent.prototype)
 		child.prototype.constructor = child
 	}
 	Extend(Person, Animal)
-	Person.prototype.self = 'person'
+
 
 	var p = new Person()
+	Person.showPerson()
 	p.sayType()
 	p.eat()
 
-	console.log(Animal.prototype.self)
-	console.log(Person.prototype.self)
-	console.log(p.type)
-	console.log(p.move)
+
 	p.can()
 </script>
 </body>
