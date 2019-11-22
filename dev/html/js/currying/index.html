@@ -57,10 +57,100 @@
 		}
 		return _adder
 	}
-	console.log(test(1, 3)(4))
+	// console.log(test(1, 3)(4))
+	// setTimeout(() => {
+	// 	try{
+	// 		te()
+	// 	} catch(err) {
+	// 		console.log(err)
+	// 	}
+	// }, 2000)
+	// setTimeout(() => {
+	// 	ff()
+	// }, 3000)
+
+window.onerror = function(message, url, lineNumber,columnNo,error) {
+	// console.log(message)
+	// console.log(url)
+	// console.log(lineNumber)
+	// console.log(columnNo)
+	// console.log(error)
+    var errorMessage = `[line: ${lineNumber}, column: ${columnNo}]-[${url}]---[${message}]`
+    console.log(errorMessage)
+}
 
 	// var add2 = progressCurrying()
     // console.log(add(1, 2))
+</script>
+<script type="text/javascript">
+	// console.log('a')
+	var count = 0
+	var num = {}
+	var obj = {
+		update(flag) {
+			var obj = this,
+			tempcount;
+			tempcount = count++
+			this.tempcount = tempcount
+			
+			num.count = this.tempcount
+
+			// function create() {
+			// 	obj.show = function() {
+			// 	
+			// 		console.log(tempcount, obj.tempcount)
+			// 	}
+			// 	obj.show()
+			// }
+
+			// if (!this.show) {
+
+			// 	create()
+			// 	return
+			// }
+			// this.show()
+			if (this.show) {
+				setTimeout(this.show, 0)
+				return
+			}
+
+			this.show = function() {
+				console.log(this)
+				console.log(tempcount, obj.tempcount, num.count)
+			}
+			this.show()
+
+			// if (!this.show) {
+			// 	this.show = function() {
+			// 		console.log(tempcount, obj.tempcount)
+			// 	}
+			// 	this.show()
+			// 	return this.show
+			// }
+			// this.show()
+			// setTimeout(this.show, 10)
+		}
+	}
+	var t = obj.update()
+	setTimeout(function(){
+		obj.update()
+	}, 300)
+	setTimeout(function(){
+		obj.update()
+	}, 1300)
+	
+	// function outer() {
+	// 	var a = count++
+	// 	var inner = function() {
+	// 		console.log(a)
+	// 	}
+	// 	inner()
+	// 	return inner;
+	// }
+	// var inner = outer()
+	// outer()
+	// // outer()
+	// inner()
 </script>
 
 </body>
