@@ -37,9 +37,9 @@ router.get('/school/api/rollings', School.rollings, errorHandler)
 router.get('/school/api/rollingPreview', School.rollingPreview, errorHandler)
 router.get('/school/api/indexTeachers', School.indexTeachers, errorHandler)
 router.get('/school/api/teachers', School.teachers, errorHandler)
-router.get('/school/api/teacherDetail', School.teacherDetail, errorHandler)
+router.get('/school/api/teacher', School.teacherDetail, errorHandler)
 router.get('/school/api/students', School.students, errorHandler)
-router.get('/school/api/studentsInfo', School.studentsInfo, errorHandler)
+router.get('/school/api/student', School.studentsInfo, errorHandler)
 
 
 

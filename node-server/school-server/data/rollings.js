@@ -1,9 +1,21 @@
 module.exports = [
       {
-        "rollingId": "R201909232022094247290",
-        "title": "习近平在中央政协工作会议 暨庆祝中国人民政治协商会议成立70周年大会上发表重要讲话",
-        "picture": "1569241391735_W020190921404172244467.jpg",
-        "url": "http://szpy.nenu.edu.cn/api/info/I201909232015331312298",
+        "rollingId": "R201909172231498244788",
+        "title": "测试投票",
+        "picture": "http://img5.imgtn.bdimg.com/it/u=3987907653,720009510&fm=26&gp=0.jpg",
+        "url": "http://img5.imgtn.bdimg.com/it/u=3987907653,720009510&fm=26&gp=0.jpg",
+        "rollingOrder": 0,
+        "viewTimes": 2,
+        "deleted": 0,
+        "createTime": "2019-09-17 22:31:49",
+        "updateTime": "2019-09-17 22:51:55",
+        "status": "正常"
+      },
+      {
+        "rollingId": "R201909172231498244789",
+        "title": "测试投票",
+        "picture": "http://img3.imgtn.bdimg.com/it/u=4186486800,813755701&fm=26&gp=0.jpg",
+        "url": "http://img5.imgtn.bdimg.com/it/u=3987907653,720009510&fm=26&gp=0.jpg",
         "rollingOrder": 0,
         "viewTimes": 0,
         "deleted": 0,

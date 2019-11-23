@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import axios from 'axios'
+// import axios from 'axios'
 import './index.css'
 
 
@@ -27,9 +27,9 @@ class Index extends React.Component{
 		})
 	}
 	getData() {
-		axios.get('http://localhost:3333/list/data').then(res => {
-			console.log(res)
-		})
+		// axios.get('http://localhost:3333/list/data').then(res => {
+		// 	console.log(res)
+		// })
 	}
 	componentDidMount() {
 		this.getData()
