@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var money = 234578.7
+	
+	function handlerMoney(money) {
+		var s = money.length % 3
+		var str = ''
+		if (s) {
+			str = money.substring(0, s)
+		}
+		money = money.substring(s)
+		var reg = /\d{3}/g
+		var arr = money.match(reg)
+		return str + ',' + arr.join(',')
+	}
+	// console.log(handlerMoney(money))
+
+	// console.log(money.toLocaleString())
+	
+
+	function format (num) {
+		return (num+ '').replace(/(\d{1,3})(?=(\d{3})+(?:$|\.))/g,'$1,');
+	}
+	console.log(format(money))
+	console.log(2000000000000000 + 2)
+</script>
+</body>
+</html>

@@ -10,7 +10,17 @@ module.exports = merge(webapckBaseConf, {
 	optimization: {
 		runtimeChunk: {
 			name: 'manifest'
-		}
+		},
+		// splitChunks: {
+			// cacheGroups: {
+			// 	styles: {
+			// 		name: 'styles',
+			// 		test: /\.css$/,
+			// 		chunks: 'all',
+			// 		enforce: true,
+			// 	}
+			// }
+		// }
 	},
 	plugins: [
 		new webpack.DefinePlugin({

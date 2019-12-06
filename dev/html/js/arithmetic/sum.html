@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var a = 200000000000000000000
+	var b = 24676
+
+	function sum(a, b) {
+		a = toArr(a)
+		b = toArr(b)
+		var carry = 0
+		var result = []
+		var maxLength = Math.max(a.length, b.length)
+		var minLength = Math.min(a.length, b.length)
+		for (var i = 0; i < maxLength; i++) {
+			var lastA = parseInt(a.pop() || 0)
+			var lastB = parseInt(b.pop() || 0)
+			add(lastA, lastB, carry)
+		}
+		function add(a, b, c) {
+			var s = a + b + c
+			var res = s % 10
+			carry = parseInt(s / 10)
+			result.unshift(res)
+		}
+		return (result.join(''))
+	}
+	console.log(sum(a, b))
+	function toArr(a) {
+		a = a + ''
+		return a.split('')
+	}
+</script>
+</body>
+</html>
