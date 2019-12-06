@@ -14,12 +14,12 @@ school.infoList = (req, res, next) => {
 
 school.info = (req, res, next) => {
     let homeList = require('../data/info')
-    common.send(req, res, {status: 0, success: true, data: {infoList: homeList} || []})
+    common.send(req, res, {status: 0, success: true, data: {info: homeList} || []})
 }
 
 school.rollings = (req, res, next) => {
     let homeList = require('../data/rollings')
-    common.send(req, res, {status: 0, success: true, data: {infoList: homeList} || []})
+    common.send(req, res, {status: 0, success: true, data: {rollings: homeList} || []})
 }
 
 
@@ -35,21 +35,21 @@ school.indexTeachers = (req, res, next) => {
 
 school.teachers = (req, res, next) => {
     let homeList = require('../data/teachers')
-    common.send(req, res, {status: 0, success: true, data: {infoList: homeList} || []})
+    common.send(req, res, {status: 0, success: true, data: {teachers: homeList} || []})
 }
 
 school.teacherDetail = (req, res, next) => {
     let homeList = require('../data/teacherDetail')
-    common.send(req, res, {status: 0, success: true, data: {infoList: homeList} || []})
+    common.send(req, res, {status: 0, success: true, data: {teacher: homeList} || []})
 }
 school.students = (req, res, next) => {
     let homeList = require('../data/students')
-    common.send(req, res, {status: 0, success: true, data: {infoList: homeList} || []})
+    common.send(req, res, {status: 0, success: true, data: {students: homeList} || []})
 }
 
 school.studentsInfo = (req, res, next) => {
     let homeList = require('../data/studentsInfo')
-    common.send(req, res, {status: 0, success: true, data: {infoList: homeList} || []})
+    common.send(req, res, {status: 0, success: true, data: {student: homeList} || []})
 }
 
 

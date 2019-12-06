@@ -90,10 +90,12 @@ window.onerror = function(message, url, lineNumber,columnNo,error) {
 		update(flag) {
 			var obj = this,
 			tempcount;
+			var timer = 0;
 			tempcount = count++
 			this.tempcount = tempcount
 			
 			num.count = this.tempcount
+			timer = this.tempcount
 
 			// function create() {
 			// 	obj.show = function() {
@@ -116,7 +118,7 @@ window.onerror = function(message, url, lineNumber,columnNo,error) {
 
 			this.show = function() {
 				console.log(this)
-				console.log(tempcount, obj.tempcount, num.count)
+				console.log(tempcount, obj.tempcount, num.count, count, timer)
 			}
 			this.show()
 
@@ -131,13 +133,13 @@ window.onerror = function(message, url, lineNumber,columnNo,error) {
 			// setTimeout(this.show, 10)
 		}
 	}
-	var t = obj.update()
-	setTimeout(function(){
-		obj.update()
-	}, 300)
-	setTimeout(function(){
-		obj.update()
-	}, 1300)
+	// var t = obj.update()
+	// setTimeout(function(){
+	// 	obj.update()
+	// }, 300)
+	// setTimeout(function(){
+	// 	obj.update()
+	// }, 1300)
 	
 	// function outer() {
 	// 	var a = count++
@@ -151,6 +153,20 @@ window.onerror = function(message, url, lineNumber,columnNo,error) {
 	// outer()
 	// // outer()
 	// inner()
+
+	function b() {
+		var a = 1
+		setTimeout(() => {
+			a += 1
+		}, 0)
+		
+		return function() {
+			console.log(a)
+		}
+	}
+	var bb = b()
+	bb()
+	b()
 </script>
 
 </body>

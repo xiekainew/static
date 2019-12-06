@@ -22,7 +22,14 @@
 			], [
 				3
 			], [
-				3
+				3,
+				[
+					[
+						[
+							5
+						]
+					]
+				]
 			]
 		]
 	]
@@ -43,7 +50,6 @@
 		return max
 	}
 	console.log(getDeep(arr))
-
 	function handler(arr) {
 		let str = JSON.stringify(arr)
 		let num = 0
@@ -87,6 +93,68 @@
 
 	console.log(getT(arr2, 4))
 
+</script>
+<script type="text/javascript">
+	var arr = [[1,2,2],[3, 4, 5, 5],[6, 7, 8, 9,[11,12,[12,13,[14]]]],10];
+
+	function handle2(arr) {
+		var t = []
+		function h(arr) {
+			arr.forEach(item => {
+				if (Object.prototype.toString.call(item) === '[object Array]') {
+					h(item)
+				} else {
+					t.push(item)
+				}
+			})
+		}
+		h(arr)
+		console.log(t)
+		return t
+	}
+	// handle2(arr)
+
+	function handlerArr(arr) {
+		arr = JSON.stringify(arr)
+		var reg = /\d/g
+		console.log(arr.match(reg))
+		// arr = arr.replace(/\[/g, '').replace(/\]/g, '').split(',')
+		// var arr2 = arr.filter((item, index) => {
+		// 	return arr.indexOf(item) === index
+		// })
+		// arr2 = arr2.sort(function(a, b) {
+		// 	return a - b
+		// })
+		console.log(arr)
+	}
+	handlerArr(arr)
+
+	async function async1 () {
+    console.log('async1 start');
+    await async2();
+    console.log('async1 end');
+}
+
+async function async2 () {
+    console.log('async2');
+}
+
+console.log('script start');
+
+setTimeout(function () {
+    console.log('setTimeout');
+}, 0);
+
+async1();
+
+new Promise(function (resolve) {
+    console.log('promise1');
+    resolve();
+}).then(function () {
+    console.log('promise2');
+});
+
+console.log('script end');
 </script>
 </body>
 </html>
