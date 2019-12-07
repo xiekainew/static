@@ -1,0 +1,11 @@
+$theme-bg-color: #F6F7FB;
+$theme-nav-bg-color: #242424;
+$theme-blue: #3B90FC;
+$theme-blue-hover: #2366BA;
+
+@mixin bg($url) {
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}

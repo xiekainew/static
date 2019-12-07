@@ -1,0 +1,13 @@
+@import "./theme.scss";
+.navigation{
+	width: 100%;
+	min-width: 1200px;
+	height: 70px;
+	background: black;
+	line-height: 70px;
+	color: white;
+	a{
+		display: inline-block;
+		color: white;
+	}
+}
