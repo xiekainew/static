@@ -1,0 +1,10 @@
+.fit-main{
+	width: 1200px;
+	margin: 0 auto;
+	@media screen and (max-width: 1200px) {
+		width: 1000px;
+	}
+	@media screen and (max-width: 1000px) {
+		width: 800px;
+	}
+}

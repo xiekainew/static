@@ -2,7 +2,7 @@ var glob = require('glob')
 var path = require('path')
 
 var basePath = path.resolve(__dirname, './src/style/')
-var commonFile = glob.sync(basePath + '/common/*.css')
+var commonFile = glob.sync(basePath + '/common/*.*')
 // console.log(commonFile)
 // console.log(__dirname)
 var reg = /<link([\s\S]*)<\/head>/
@@ -14,10 +14,10 @@ fis.match('*.html', {
 			commonFile.forEach(item => {
 				// file.links.push(item.replace(__dirname, ""))
 				if (isLink) {
-					content = content.replace('<link', `<link rel="stylesheet" href="${item.replace(__dirname, "")}"/>
+					content = content.replace('<link', `<link preload as="style" rel="stylesheet" href="${item.replace(__dirname, "")}"/>
 					<link`)
 				} else {
-					content = content.replace('</head>', `<link rel="stylesheet" href="${item.replace(__dirname, "")}"/>
+					content = content.replace('</head>', `<link preload as="style" rel="stylesheet" href="${item.replace(__dirname, "")}"/>
 					</head>`)
 				}
 				
@@ -25,7 +25,8 @@ fis.match('*.html', {
 			console.log(content)
 		}
 		return content
-	}
+	},
+  useCache: false
 })
 
 fis.match('*.scss', {

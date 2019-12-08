@@ -16,10 +16,10 @@
     "fis-optimizer-png-compressor": "^0.2.2",
     "fis-optimizer-uglify-js": "^0.2.3",
     "fis-parser-jdists": "^2.2.3",
+    "fis-parser-node-sass": "^1.0.6",
     "fis3-postpackager-loader": "^2.1.11",
     "fis3-preprocessor-autoprefixer": "^0.1.1",
     "fis3-server-jello": "0.0.11",
-    "glob": "^7.1.6",
-    "node-sass": "^4.13.0"
+    "glob": "^7.1.6"
   }
 }
