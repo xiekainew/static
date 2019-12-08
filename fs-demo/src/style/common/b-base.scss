@@ -8,6 +8,9 @@
 		width: 800px;
 	}
 }
+[v-cloak] {
+	display: none;
+}
 body{
 	background: #f0f0f0;
 }

@@ -1,0 +1,30 @@
+{
+  "id": "1551960",
+  "name": "maomiji",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "128822",
+      "name": "book",
+      "font_class": "book",
+      "unicode": "e713",
+      "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "1327540",
+      "name": "book",
+      "font_class": "book1",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "7735898",
+      "name": "book",
+      "font_class": "book2",
+      "unicode": "e8d1",
+      "unicode_decimal": 59601
+    }
+  ]
+}

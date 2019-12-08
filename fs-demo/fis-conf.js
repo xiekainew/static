@@ -3,17 +3,26 @@ var path = require('path')
 var chalk = require('chalk')
 
 var meta = require('./src/static/assets/meta.js')
-var basePath = path.resolve(__dirname, './src/style/')
-var commonFile = glob.sync(basePath + '/common/*.*')
+var basePath = path.resolve(__dirname, './src/')
+var commonFile = glob.sync(basePath + '/style/common/*.*')
+var commonJs = glob.sync(basePath + '/js/common/*.js')
 
 var reg = /<link([\s\S]*)<\/head>/
 var metaReg = /<title>/
-var jsReg = /<script/
+
+fis.match('*.js', {
+  parser: fis.plugin('babel-5.x', {
+    blacklist: ['regenerator'],
+    stage: 3
+  }),
+  rExt: 'js'
+});
 
 fis.match('*.html', {
 	postprocessor: function(content, file, settings) {
 		if (!settings.filename.match('components')) {
 			var isLink = content.match(reg)
+
 			commonFile.forEach(item => {
 				if (isLink) {
 					content = content.replace('<link', `<link rel="stylesheet" href="${item.replace(__dirname, "")}"/>
@@ -23,8 +32,18 @@ fis.match('*.html', {
 					</head>`)
 				}
 			})
+      content = content.replace('</head>', `<link rel="stylesheet" href="/static/font/iconfont.css"/>
+          </head>`)
+      commonJs.forEach(item => {
+        content = content.replace('<script', `<script src="${item.replace(__dirname, "")}"></script>\n<script`)
+      })
+      
+      meta.js.forEach(item => {
+        content = content.replace('</head>', `<link rel="preload" as="script" href="${item}"/>
+          </head>`)
+        content = content.replace('<script', `<script src="${item}"></script>\n<script`)
+      })
       content = content.replace(metaReg, `${meta.meta}\n<title>`)
-      content = content.replace(jsReg, `${meta.js}\n<script`)
 		}
 		return content
 	},

@@ -12,7 +12,7 @@
 		vertical-align: middle;
 		color: #17233d;
 		font-size: 0.7rem;
-		padding: 0 10px;
+		padding: 0 1rem;
 		transition: all 0.1s linear;
 		&:hover{
 			color: #2d8cf0;
@@ -33,6 +33,7 @@
 			background:#2d8cf0;
 			position: relative;
 			overflow: hidden;
+			margin-right: 4rem;
 			&::after{
 				content: '';
 				position: absolute;

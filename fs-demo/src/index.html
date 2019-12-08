@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<link rel="stylesheet" href="./style/index.scss"/>
+</head>
+<body>
+	<link rel="import" href="./components/navigation.html?__inline">
+	<div class="fit-main wrapper" id="index">
+		<div class="wrapper-main">
+			<div class="wrapper-main__title">
+				<div class="">
+					<i class="iconfont icon">&#xe627;</i>
+				</div>
+			</div>
+			<div class="wrapper-main__list">
+				<div 
+					class="wrapper-main__list--item"
+					v-for="item in list"
+					:key="item.id"
+				>
+					{{item.title}}
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-slide">
+			
+		</div>
+	</div>
+	<link rel="import" href="./components/footers.html?__inline">
+	<script type="text/javascript" src="./js/index.js"></script>
+	
+</body>
+</html>
