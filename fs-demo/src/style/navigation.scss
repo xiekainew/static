@@ -1,20 +1,71 @@
 @import "./theme.scss";
 .navigation{
 	width: 100%;
-	height: 70px;
-	background: black;
-	line-height: 70px;
+	height: 3.4rem;
+	background: white;
+	line-height: 3.4rem;
 	color: white;
+	box-shadow: 0 0.1333rem 0.2667rem rgba(0,0,0,.03);
+	font-size: 0;
 	a{
 		display: inline-block;
-		color: #f2f2f2;
-		font-size: 17px;
+		vertical-align: middle;
+		color: #17233d;
+		font-size: 0.7rem;
 		padding: 0 10px;
+		transition: all 0.1s linear;
 		&:hover{
-			color: white;
+			color: #2d8cf0;
 		}
 		&:active{
-			color: #f2f2f2;
+			color: #17233d;
 		}
+		&.current{
+			color: #2d8cf0;;
+		}
+	}
+	&-main{
+		&__logo{
+			display: inline-block;
+			vertical-align: middle;
+			height: 3rem;
+			width: 3.3rem;
+			background:#2d8cf0;
+			position: relative;
+			overflow: hidden;
+			&::after{
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				@include bg('../static/images/maomi.png');
+				background-size: contain;
+			}
+			&::before{
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 100%;
+				left: 0;
+				top: 0;
+				z-index: 1;
+				background: rgba(255,255,255,1);
+				box-shadow: 0 0 8px 4px rgba(255,255,255,.9);
+				transform: rotate(30deg);
+				animation: move 5s linear infinite;
+			}
+		}
+	}
+}
+@keyframes move{
+	0%{
+		left: -40px;
+	}
+	100%{
+		// transform: translateX(100%);
+		left: 140%;
 	}
 }

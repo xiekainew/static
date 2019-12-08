@@ -1,28 +1,30 @@
 var glob = require('glob')
 var path = require('path')
+var chalk = require('chalk')
 
+var meta = require('./src/static/assets/meta.js')
 var basePath = path.resolve(__dirname, './src/style/')
 var commonFile = glob.sync(basePath + '/common/*.*')
-// console.log(commonFile)
-// console.log(__dirname)
+
 var reg = /<link([\s\S]*)<\/head>/
+var metaReg = /<title>/
+var jsReg = /<script/
 
 fis.match('*.html', {
 	postprocessor: function(content, file, settings) {
 		if (!settings.filename.match('components')) {
 			var isLink = content.match(reg)
 			commonFile.forEach(item => {
-				// file.links.push(item.replace(__dirname, ""))
 				if (isLink) {
-					content = content.replace('<link', `<link preload as="style" rel="stylesheet" href="${item.replace(__dirname, "")}"/>
+					content = content.replace('<link', `<link rel="stylesheet" href="${item.replace(__dirname, "")}"/>
 					<link`)
 				} else {
-					content = content.replace('</head>', `<link preload as="style" rel="stylesheet" href="${item.replace(__dirname, "")}"/>
+					content = content.replace('</head>', `<link rel="stylesheet" href="${item.replace(__dirname, "")}"/>
 					</head>`)
 				}
-				
 			})
-			console.log(content)
+      content = content.replace(metaReg, `${meta.meta}\n<title>`)
+      content = content.replace(jsReg, `${meta.js}\n<script`)
 		}
 		return content
 	},
@@ -31,7 +33,9 @@ fis.match('*.html', {
 
 fis.match('*.scss', {
 	rExt: '.css',
-	parser: fis.plugin('node-sass')
+	parser: fis.plugin('node-sass'),
+  useHash: true,
+  useCache: false
 })
 
 fis.match('src/(**)', { // 把src里的内容发送到根目录
