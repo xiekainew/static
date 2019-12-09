@@ -7,6 +7,9 @@ new Vue({
 		}, {
 			title: '文章',
 			link: '/pages/detail/index.html'
+		}, {
+			title: '测试demo',
+			link: '/pages/test.html'
 		}],
 		current: window.location.pathname,
 		message: ''

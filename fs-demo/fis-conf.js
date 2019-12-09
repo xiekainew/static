@@ -32,18 +32,19 @@ fis.match('*.html', {
 					</head>`)
 				}
 			})
-      content = content.replace('</head>', `<link rel="stylesheet" href="/static/font/iconfont.css"/>
-          </head>`)
-      commonJs.forEach(item => {
-        content = content.replace('<script', `<script src="${item.replace(__dirname, "")}"></script>\n<script`)
-      })
-      
-      meta.js.forEach(item => {
-        content = content.replace('</head>', `<link rel="preload" as="script" href="${item}"/>
-          </head>`)
-        content = content.replace('<script', `<script src="${item}"></script>\n<script`)
-      })
-      content = content.replace(metaReg, `${meta.meta}\n<title>`)
+			content = content.replace('</head>', `<link rel="stylesheet" href="/static/font/iconfont.css"/>
+			  </head>`)
+			content = content.replace('</title>', `</title>\n <link rel="icon" href="/static/images/favicon.ico"/>`)
+			commonJs.forEach(item => {
+			content = content.replace('<script', `<script src="${item.replace(__dirname, "")}"></script>\n<script`)
+			})
+
+			meta.js.forEach(item => {
+			content = content.replace('</head>', `<link rel="preload" as="script" href="${item}"/>
+			  </head>`)
+			content = content.replace('<script', `<script src="${item}"></script>\n<script`)
+			})
+			content = content.replace(metaReg, `${meta.meta}\n<title>`)
 		}
 		return content
 	},

@@ -9,6 +9,10 @@ new Vue({
 				console.log(res)
 				this.list = res.data || []
 			})
+			Axios.get('http://api.boblog.com/v1/home').then(res => {
+				console.log(res)
+				// this.list = res.data || []
+			})
 		}
 	},
 	mounted() {

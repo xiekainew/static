@@ -19,3 +19,6 @@ table { border-collapse:collapse; }
 a { text-decoration:none; }
 a:visited {}
 i{font-style: normal}
+*{
+    -webkit-tap-highlight-color:transparent;
+}

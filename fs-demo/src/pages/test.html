@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<link rel="stylesheet" href="../style/test.scss"/>
+</head>
+<body>
+	 <div id="channel-wrapper" class="channel-wrapper">
+            <div class="register2">
+                <div class="register2-title">
+                    <span class="register2-title__close"></span>
+                    <img class="register2-title__img" src="/static/images/common/xinren.png">
+                    <p class="register2-title__text">更多体育赛事免费观看</p>
+                </div>
+                <div class="register2-input">
+                    <span class="register2-input__icon icon1"></span>
+                    <input class="register2-input__ipt" placeholder="输入" />
+                    <span class="register2-input__area"></span>
+                </div>
+                <div class="register2-input">
+                    <span class="register2-input__icon icon2"></span>
+                    <input class="register2-input__ipt" placeholder="输入" />
+                    <span class="register2-input__code"></span>
+                </div>
+                <div class="register2-doc">
+                    <span class="register2-doc__select"  @click="changeSelect"></span>
+                    <span>阅读并接受</span>
+                    <a href="/live-mobile-active/policyRegister.html">《抓饭直播最终用户使用许可协议》</a>
+                </div>
+                <button class="register2-button" id="test">立即注册</button>
+            </div>
+        </div>
+    <script type="text/javascript">
+	// 业务代码
+	var $test = document.getElementById('test')
+	$test.addEventListener('click', function () {
+		
+	})
+	 // FastClick简单实现
+	// var targetElement = null
+	// document.body.addEventListener('touchstart', function () {
+	// 	// 记录点击的元素
+	// 	targetElement = event.target
+	// })
+	// document.body.addEventListener('touchend', function (event) {
+	// 	// 阻止默认事件（屏蔽之后的click事件）
+	// 	event.preventDefault()
+	// 	var touch = event.changedTouches[0]
+	// 	// 合成click事件，并添加可跟踪属性forwardedTouchEvent
+	// 	var clickEvent = document.createEvent('MouseEvents')
+	// 	clickEvent.initMouseEvent('click', true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null)
+	// 	clickEvent.forwardedTouchEvent = true // 自定义的
+	// 	targetElement.dispatchEvent(clickEvent)
+	// })
+    </script>
+</body>
+</html>
