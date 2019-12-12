@@ -13,19 +13,37 @@
 		<div class="christmas-main">
 			<div class="christmas-main__wrapper">
 				<div class="christmas-main__wrapper--title">
-					<div class="christmas-main__wrapper--title_button select">圣诞老人</div>
-					<div class="christmas-main__wrapper--title_button">圣诞树</div>
+					<div 
+						class="christmas-main__wrapper--title_button " 
+						:class="{select: select === '1'}"
+						@click="selectTab('1')"
+					>圣诞老人</div>
+					<div 
+						class="christmas-main__wrapper--title_button"
+						@click="selectTab('2')"
+						:class="{select: select === '2'}"
+					>圣诞树</div>
 				</div>
 				<div class="christmas-main__wrapper--tabs">
-					<div class="christmas-main__wrapper--tabs__button select">主播榜</div>
-					<div class="christmas-main__wrapper--tabs__button">粉丝榜</div>
+					<div 
+						class="christmas-main__wrapper--tabs__button" 
+						@click="selectNav('3')"
+						:class="{select: navSelect === '3'}"
+					>主播榜</div>
+					<div 
+						class="christmas-main__wrapper--tabs__button" 
+						@click="selectNav('4')"
+						:class="{select: navSelect === '4'}"
+					>粉丝榜</div>
 				</div>
-				<div class="christmas-main__wrapper--list">
+				<div class="christmas-main__wrapper--list"  v-for="(item, index) in list" :key="item.uid">
 					<div class="christmas-main__wrapper--list__index icon"></div>
 					<div class="list">
-						<span class="list-header"></span>
+						<span class="list-header"
+							:style="{backgroundImage: `url(${item.figureurl})`}"
+						></span>
 						<span class="list-name">
-							<span class="list-name__text">快乐的小铃木</span>
+							<span class="list-name__text">{{item.uname}}</span>
 							<span class="list-name__live">LIVE</span>
 						</span>
 						<span class="list-hint">10234</span>
@@ -33,6 +51,9 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="christmas-footer">此活动最终解释权和修改权归抓饭所有</div>
+
 		<div class="christmas-rule" @click="openRule">活动规则</div>
 		<div class="christmas-award" @click="openAward"></div>
 		<div class="christmas-dialog" :class="{show: isRule || isAward}">

@@ -50,7 +50,7 @@ body, html{
 	}
 	&-main{
 		width: 6.9rem;
-		margin: -78px auto 0.4rem;
+		margin: -78px auto 0;
 		border: 1px solid rgba(58,156,139,1);
 		border-radius: 0.1rem;
 		box-shadow:0  0.02rem 0.44rem rgba(0,38,38,0.5),0 0.01rem 0.16rem 0 rgba(0,46,71,0.19);
@@ -71,6 +71,7 @@ body, html{
 			background: white;
 			border-radius: 0.1rem;
 			margin: 0.9rem auto 0.4rem;
+		    padding-bottom: 0.4rem;
 			&--title{
 				height: 0.88rem;
 				border-bottom: 0.01rem solid #F4F4F4;
@@ -142,6 +143,7 @@ body, html{
 					height: 1.24rem;
 					border-bottom: 0.02rem solid #F4F4F4;
 					display: flex;
+					box-sizing: border-box;
 					align-items: center;
 					&-header{
 						width: 0.68rem;
@@ -183,6 +185,20 @@ body, html{
 				}
 			}
 		}
+	}
+	&-footer{
+		width: 100%;
+		height: 0.96rem;
+		text-align: center;
+		font-size: 0.24rem;
+		color: rgba(68,68,68,.5);
+		padding-top: 0.2rem;
+		box-sizing: border-box;
+		// @include bg('/static/images/activity2/footer-bg.png?__inline');
+		background-image: url('/static/images/activity2/footer-bg.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
 	}
 	&-dialog{
 		position: fixed;

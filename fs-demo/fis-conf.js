@@ -15,6 +15,14 @@ fis.match('**', {
   relative: true
 })
 
+fis.match('*.scss', {
+  rExt: '.css',
+  parser: fis.plugin('node-sass'),
+  useHash: true,
+  useCache: false
+})
+
+
 fis.match('*.js', {
   parser: fis.plugin('babel-5.x', {
     blacklist: ['regenerator'],
@@ -22,6 +30,11 @@ fis.match('*.js', {
   }),
   rExt: 'js'
 });
+fis.match('*', {
+  deploy: fis.plugin('local-deliver', {
+    to: path.resolve(__dirname, './fis3-server/')
+  })
+})
 
 fis.match('*.html', {
 	postprocessor: function(content, file, settings) {
@@ -53,13 +66,6 @@ fis.match('*.html', {
 		}
 		return content
 	},
-  useCache: false
-})
-
-fis.match('*.scss', {
-	rExt: '.css',
-	parser: fis.plugin('node-sass'),
-  useHash: true,
   useCache: false
 })
 
@@ -119,5 +125,7 @@ fis.set('project.ignore', [
     '.svn/**',
     "**conf.js",
     "**.ico",
-    '**.bat'
+    '**.bat',
+    "server.js",
+    "fis3-server/**"
 ]);
