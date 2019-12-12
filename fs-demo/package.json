@@ -18,6 +18,7 @@
     "fis-parser-babel-5.x": "^1.4.0",
     "fis-parser-jdists": "^2.2.3",
     "fis-parser-node-sass": "^1.0.6",
+    "fis3-hook-relative": "^2.0.3",
     "fis3-postpackager-loader": "^2.1.11",
     "fis3-preprocessor-autoprefixer": "^0.1.1",
     "fis3-server-jello": "0.0.11",

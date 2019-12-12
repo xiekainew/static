@@ -1,0 +1,301 @@
+@mixin bg($url) {
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+};
+body, html{
+	height: 100%;
+}
+.christmas{
+	min-width: 1288px;
+	background: #C2D7DA;
+	width: 100%;
+	height: 100%;
+	&-banner{
+		height: 560px;
+		position: relative;
+		background: black;
+		overflow: hidden;
+		@include bg('/static/images/activity/banner-bg.png');
+		background-position: center top;
+		&::after{
+			width: 523px;
+			height: 180px;
+			content: '';
+			position: absolute;
+			left: 50%;
+			margin-left: -271px;
+			top: 80px;
+			@include bg('/static/images/activity/slogen.png');
+			background-size: contain;
+		}
+		&__rule{
+			width: 118px;
+			height: 55px;
+			margin: 285px auto 0;
+		    box-sizing: border-box;
+		    font-size: 14px;
+		    color: white;
+		    text-align: center;
+		    padding-top: 16px;
+		    padding-right: 14px;
+		    cursor: pointer;
+			@include bg('/static/images/activity/rule.png');
+		}
+	}
+	&-main{
+		background: #C7DBE3;
+		border-top: 1px solid #C7DBE3;
+	    box-shadow: 0 -11px 17px 47px #C7DBE3;
+	    position: relative;
+	    z-index: 11;
+		&__content{
+			width: 1288px;
+			height: 1018px;
+			margin: -202px auto 0;
+			@include bg('/static/images/activity/center-bg.png');
+			background-size: contain;
+			background-position: center top;
+			display: flex;
+			box-sizing: border-box;
+			padding: 171px 73px 76px;
+			&--item{
+				background: white;
+				flex: 1;
+				border-radius: 10px;
+				.title{
+					height: 65px;
+					line-height: 65px;
+					border-bottom: 1px solid #F4F4F4;
+					color: #4A4A4A;
+					font-size: 22px;
+					padding-left: 70px;
+					box-sizing: border-box;
+					@include bg('/static/images/activity/people.png');
+					background-size: 28px 30px;
+					background-position: 30px 18px;
+				}
+				.tabs{
+					display: flex;
+					margin: 13px 25px 2px;
+					&-button{
+						flex: 1;
+						height: 38px;
+						line-height: 38px;
+						border: 1px solid #F4F4F4;
+						background: #F4F4F4;
+						border-radius:3px 4px 4px 3px;
+						color: #666666;
+						font-size: 18px;
+						text-align: center;
+						cursor: pointer;
+						transition: all 0.1s linear;
+						&.select{
+							color: #3A9C8B;
+							background: white;
+						}
+					}
+				}
+				.list{
+					display: flex;
+					height: 62px;
+					margin: 0 25px;
+					align-items: center;
+					border-bottom: 1px solid #F4F4F4;
+					cursor: pointer;
+					box-sizing: border-box;
+					transition: all 0.15s linear;
+					&:hover{
+						// background: #F4F4F4;
+					}
+					&-icon{
+						width: 18px;
+						height: 24px;
+						margin-right: 10px;
+						@include bg('/static/images/activity/one1.png');
+					}
+					&-header{
+						width: 34px;
+						height: 34px;
+						margin-right: 10px;
+						border-radius: 34px;
+						background-color: #f2f2f2;
+					}
+					&-name{
+						flex: 1;
+						&__text{
+							display: inline-block;
+							color: #333333;
+							font-size: 14px;
+							position: relative;
+							&.live{
+								&::after{
+									content: 'LIVE';
+									position: absolute;
+									top: 0;
+									right: -65px;
+									width: 57px;
+									height: 20px;
+									box-sizing: border-box;
+									padding-left: 10px;
+									color: white;
+									font-size: 12px;
+									line-height: 20px;
+									@include bg('/static/images/activity/live.png');
+								}
+							}
+						}
+					}
+					&-hint{
+						color: #F5A623;
+						font-size: 14px;
+					}
+				}
+				&.people{
+					margin-right: 10px;
+					.title{
+						background-image: url('/static/images/activity/tree.png');
+					}
+				}
+				&.tree{
+					margin-left: 10px;
+				}
+			}
+			
+		}
+	}
+	&-tips{
+		font-size: 12px;
+		color: #444444;
+		text-align: center;
+		position: relative;
+		z-index:555;
+		margin-top: -27px
+	}
+	&-award{
+		position: fixed;
+		width: 96px;
+		height: 99px;
+		@include bg('/static/images/activity/jiangli.png');
+		bottom: 300px;
+		right: 100px;
+		z-index: 4000;
+		cursor: pointer;
+	}
+	&-dialog{
+		position: fixed;
+		left: 0;
+		top: 0;
+		overflow: auto;
+		// min-height: 847px;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.8);
+		z-index: 8888;
+		align-items: center;
+		justify-content: center;
+		display: none;
+		&.show{
+			display: flex;
+		}
+		&__rule{
+			width: 622px;
+			height: 609px;
+			@include bg('/static/images/activity/rule-bg.png');
+			position: relative;
+			display: none;
+			&.show{
+				display: block;
+			}
+			&--close{
+				width: 15px;
+				height: 15px;
+				position: absolute;
+				top: 119px;
+				right: 77px;
+				@include bg('/static/images/activity/close.png');
+				cursor: pointer;
+				background-size: contain;
+			}
+			&--title{
+				font-size: 22px;
+				color: #FFFFFF;
+				text-align: center;
+				padding-top: 244px;
+				margin-bottom: 18px;
+			}
+			&--line{
+				color: white;
+				width: 360px;
+				font-size: 14px;
+				margin-left: 149px;
+				line-height: 21px;
+				margin-bottom: 9px;
+				text-align: justify;
+				position: relative;
+				&:after{
+					content: '1.';
+					position: absolute;
+					left: -20px;
+					top: 0px;
+				}
+				&.two{
+					&:after{
+						content: '2.';
+					}
+				}
+				&.three{
+					&:after{
+						content: '3.';
+					}
+				}
+				&.four{
+					&:after{
+						content: '4.';
+					}
+				}
+			}
+		}
+		&__award{
+			width: 622px;
+			height: 847px;
+			@include bg('/static/images/activity/award-bg.png');
+			position: relative;
+			display: none;
+			&.show{
+				display: block;
+			}
+			&--close{
+				width: 15px;
+				height: 15px;
+				position: absolute;
+				top: 119px;
+				right: 77px;
+				@include bg('/static/images/activity/close.png');
+				cursor: pointer;
+				background-size: contain;
+			}
+			&--title{
+				font-size: 22px;
+				color: #FFFFFF;
+				text-align: center;
+				padding-top: 244px;
+				margin-bottom: 15px;
+			}
+			&--title1{
+				color: white;
+				font-size: 18px;
+				padding-left: 144px;
+				margin-bottom: 10px;
+			}
+			&--desc{
+				font-size: 14px;
+				line-height: 21px;
+				color: white;
+				padding-left: 144px;
+				padding-bottom: 8px;
+			}
+		}
+	}
+}

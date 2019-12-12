@@ -10,6 +10,11 @@ var commonJs = glob.sync(basePath + '/js/common/*.js')
 var reg = /<link([\s\S]*)<\/head>/
 var metaReg = /<title>/
 
+fis.hook('relative');
+fis.match('**', {
+  relative: true
+})
+
 fis.match('*.js', {
   parser: fis.plugin('babel-5.x', {
     blacklist: ['regenerator'],
@@ -80,10 +85,7 @@ fis.match('*.{css,less,scss}', {
     "cascade": true
   })
 })
-// 压缩 js 代码。
-fis.match('*.{js,jsx,ts,tsx,es6,es}', {
-  optimizer: fis.plugin('uglify-js')
-});
+
 // 压缩 css 代码。
 fis.match('*.{scss,sass,less,css}', {
   optimizer: fis.plugin('clean-css',{

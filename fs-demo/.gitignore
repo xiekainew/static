@@ -1,5 +1,7 @@
 node_modules
 dist/
 dist
+fis3-server
+fis3-server/
 
 *.zip

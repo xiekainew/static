@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>christmas</title>
+	<link rel="stylesheet" href="../../style/christmas.scss"/>
+</head>
+<body>
+	<div class="christmas" id="christmas">
+		<div class="christmas-banner">
+			<div class="christmas-banner__rule" @click="openRule">活动规则</div>
+		</div>
+		<div class="christmas-main">
+			<div class="christmas-main__content">
+				<div class="christmas-main__content--item people">
+					<div class="title">圣诞老人</div>
+					<div class="tabs">
+						<div class="tabs-button select">主播榜</div>
+						<div class="tabs-button">粉丝榜</div>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+					<div class="list">
+						<span class="list-icon"></span>
+						<span class="list-header"></span>
+						<span class="list-name">
+							<span class="list-name__text live">快乐的小铃木</span>
+						</span>
+						<span class="list-hint">10234</span>
+					</div>
+				</div>
+				<div class="christmas-main__content--item tree">
+					<div class="title">圣诞树</div>
+					<div class="tabs">
+						<div class="tabs-button ">主播榜</div>
+						<div class="tabs-button select">粉丝榜</div>
+					</div>
+					<div class="list">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="christmas-tips">此活动最终解释权和修改权归抓饭所有</div>
+		<div class="christmas-award" @click="openAward"></div>
+		<div class="christmas-dialog" :class="{show: isRule || isAward}">
+			<div class="christmas-dialog__rule" :class="{show: isRule}">
+				<span class="christmas-dialog__rule--close" @click="closeRule"></span>
+				<div class="christmas-dialog__rule--title">活动规则</div>
+				<div class="christmas-dialog__rule--line">
+					收取或送出礼物“圣诞老人”或“圣诞树”即可参与活动。
+				</div>
+				<div class="christmas-dialog__rule--line two">
+					榜单分为两个，在活动时间内每个礼物榜需收取或送出对应的礼物才可以统计在内，榜单优先实时展示排名前十的主播以及粉丝。
+				</div>
+				<div class="christmas-dialog__rule--line three">
+					活动时间：12月23日00:00至31日00:00。
+				</div>
+				<div class="christmas-dialog__rule--line four">
+					奖励会在活动结束后统一进行发放，实物奖励会由工作人员联系发放。请保持账号绑定的手机号畅通，或联系QQ客服留下联系地址。
+				</div>
+			</div>
+			<div class="christmas-dialog__award" :class="{show: isAward}">
+				<span class="christmas-dialog__award--close" @click="closeAward"></span>
+				<div class="christmas-dialog__award--title">活动奖励</div>
+				<div class="christmas-dialog__award--title1">圣诞老人榜单</div>
+				<div class="christmas-dialog__award--desc">主播奖励：<br/>
+第一名：98元+智能电热毯 <br/>
+第二名：58元+电热烧水壶<br/>
+第三名：38元+居家棉拖鞋</div>
+				<div class="christmas-dialog__award--desc">粉丝奖励<br/>
+第一名：30000米粒+小米保温杯<br/>
+第二名：20000米粒+毛绒暖手宝<br/>
+第三名：10000米粒+发热暖足贴</div>
+				<div class="christmas-dialog__award--title1">圣诞树榜单</div>
+				<div class="christmas-dialog__award--desc">主播奖励：<br/>
+第一名：98元+智能电热毯 <br/>
+第二名：58元+电热烧水壶<br/>
+第三名：38元+居家棉拖鞋</div>
+				<div class="christmas-dialog__award--desc">粉丝奖励<br/>
+第一名：30000米粒+小米保温杯<br/>
+第二名：20000米粒+毛绒暖手宝<br/>
+第三名：10000米粒+发热暖足贴</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/js/christmas.js"></script>
+</body>
+</html>
