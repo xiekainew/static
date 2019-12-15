@@ -8,28 +8,40 @@
 
 <script type="text/javascript">
 	function Queue() {
-
+		this.list = []
 	}
 	Queue.prototype.test = function(fn) {
-		return function() {
-			console.log(12)
-			new Promise((resolve, reject) => {
-				resolve(fn())
-			})
-			return this
-		}
+		this.list.push(fn)
+		return this
 	}
 	Queue.prototype.run = function(fn) {
-		console.log(fn)
-		fn()
+		var that =this
+		var runs = function() {
+			if (that.list.length) {
+				var f = that.list.shift()
+				var timer = setTimeout(() => {
+					clearTimeout()
+					f()
+					if (that.list.length) {
+						runs()
+					}
+				}, 1000)
+			}
+		}
+		runs()
 	}
 
 	var queue = new Queue()
 	var test = queue.test(() => {
 		console.log(1)
+	}).test(() => {
+		console.log(2)
+	}).test(() => {
+		console.log(3)
 	})
 	console.log(test)
-	queue.run(test)
+	test.run()
+
 </script>
 </body>
 </html>
