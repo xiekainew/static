@@ -15,26 +15,26 @@
 
     // These helpers produce better VM code in JS engines due to their
     // explicitness and function inlining.
-    function isUndef (v) {
+    function isUndef (v) { // 判断是否是 undefined
         return v === undefined || v === null
     }
 
-    function isDef (v) {
+    function isDef (v) { // 判断非undefined
         return v !== undefined && v !== null
     }
 
-    function isTrue (v) {
+    function isTrue (v) { // 判断变量类型是否为true
         return v === true
     }
 
-    function isFalse (v) {
+    function isFalse (v) { // 判断变量类型是否为false
         return v === false
     }
 
     /**
      * Check if value is primitive.
      */
-    function isPrimitive (value) {
+    function isPrimitive (value) { // 判断变量是否是 原始值 string,number,symbol,boolean
         return (
             typeof value === 'string' ||
             typeof value === 'number' ||
@@ -345,7 +345,7 @@
         }
     }
 
-    var SSR_ATTR = 'data-server-rendered';
+    var SSR_ATTR = 'data-server-rendered';  // ssr 字符串
 
     var ASSET_TYPES = [
         'component',
@@ -353,8 +353,8 @@
         'filter'
     ];
 
-    var LIFECYCLE_HOOKS = [
-        'beforeCreate',
+    var LIFECYCLE_HOOKS = [ // 生命周期字符串
+        'beforeCreate', 
         'created',
         'beforeMount',
         'mounted',
@@ -4672,6 +4672,7 @@
     var uid$3 = 0;
 
     function initMixin (Vue) {
+        console.log(1)
         Vue.prototype._init = function (options) {
             var vm = this;
             // a uid
@@ -10778,6 +10779,7 @@
 
     function createFunction (code, errors) {
         try {
+            console.log(code)
             return new Function(code)
         } catch (err) {
             errors.push({ err: err, code: code });
@@ -10933,10 +10935,12 @@
         options
     ) {
         var ast = parse(template.trim(), options);
+        // console.log(ast)
         if (options.optimize !== false) {
             optimize(ast, options);
         }
         var code = generate(ast, options);
+        // console.log(code.render)
         return {
             ast: ast,
             render: code.render,
@@ -10947,6 +10951,7 @@
     /*  */
 
     var ref$1 = createCompiler(baseOptions);
+    console.log(ref$1)
     var compile = ref$1.compile;
     var compileToFunctions = ref$1.compileToFunctions;
 
