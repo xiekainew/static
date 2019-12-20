@@ -10,8 +10,8 @@ const serve = (path, cache) => express.static(resolve(path), {
 	maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0 // 静态资源设置缓存
 })
 const app = express()
-app.use(compression({ threshold: 0 })) // gzip 压缩
-app.use('/', serve('./fis3-server', true))
+// app.use(compression({ threshold: 0 })) // gzip 压缩
+app.use('/', serve('./dist', true))
 
 const proxyTable = {
     '/proxy': {

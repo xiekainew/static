@@ -32,7 +32,7 @@ fis.match('*.js', {
 });
 fis.match('*', {
   deploy: fis.plugin('local-deliver', {
-    to: path.resolve(__dirname, './fis3-server/')
+    to: path.resolve(__dirname, './dist/')
   })
 })
 
@@ -127,5 +127,5 @@ fis.set('project.ignore', [
     "**.ico",
     '**.bat',
     "server.js",
-    "fis3-server/**"
+    "dist/**"
 ]);
