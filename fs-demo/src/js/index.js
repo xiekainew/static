@@ -1,7 +1,11 @@
+__inline('../components/v-content/index.js')
 new Vue({
 	el: '#index',
 	data: {
 		list: []
+	},
+	components: {
+		vContent
 	},
 	methods: {
 		fetchList() {
