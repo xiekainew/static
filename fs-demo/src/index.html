@@ -33,7 +33,7 @@
 	<script type="text/javascript" src="./js/index.js"></script>
 	<script type="text/javascript">
 		(function() {
-		    handleAddListener('load', getTiming)
+		    // handleAddListener('load', getTiming)
 		    function handleAddListener(type, fn) {
 		        if(window.addEventListener) {
 		            window.addEventListener(type, fn)
@@ -41,7 +41,7 @@
 		            window.attachEvent('on' + type, fn)
 		        }
 		    }
-		    console.log(1)
+
 		    function getTiming() {
 		        try {
 		            var time = performance.timing;
