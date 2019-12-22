@@ -16,17 +16,52 @@
 			}
 		}
 		&__list{
-			height: 10rem;
 			background: white;
 			border-radius: 0.3rem;
 			margin-top: 1rem;
+			padding: 0 1rem;
+			&--title{
+				color: $theme-title-color;
+				font-size: 0;
+				height: 2.1rem;
+				line-height: 2.1rem;
+				border-bottom: 1px solid #f6f6f6;
+
+				i{
+					font-size: 1.5rem;
+				}
+				i, span{
+					vertical-align: middle;
+					font-weight: 500;
+					display: inline-block;
+				}
+				span{
+					font-size: 0.9rem;
+					margin-left: 0.5rem;
+				}
+			}
 			&--item{
-				padding: 1rem;
+				padding: 1rem 0;
 				border-bottom: 1px solid #f6f6f6;
 				cursor: pointer;
 				transition: all 0.15s linear;
 				&:hover{
-					background: #f6f6f6;
+					// background: #f6f6f6;
+					.title{
+						color: $theme-color;
+					}
+				}
+				&_title{
+					font-size: 0.9rem;
+					color: $theme-font-color;
+					transition: all 0.1s linear;
+				}
+				&_bottom{
+					color: #9ea7b4;
+					height: 1.2rem;
+					margin-top: 1rem;
+					display: flex;
+					align-items: center;
 				}
 			}
 		}

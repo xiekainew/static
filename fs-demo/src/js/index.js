@@ -1,7 +1,7 @@
 __inline('../components/v-content/index.js')
 __inline('../js/mixin.js')
 
-Vue.mixin(Mixin)
+// Vue.mixin(Mixin)
 new Vue({
 	el: '#index',
 	data: {

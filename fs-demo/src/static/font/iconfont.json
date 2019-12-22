@@ -6,11 +6,25 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1208",
+      "name": "标签",
+      "font_class": "biaoqian1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "128822",
       "name": "book",
       "font_class": "book",
       "unicode": "e713",
       "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "479192",
+      "name": "眼睛",
+      "font_class": "yanjing",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
     },
     {
       "icon_id": "1327540",
@@ -20,11 +34,67 @@
       "unicode_decimal": 58919
     },
     {
+      "icon_id": "1393473",
+      "name": "article",
+      "font_class": "article",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
+      "icon_id": "1425691",
+      "name": "tab",
+      "font_class": "biaoqian",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "2439690",
+      "name": "人员",
+      "font_class": "fl-renyuan",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "4487893",
+      "name": "标签",
+      "font_class": "biaoqian2",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "5237990",
+      "name": "标签",
+      "font_class": "tubiao-",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "7404314",
+      "name": "时间",
+      "font_class": "shijian",
+      "unicode": "e77c",
+      "unicode_decimal": 59260
+    },
+    {
       "icon_id": "7735898",
       "name": "book",
       "font_class": "book2",
       "unicode": "e8d1",
       "unicode_decimal": 59601
+    },
+    {
+      "icon_id": "9512594",
+      "name": "菜单",
+      "font_class": "menu-fill",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "10026241",
+      "name": "分类",
+      "font_class": "fenleishouye",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
     }
   ]
 }

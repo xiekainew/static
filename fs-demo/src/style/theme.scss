@@ -4,6 +4,9 @@ $theme-blue: #3B90FC;
 $theme-blue-hover: #2366BA;
 
 $theme-color: #2d8cf0;
+$theme-font-color: #464c5b;
+
+$theme-title-color: #337ab7;
 
 @mixin bg($url) {
 	background-image: url($url);

@@ -15,12 +15,21 @@
 				</div>
 			</div>
 			<div class="wrapper-main__list">
+				<div class="wrapper-main__list--title">
+					<i class="iconfont">&#xe62a;</i>
+					<span>文章</span>
+				</div>
 				<div 
 					class="wrapper-main__list--item"
 					v-for="item in list"
 					:key="item.id"
 				>
-					{{item.title}}
+					<div class="wrapper-main__list--item_title title">{{item.title}}</div>
+					<div class="wrapper-main__list--item_bottom">
+						<i class="iconfont">&#xe693;</i>
+						<i class="iconfont">&#xe625;</i>
+						<i class="iconfont">&#xe62f;</i>
+					</div>
 				</div>
 			</div>
 		</div>
