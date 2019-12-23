@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>递归</title>
+</head>
+<body>
+	
+<script type="text/javascript">
+/**
+ * 把前两位数字做成参数避免重复计算
+ * @Author   xiekai
+ * @DateTime 2019-12-23T14:26:39+0800
+ * @param    {[type]}                 n [description]
+ * @return   {[type]}                   [description]
+ */
+function fibonacci(n){
+    function fib(n, v1, v2) {
+        if (n == 1) return v1
+        if (n == 2) return v2
+        return fib(n - 1, v2, v1 + v2) // fib(3, 1, 2)  fib(2, 2, 3)
+    }
+    return fib(n , 1, 1)
+}
+// console.log(fibonacci(4))
+
+function fib2(n) {
+	var n1 = 1, n2 = 1, sum;
+	for (var i = 2; i < n; i++) {
+		sum = n1 + n2
+		n1 = n2
+		n2 = sum
+	}
+	return sum
+}
+console.log(fib2(6))
+</script>
+</body>
+</html>
