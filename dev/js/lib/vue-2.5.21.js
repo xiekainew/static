@@ -376,7 +376,7 @@
          * Option merge strategies (used in core/util/options)
          */
         // $flow-disable-line
-        optionMergeStrategies: Object.create(null),
+        optionMergeStrategies: Object.create(null), // 空对象，不含原型对象方法
 
         /**
          * Whether to suppress warnings.
