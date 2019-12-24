@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 最大公约数
+		function common(a, b) {
+			var divisor = 2, res = 1
+			if (a < 2 || b < 2) return 1
+			while (a >= divisor && b >= divisor) {
+				if (a%divisor === 0 && b%divisor === 0) {
+					res = divisor
+				}
+				divisor++
+			}
+			return res
+		}
+		// console.log(common(6, 4))
+
+
+		// 判断数组中是否有两数之和
+		var arr = [1, 2, 3, 4, 6]
+		function find(arr, sum) {
+			for (var i = 0, l = arr.length; i < l; i++) {
+				for (var j = i + 1; j < l; j++) {
+					if (arr[i] + arr[j] === sum) {
+						return true
+					}
+				}
+			}
+			return false
+		}
+
+		function find2(arr, sum) {
+			for (var i = 1, l = arr.length; i < 1 << l; i++) {
+				var result = 0
+				var list = []
+				for (var j = 0; j < l; j++) {
+					if ((i & 1 << j) != 0) {
+						result += arr[j]
+						list.push(arr[j])
+					}
+				}
+				if (result == sum) {
+					console.log(result)
+					console.log(list)
+				}
+			}
+		}
+
+		function find3(arr, sum) {
+			for (var i = 0, l = arr.length; i < l; i++) {
+				let sub = sum - arr[i]
+				if (arr.indexOf(sub) > -1 && arr.indexOf(sub) !== i) {
+					return true
+				}
+			}
+			return false
+		}
+
+
+
+
+		console.log(find3(arr, 6))
+
+
+
+	</script>
+</body>
+</html>

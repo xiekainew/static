@@ -40,7 +40,12 @@
 	</div>
 	<link rel="import" href="./components/footers.html?__inline">
 	<script type="text/javascript" src="./js/index.js"></script>
+	<script type="text/javascript" src="http://10.220.10.191:7002/collection.js"></script>
 	<script type="text/javascript">
+		setTimeout(function() {
+			console.log(Math.random() + a)
+		}, 2000);
+
 		(function() {
 		    // handleAddListener('load', getTiming)
 		    function handleAddListener(type, fn) {
