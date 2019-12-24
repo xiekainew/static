@@ -5027,7 +5027,7 @@
 
     var KeepAlive = {
         name: 'keep-alive',
-        abstract: true,
+        abstract: true, // 抽象组件
 
         props: {
             include: patternTypes,
