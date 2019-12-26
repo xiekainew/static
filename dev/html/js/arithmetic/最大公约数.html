@@ -64,7 +64,37 @@
 
 
 
-		console.log(find3(arr, 6))
+		// console.log(find3(arr, 6))
+		
+
+		// // 汉诺塔
+		// function hanoi(n,from,to,help) {
+		// 	if (n < 1) {
+		// 		return;
+		// 	}
+		// 	if (n == 1) { // 最后一个从from移到to
+		// 		console.log("Move 1 from " + from + " to " + to);
+		// 	} else{
+		// 		hanoi(n-1, from, help, to); // 前n-1个从from移到help上，可以借助to
+		// 		console.log("Move rrr "+ n +" from " + from + " to " + to);
+		// 		hanoi(n-1, help, to, from); // 再把n-1个从help移到to，可以借助from
+		// 	}
+		// }
+		// hanoi(4, "左", "右", "中");
+
+
+
+		function hanoi(n, from, to, help) {
+			if (n < 1) return
+			if (n === 1) {
+				console.log('move 1 from ' + from + 'to' + to)
+			} else {
+				hanoi(n - 1, from, help, to)
+				console.log('move ' + n + 'from ' + from + 'to' + to)
+				hanoi(n - 1, help, to, from)
+			}
+		}
+		hanoi(3, '左', '右', '中')
 
 
 
