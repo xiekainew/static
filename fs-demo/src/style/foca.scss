@@ -1,0 +1,176 @@
+@mixin bg($url) {
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.foca{
+	&-banner{
+		width: 100%;
+		min-width: 1200px;
+		height: 931px;
+		@include bg('/static/images/foca/main-bg.png');
+		background-color: #520000;
+		overflow: hidden;
+		&__wrapper{
+			width: 1200px;
+			height: 503px;
+			margin: 95px auto 0;
+			@include bg('/static/images/foca/banner-bg.png');
+			background-size: 1145px 503px;
+			border: 1px solid transparent;
+			position: relative;
+			&--share{
+				width: 145px;
+				height: 174px;
+				@include bg('/static/images/foca/share.png');
+				position: absolute;
+				right: -42px;
+				top: 39px;
+				cursor: pointer;
+			}
+			&--time{
+				width: 614px;
+				height: 240px;
+				@include bg('/static/images/foca/banner-time.png');
+				margin: 101px auto 0;
+				text-align: center;
+				box-sizing: border-box;
+			    padding-top: 124px;
+    			padding-bottom: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #FEE2B2;
+				font-size: 24px;
+				font-weight: 400;
+				span{
+					display: inline-block;
+				}
+				&_item{
+					width: 24px;
+					height: 30px;
+					text-align: center;
+					@include bg('/static/images/foca/time-bg.png');
+					margin: 0 5px;
+				}
+			}
+			&--loop{
+				width: 280px;
+				height: 30px;
+				font-size: 14px;
+				color: #FFEA86;
+				background: rgba(255,0,0,0.30);
+				letter-spacing: 0;
+				line-height: 26px;
+				border-radius: 30px;
+				margin: 0 auto;
+				span{
+					display: inline-block;
+					vertical-align: middle;
+				}
+				&_icon{
+					width: 14px;
+					height: 14px;
+					margin-left: 22px;
+					text-align: center;
+					@include bg('/static/images/foca/loop.png');
+				}
+			}
+		}
+	}
+	&-main{
+		background: #750B0B;
+		box-shadow: 0 0 75px 82px #750B0B;
+		border: 1px solid transparent;
+		position: relative;
+		z-index: 2;
+		&__wrapper{
+			width: 1200px;
+			height: 800px;
+			margin: -452px auto 0;
+			@include bg('/static/images/foca/foca-bg.png');
+			overflow: hidden;
+			&--foca{
+				display: flex;
+			    justify-content: center;
+			    margin-top: 108px;
+				&_item{
+					width: 202px;
+					height: 280px;
+					margin-right: 25px;
+					@include bg('/static/images/foca/foca-none-0.png');
+					&:last-child{
+						margin-right: 0;
+					}
+					&.foca-none-0{
+						background-image: url('/static/images/foca/foca-none-0.png');
+					}
+					&.foca-none-1{
+						background-image: url('/static/images/foca/foca-none-1.png');
+					}
+					&.foca-none-2{
+						background-image: url('/static/images/foca/foca-none-2.png');
+					}
+					&.foca-none-3{
+						background-image: url('/static/images/foca/foca-none-3.png');
+					}
+					&.foca-none-4{
+						background-image: url('/static/images/foca/foca-none-4.png');
+					}
+				}
+			}
+			&--button{
+				width: 160px;
+				height: 44px;
+				margin: 31px auto 0;
+				line-height: 44px;
+				text-align: center;
+				cursor: pointer;
+				font-size: 18px;
+				color: #A9180F;
+				@include bg('/static/images/foca/foca-btn.png');
+				span{
+					opacity: 0.3;
+				}
+			}
+			&--tips{
+				width: 456px;
+				height: 14px;
+				margin: 31px auto 0;
+				@include bg('/static/images/foca/tips-bg.png');
+			}
+			&--step{
+				display: flex;
+				justify-content: space-around;
+				&_item{
+					padding-top: 120px;
+					@include bg('/static/images/foca/step1.png');
+					background-size: 100px 100px;
+					background-position: center top;
+					text-align: center;
+					font-size: 16px;
+					color: #FBD593;
+					font-weight:400;
+					&.step2{
+						background-image: url('/static/images/foca/step2.png');
+					}
+					&.step3{
+						background-image: url('/static/images/foca/step3.png');
+					}
+					&.step4{
+						background-image: url('/static/images/foca/step4.png');
+					}
+				}
+			}
+		}
+		&__tips{
+			color: #F9D192;
+			font-size: 12px;
+			opacity: 0.5;
+			text-align: center;
+			padding: 20px 0;
+		}
+	}
+}
