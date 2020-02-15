@@ -1,0 +1,67 @@
+@mixin bg($url) {
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+@mixin bg2() {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.lottery{
+	width: 100%;
+	min-width: 1200px;
+	min-height: 900px;
+	overflow: hidden;
+	@include bg('/static/images/lottery/main-bg.png');
+	&-title{
+		width: 783px;
+		height: 464px;
+		margin: 73px auto 0;
+		@include bg('/static/images/lottery/banner.png');
+	}
+	&-title2{
+		width: 328px;
+		height: 56px;
+		margin: 47px auto 0;
+		@include bg('/static/images/lottery/luck.png');
+	}
+	&-title3{
+		width: 291px;
+		height: 55px;
+		margin: 37px auto 0;
+		@include bg('/static/images/lottery/rule.png');
+	}
+	&-rule{
+		width: 1000px;
+		height: 403px;
+		margin: 2px auto 0;
+		box-sizing: border-box;
+		padding: 29px 30px;
+		@include bg('/static/images/lottery/rule-bg.png');
+		&__title{
+			color: #E8FFCE;
+			font-size: 18px;
+			margin-bottom: 16px;
+		}
+		&__content{
+			font-size: 14px;
+			color: #D4FFA6;
+			line-height: 20px;
+			margin-bottom: 30px;
+		}
+	}
+	&-tips{
+		color: #D4FFA6;
+		font-size: 14px;
+		text-align: center;
+		height: 60px;
+		line-height: 60px;
+		width: 1000px;
+		margin: 0 auto;
+		opacity: 0.8;
+	}
+}
+

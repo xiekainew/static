@@ -1,0 +1,9 @@
+<transition name="fade">
+	<div class="turntable-dialog" v-if="dialogVisible">
+		<div class="turntable-dialog__shade"></div>
+		<div class="turntable-dialog__main" :style="style">
+			<span class="turntable-dialog__main-close" @click="close"></span>
+			<slot></slot>
+		</div>
+	</div>
+</transition>

@@ -19,6 +19,9 @@ new Vue({
 		}, {
 			title: '福卡',
 			link: '/pages/activity/foca.html'
+		}, {
+			title: '啤酒',
+			link: '/pages/activity/lottery.html'
 		}],
 		current: window.location.pathname,
 		message: ''

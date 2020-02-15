@@ -1,0 +1,108 @@
+<div class="lottery-main">
+	<turntable-dialog class="batch" ref="batch">
+		<div class="batch-image"></div>
+		<template v-if="key">
+			<div class="batch-title">批量使用钥匙</div>
+			<div class="batch-input">
+				<input class="batch-input__ipt" v-model="number" :placeholder="`您还有${key}把钥匙`"/>
+				<turntable-button @click="confirmBatch">确认抽奖</turntable-button>
+			</div>
+			<div class="batch-tips">最多一次抽20个</div>
+		</template>
+		<template v-else>
+			<div class="batch-title">钥匙已用完</div>
+			<div class="batch-none">对不起，您已经没有钥匙了~</div>
+			<turntable-button class="batch-nonebtn" @click="confirmNone">确认</turntable-button>
+		</template>
+	</turntable-dialog>
+	<turntable-dialog width="360px" :styles="styles" height="auto" class="result" ref="result">
+		<div class="result-image"></div>
+		<div class="result-box">
+			<div class="result-box__item">
+				<span class="result-box__item-image"></span>
+				<span class="result-box__item-number">3</span>
+			</div>
+			
+		</div>
+		<div class="result-tips">提示：奖品已经放进您的包裹中了</div>
+	</turntable-dialog>
+	<div class="lottery-main__left">
+		<div class="lottery-main__left--button" :class="`button${selected}`">
+			<div 
+				class="lottery-main__left--button__item "
+				v-for="item in lotteryType"
+				:class="{active: item.id === selected}"
+				@click="clickType(item)"
+			>{{item.label}}</div>
+		</div>
+		<div class="circle" :class="`circle${selected}`">
+			<div 
+				class="circle-draw" 
+				:style="style" 
+				@transitionend="transitionend"
+				@click="goDraw"
+			></div>
+			<div class="circle-gift">
+				<div 
+					class="circle-gift__item"
+					v-for="item in giftList"
+					:key="item.id"
+				>
+					<span class="name">{{item.name}}</span>
+					<span class="image"></span>
+				</div>
+			</div>
+			<div class="circle-key">
+				<div class="circle-key__top">
+					你还有<span>300</span>把铜钥匙
+				</div>
+				<div class="circle-key__bottom">
+					我的钥匙：
+					<span class="circle-key__bottom-icon"></span>
+					<span class="circle-key__bottom-number">300</span>
+					<span class="circle-key__bottom-icon yin"></span>
+					<span class="circle-key__bottom-number">200</span>
+					<span class="circle-key__bottom-icon jin"></span>
+					<span class="circle-key__bottom-number">100</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="lottery-main__left--tips">
+			温馨提示：每把钥匙都是由规定的有效时长（3小时）
+		</div>
+		
+	</div>
+	<div class="lottery-main__right">
+		<div class="history-box">
+			<div class="history-box__wrapper">
+				<div class="history-box__wrapper-item">
+					<span class="history-box__wrapper-item--header"></span>
+					<span class="history-box__wrapper-item--name">发奖金阿斯蒂芬</span>
+					<span class="history-box__wrapper-item--icon"></span>
+					<span class="history-box__wrapper-item--number">X5</span>
+					<span class="history-box__wrapper-item--time">02-03 18:22</span>
+				</div>
+				<div class="history-box__wrapper-item">
+					<span class="history-box__wrapper-item--header"></span>
+					<span class="history-box__wrapper-item--name">发奖金阿斯蒂芬</span>
+					<span class="history-box__wrapper-item--icon"></span>
+					<span class="history-box__wrapper-item--number">X5</span>
+					<span class="history-box__wrapper-item--time">02-03 18:22</span>
+				</div>
+				<div class="history-box__wrapper-item">
+					<span class="history-box__wrapper-item--header"></span>
+					<span class="history-box__wrapper-item--name">发奖金阿斯蒂芬</span>
+					<span class="history-box__wrapper-item--icon"></span>
+					<span class="history-box__wrapper-item--number">X5</span>
+					<span class="history-box__wrapper-item--time">02-03 18:22</span>
+				</div>
+				
+			</div>
+		</div>
+		<div class="lottery-main__right-button">
+			<div class="lottery-main__right-button--item" @click="batch">批量使用</div>
+			<a href="/home/parcelhistory"><div class="lottery-main__right-button--item" @click="drowHistory">我的抽奖记录</div></a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animation动画</title>
+	<style type="text/css">
+		.egg{
+			/*width: 282px;*/
+			width: 225px;
+            height: 212px;
+            margin: 0 auto;
+            background-size: auto 100%;
+            background-position: left center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            background-image: url("../../static/image/zd_03.png");
+		}
+		.egg.animation {
+		    animation: play 1.5s steps(1) 1;
+		}
+		@keyframes play2{
+			0% {
+				background-position: 0 0;
+			}
+			100% {
+				background-position: -4230px 0;
+			}
+		}
+		@keyframes play {
+        0% {
+            background-position: 0 0;
+        }
+
+        7% {
+            background-position: -225px 0;
+        }
+
+        14% {
+            background-position: -450px 0;
+        }
+
+        21% {
+            background-position: -675px 0;
+        }
+
+        28% {
+            background-position: -900px 0;
+        }
+
+        35% {
+            background-position: -1125px 0;
+        }
+
+        42% {
+            background-position: -1350px 0;
+        }
+
+        49% {
+            background-position: -1575px 0;
+        }
+
+        56% {
+            background-position: -1800px 0;
+        }
+
+        63% {
+            background-position: -2025px 0;
+        }
+
+        70% {
+            background-position: -2250px 0;
+        }
+
+        77% {
+            background-position: -2475px 0;
+        }
+
+        84% {
+            background-position: -2700px 0;
+        }
+
+        91% {
+            background-position: -2925px 0;
+        }
+
+        100% {
+            background-position: -3150px 0;
+        }
+    }
+    .div{
+    	width: 200px;
+    	height: 100px;
+    	/*background: red;*/
+    	animation: change 1s steps(1, end) infinite;
+    }
+    @keyframes change{
+    	0%{
+    		background: red;
+    	}
+    	100%{
+    		background: yellow;
+    	}
+    }
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div 
+			class="egg"
+			:class="[animation]"
+			@click="play"
+			@animationend="animationend"
+		></div>
+		<div class="div"></div>
+	</div>
+	<script type="text/javascript" src="../../js/lib/vue-2.5.21.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				animation: ''
+			},
+			methods: {
+				play() {
+					this.animation = 'animation'
+				},
+				animationend() {
+					console.log('over')
+					this.animation = ''
+				}
+			}
+		})
+	</script>
+</body>
+</html>
