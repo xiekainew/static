@@ -51,6 +51,9 @@ $(document).ready(function() {
 	$('#send-button').click(function(e) {
 		processUserInput(chatApp, socket)
 	})
+	$('#join').click(function(){ 
+		chatApp.changeRoom('wang')
+	})
 })
 
 

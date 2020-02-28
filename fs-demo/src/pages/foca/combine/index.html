@@ -1,0 +1,15 @@
+<div class="combine" v-if="isShow">
+	<div class="combine-roll" v-if="!showResult" :class="{roll: canRoll}">
+		<span class="combine-roll__icon fan"></span>
+		<span class="combine-roll__icon ying"></span>
+		<span class="combine-roll__icon xin"></span>
+		<span class="combine-roll__icon chun"></span>
+	</div>
+	<div class="combine-button" @click="goRoll" v-if="!showResult">
+		
+	</div>
+	<div class="combine-result" v-if="showResult">
+		<div class="combine-result__image"></div>
+		<div class="combine-result__button" @click="geted">收下福卡({{s}}s)</div>
+	</div>
+</div>

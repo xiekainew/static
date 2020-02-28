@@ -11,11 +11,13 @@
     		var result = JSON.parse(str)
     		callback(null, result)
     	} catch(err) {
+            console.log(12)
     		callback(err)
     	}
     }
-    test('333rr', function(err, result) {
+    test('{"name":"sdf"}', function(err, result) {
     	console.log(err)
+        console.log(aa)
     	console.log(result)
     })
 </script>

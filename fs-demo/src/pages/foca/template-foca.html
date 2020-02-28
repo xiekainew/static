@@ -1,0 +1,60 @@
+<div class='foca'>
+	<div class="foca-banner">
+		<div class="foca-banner__wrapper">
+			<div class="foca-banner__wrapper--share"></div>
+			<div class="foca-banner__wrapper--time">
+				<span>全国已有 &nbsp;</span> 
+				<span class="foca-banner__wrapper--time_item" v-for="item in collectedNum.toString()">{{item}}</span>
+				<span> &nbsp;人集齐福卡</span>
+			</div>
+			<div class="foca-banner__wrapper--loop">
+				<span class="foca-banner__wrapper--loop_icon"></span>
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"
+							v-for="(item, index) in mockList"
+							:key="item.id"
+						>恭喜 {{item.uname}} 获得了“迎”卡</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="foca-main">
+		<div class="foca-main__wrapper" :class="{money: showMoney}">
+			<div class="foca-main__wrapper--foca" v-if="showCardList">
+				<div 
+					v-for="(item, index) in cardList"
+					class="foca-main__wrapper--foca_item"
+					:class="(item.num ? 'foca-has-' : 'foca-none-') + index"
+				>
+					<div class="number" v-if="item.num">{{item.num}}</div>
+				</div>
+			</div>
+			<div class="foca-main__wrapper--wait" v-if="showWait"></div>
+			<div class="foca-main__wrapper--money" v-if="showMoney">
+				<div class="foca-main__wrapper--money_title">恭喜您获得</div>
+				<div class="foca-main__wrapper--money_number">
+					<span>{{money}}</span>元
+				</div>
+				<div class="foca-main__wrapper--money_tips">已自动存于您的余额账户中</div>
+				<div class="foca-main__wrapper--money_button" @click="queryMoney">立即查看</div>
+			</div>
+			<div 
+				class="foca-main__wrapper--button" 
+				:class="{can: (!showWait && isCanCollected) || (showWait && isCanAward)}"
+				@click="goCombineFoca"
+				v-if='!showMoney'
+			><span>{{showWait ? '立即开奖' : '合成福卡'}}</span></div>
+			<div class="foca-main__wrapper--step" v-if='!showMoney'>
+				<div class="foca-main__wrapper--step_item">观看直播发送弹幕<br/>随机掉落卡片</div>
+				<div class="foca-main__wrapper--step_item step2">分享直播间随机<br/>掉落卡片</div>
+				<div class="foca-main__wrapper--step_item step3">赠送专属新年礼物<br/>“球星卡”随机掉落卡片</div>
+				<div class="foca-main__wrapper--step_item step4">分享“集福卡 分百万”<br/>随机掉落卡片</div>
+			</div>
+		</div>
+		<div class="foca-main__tips">此活动最终解释权和修改权归抓饭所有</div>
+	</div>
+	<combine ref="combine" @change="change"></combine>
+</div>

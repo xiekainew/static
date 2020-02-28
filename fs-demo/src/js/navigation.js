@@ -17,9 +17,6 @@ new Vue({
 			title: '圣诞节活动H5',
 			link: '/pages/activity/christmas-m.html'
 		}, {
-			title: '福卡',
-			link: '/pages/activity/foca.html'
-		}, {
 			title: '啤酒',
 			link: '/pages/activity/lottery.html'
 		}],

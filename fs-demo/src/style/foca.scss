@@ -66,16 +66,31 @@
 				line-height: 26px;
 				border-radius: 30px;
 				margin: 0 auto;
+				display: flex;
+				align-items: center;
 				span{
 					display: inline-block;
 					vertical-align: middle;
 				}
 				&_icon{
 					width: 14px;
+					flex: 0 0 14px;
 					height: 14px;
 					margin-left: 22px;
+					margin-right: 10px;
 					text-align: center;
 					@include bg('/static/images/foca/loop.png');
+				}
+				.swiper-container{
+					height: 30px;
+					overflow: hidden;
+					flex: 1;
+					.swiper-slide{
+						line-height: 30px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
 				}
 			}
 		}
@@ -92,15 +107,36 @@
 			margin: -452px auto 0;
 			@include bg('/static/images/foca/foca-bg.png');
 			overflow: hidden;
+			position: relative;
+			&.money{
+				height: 555px;
+				background-image: url('/static/images/foca/foca-money.png');
+				background-size: contain;
+			}
 			&--foca{
 				display: flex;
 			    justify-content: center;
 			    margin-top: 108px;
 				&_item{
-					width: 202px;
-					height: 280px;
-					margin-right: 25px;
+				    width: 219px;
+    				height: 313px;
+				    // margin-right: 9px;
+					position: relative;
 					@include bg('/static/images/foca/foca-none-0.png');
+					.number{
+						width: 68px;
+						height: 68px;
+						position: absolute;
+					    right: -3px;
+    					top: -5px;
+						color: #FFEA86;
+						font-size: 24px;
+					    line-height: 60px;
+					    padding-left: 3px;
+					    box-sizing: border-box;
+						text-align: center;
+						@include bg('/static/images/foca/number-bg.png');
+					}
 					&:last-child{
 						margin-right: 0;
 					}
@@ -119,20 +155,40 @@
 					&.foca-none-4{
 						background-image: url('/static/images/foca/foca-none-4.png');
 					}
+					&.foca-has-0{
+						background-image: url('/static/images/foca/foca-has-0.png');
+					}
+					&.foca-has-1{
+						background-image: url('/static/images/foca/foca-has-1.png');
+					}
+					&.foca-has-2{
+						background-image: url('/static/images/foca/foca-has-2.png');
+					}
+					&.foca-has-3{
+						background-image: url('/static/images/foca/foca-has-3.png');
+					}
+					&.foca-has-4{
+						background-image: url('/static/images/foca/foca-has-4.png');
+					}
 				}
 			}
 			&--button{
 				width: 160px;
 				height: 44px;
-				margin: 31px auto 0;
+				margin: 3px auto 0;
 				line-height: 44px;
 				text-align: center;
-				cursor: pointer;
 				font-size: 18px;
 				color: #A9180F;
 				@include bg('/static/images/foca/foca-btn.png');
 				span{
 					opacity: 0.3;
+				}
+				&.can{
+					cursor: pointer;
+					span{
+						opacity: 1;
+					}
 				}
 			}
 			&--tips{
@@ -141,9 +197,51 @@
 				margin: 31px auto 0;
 				@include bg('/static/images/foca/tips-bg.png');
 			}
+			&--wait{
+				width: 518px;
+				height: 320px;
+				margin: 107px auto 0;
+				@include bg('/static/images/foca/wait-foca.png');
+			}
+			&--money{
+				text-align: center;
+				&_title{
+					color: #C13D33;
+					font-size: 24px;
+					text-align: center;
+					margin-top: 130px;
+					margin-bottom: -10px;
+				}
+				&_number{
+					color: #C13D33;
+					font-size: 24px;
+					span{
+						font-size: 96px;
+					}
+				}
+				&_tips{
+					font-size: 16px;
+					color: #C13D33
+				}
+				&_button{
+					margin: 47px auto 0;
+					width: 160px;
+					height: 44px;
+					line-height: 44px;
+					color: #A9180F;
+					font-weight: 600;
+					cursor: pointer;
+					font-size: 18px;
+					@include bg('/static/images/foca/foca-btn.png');
+				}
+			}
 			&--step{
 				display: flex;
 				justify-content: space-around;
+				position: absolute;
+				left: 0;
+				bottom: 55px;
+				width: 100%;
 				&_item{
 					padding-top: 120px;
 					@include bg('/static/images/foca/step1.png');
@@ -172,5 +270,148 @@
 			text-align: center;
 			padding: 20px 0;
 		}
+	}
+}
+.combine{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgba(0,0,0,.8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 200;
+	&-roll{
+		width: 124px;
+		height: 124px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -62px;
+		margin-top: -62px;
+		z-index: 2;
+		&.roll{
+			animation: roll 1s linear;
+		}
+		&::after{
+			content: '';
+			position: absolute;
+			top: -145px;
+			left: 50%;
+			margin-left: -46px;
+			width: 92px;
+			z-index: 3;
+			height: 92px;
+			@include bg('/static/images/foca/zhua.png');
+		}
+		&__icon{
+			position: absolute;
+			width: 92px;
+			z-index: 3;
+			height: 92px;
+			&.fan{
+				left: -126px;
+    			bottom: 62px;
+				@include bg('/static/images/foca/fan.png');
+			}
+			&.xin{
+				bottom: -109px;
+				left: -77px;
+				@include bg('/static/images/foca/xin.png');
+			}
+			&.chun{
+				bottom: -109px;
+				left: 104px;
+
+				@include bg('/static/images/foca/chun.png');
+			}
+			&.ying{
+				left: 152px;
+				bottom: 62px;
+				@include bg('/static/images/foca/ying.png');
+			}
+		}
+	}
+	&-button{
+		width: 124px;
+		height: 124px;
+		@include bg('/static/images/foca/combine-bt.png');
+		position: relative;
+		z-index: 5;
+		cursor: pointer;
+		&::before{
+			content: '';
+			position: absolute;
+			top: -42px;
+			left: -13px;
+			width: 146px;
+			height: 32px;
+			@include bg('/static/images/foca/combine-tips.png');
+		}
+	}
+	&-result{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		display: flex;
+		align-items:center;
+		flex-direction: column;
+		transform: translateX(-50%) translateY(-50%);
+		&__image{
+			width: 202px;
+			height: 280px;
+			@include bg('/static/images/foca/fu.png');
+			margin-bottom: 43px;
+			position: relative;
+			&::before{
+				content: '';
+				position: absolute;
+				left: -55px;
+			    top: 17px;
+			    width: 85px;
+			    height: 84px;
+				@include bg('/static/images/foca/fuyun1.png');
+				background-size:contain;
+			}
+			&::after{
+				content: '';
+				position: absolute;
+			    left: 157px;
+		    	bottom: 16px;
+			    width: 122px;
+	    		height: 62px;
+				@include bg('/static/images/foca/fuyun2.png');
+			}
+		}
+		&__button{
+			width: 160px;
+			height: 44px;
+			line-height: 44px;
+			text-align: center;
+			@include bg('/static/images/foca/fu-bt.png');
+			background-size: contain;
+			color: #A9180F;
+			font-size: 18px;
+			font-weight: 600;
+			cursor: pointer;
+			&:hover{
+				color: #670600;
+			}
+			&:active{
+				color: #A9180F;
+			}
+		}
+	}
+}
+@keyframes roll{
+	0%{
+		transform: rotate(0) scale(1);
+		opacity: 1;
+	}
+	100%{
+		transform: rotate(720deg) scale(0.2);
+		opacity: 0;
 	}
 }

@@ -24,6 +24,10 @@ function joinRoom(socket, room) {
 		text: nickNames[socket.id] + ' has joined ' + room + '.'
 	})
 
+	var room = Object.keys(socket.rooms)[1]; //这是当前socket的房间，这个对象设置得有点怪，但是事实如此。
+    // io.to(room).emit('chat message', msg);
+    console.log(room); //打印出房间。
+
 	// var usersInRoom = io.sockets.clients()
 	// var clients_in_the_room = io.sockets.adapter.rooms[room]; 
 	// console.log(clients_in_the_room)
