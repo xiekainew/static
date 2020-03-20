@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数字处理-replace</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		var number = 8766323.433
+		function handle(num) {
+			num += ''
+			var prev = num.split('.')
+			var reg = /\d{3}/g
+			console.log(prev[0].replace(reg, '$a$'))
+		}
+		handle(number)
+	</script>
+</body>
+</html>
