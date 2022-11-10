@@ -10,6 +10,6 @@
   "author": "xiekai",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^4.0.2"
+    "electron": "^18.3.7"
   }
 }
