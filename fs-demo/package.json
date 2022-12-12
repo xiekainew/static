@@ -14,7 +14,7 @@
   "devDependencies": {
     "compression": "^1.7.4",
     "cross-env": "^6.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fis-optimizer-clean-css": "0.0.12",
     "fis-optimizer-html-compress": "0.0.7",
     "fis-optimizer-png-compressor": "^0.2.2",
